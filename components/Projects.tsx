@@ -1,3 +1,6 @@
+import { Eyebrow } from "@/components/Eyebrow";
+import { PhotoSkeleton } from "@/components/PhotoSkeleton";
+
 type Project = {
   name: string;
   subdomain: string;
@@ -39,51 +42,60 @@ const PROJECTS: Project[] = [
 
 export function Projects() {
   return (
-    <section id="projects" className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
-      <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-        Projects
-      </h2>
-      <div className="mt-10 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
-        {PROJECTS.map((project) => (
-          <article
-            key={project.name}
-            className="flex h-full flex-col rounded-lg border border-border bg-card p-6"
-          >
-            <h3 className="text-lg font-medium text-foreground">{project.name}</h3>
-            <p className="mt-1 font-mono text-sm text-muted-foreground">{project.subdomain}</p>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              {project.description}
-            </p>
-            <ul className="mt-5 flex flex-wrap gap-2">
-              {project.tech.map((tech) => (
-                <li
-                  key={tech}
-                  className="rounded-full border border-border bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground"
-                >
-                  {tech}
-                </li>
-              ))}
-            </ul>
-            <div className="mt-6 flex flex-wrap gap-3 pt-2">
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
-              >
-                Live demo
-              </a>
-              <a
-                href={project.repo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center rounded-md border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
-              >
-                GitHub
-              </a>
-            </div>
-          </article>
-        ))}
+    <section id="projects" className="border-b border-border">
+      <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+        <Eyebrow>Projects</Eyebrow>
+        <h2 className="mt-6 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+          Things I&apos;ve shipped
+        </h2>
+        <div className="mt-10 grid grid-cols-1 items-stretch gap-6 md:grid-cols-3">
+          {PROJECTS.map((project) => (
+            <article
+              key={project.name}
+              className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card"
+            >
+              <PhotoSkeleton
+                label="App screenshot"
+                className="aspect-[16/10] w-full rounded-none border-x-0 border-t-0"
+              />
+              <div className="flex h-full flex-col p-6">
+                <h3 className="text-lg font-medium text-foreground">{project.name}</h3>
+                <p className="mt-1 font-mono text-sm text-muted-foreground">{project.subdomain}</p>
+                <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                  {project.description}
+                </p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {project.tech.map((tech) => (
+                    <li
+                      key={tech}
+                      className="rounded-full border border-border bg-secondary px-2.5 py-0.5 text-xs font-medium text-secondary-foreground"
+                    >
+                      {tech}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto flex flex-wrap gap-3 pt-6">
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                  >
+                    Live demo
+                  </a>
+                  <a
+                    href={project.repo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-md border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
+                  >
+                    GitHub
+                  </a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
