@@ -1,7 +1,11 @@
+import { About } from "@/components/About";
+import { Experience } from "@/components/Experience";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
+import { Interests } from "@/components/Interests";
 import { Nav } from "@/components/Nav";
 import { Projects } from "@/components/Projects";
+import { Skills } from "@/components/Skills";
 
 export default function HomePage() {
   return (
@@ -9,7 +13,11 @@ export default function HomePage() {
       <Nav />
       <main>
         <Hero />
+        <About />
+        <Experience />
+        <Skills />
         <Projects />
+        <Interests />
       </main>
       <Footer />
     </div>

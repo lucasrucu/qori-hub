@@ -1,4 +1,13 @@
+import { GitHubIcon, LinkedInIcon } from "@/components/BrandIcons";
 import { QoriMark } from "@/components/QoriMark";
+import { SOCIALS } from "@/lib/profile";
+
+const LINKS = [
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
+  { href: "/card", label: "Card" },
+];
 
 export function Nav() {
   return (
@@ -7,23 +16,32 @@ export function Nav() {
         <a href="#top" aria-label="Qori home" className="inline-flex">
           <QoriMark glyph="q" label="Qori" />
         </a>
-        <div className="flex items-center gap-6 text-sm text-muted-foreground">
-          <a href="#projects" className="transition-colors hover:text-foreground">
-            Projects
-          </a>
+        <div className="flex items-center gap-5 text-sm text-muted-foreground">
+          <div className="hidden items-center gap-5 sm:flex">
+            {LINKS.map((link) => (
+              <a key={link.href} href={link.href} className="transition-colors hover:text-foreground">
+                {link.label}
+              </a>
+            ))}
+          </div>
+          <span className="hidden h-4 w-px bg-border sm:block" aria-hidden="true" />
           <a
-            href="https://github.com/lucasrucu"
+            href={SOCIALS.linkedin}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label="LinkedIn"
             className="transition-colors hover:text-foreground"
           >
-            GitHub
+            <LinkedInIcon className="h-5 w-5" />
           </a>
           <a
-            href="mailto:lucasruiz1336@gmail.com"
+            href={SOCIALS.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
             className="transition-colors hover:text-foreground"
           >
-            Contact
+            <GitHubIcon className="h-5 w-5" />
           </a>
         </div>
       </nav>
