@@ -5,7 +5,6 @@ import {
   GitHubIcon,
   InstagramIcon,
   LinkedInIcon,
-  WhatsAppIcon,
 } from "@/components/BrandIcons";
 import { PhotoSkeleton } from "@/components/PhotoSkeleton";
 import { QoriMark } from "@/components/QoriMark";
@@ -22,7 +21,6 @@ const LINKS = [
   { label: "LinkedIn", href: SOCIALS.linkedin, Icon: LinkedInIcon, external: true },
   { label: "GitHub", href: SOCIALS.github, Icon: GitHubIcon, external: true },
   { label: "Email", href: `mailto:${SOCIALS.email}`, Icon: Mail, external: false },
-  { label: "WhatsApp", href: SOCIALS.whatsapp, Icon: WhatsAppIcon, external: true },
   { label: "Instagram", href: SOCIALS.instagram, Icon: InstagramIcon, external: true },
 ];
 
