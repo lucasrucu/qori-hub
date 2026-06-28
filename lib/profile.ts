@@ -31,7 +31,6 @@ export const SOCIALS = {
   linkedin: "https://www.linkedin.com/in/lucasrucu/",
   github: "https://github.com/lucasrucu",
   email: "lucasruiz1336@gmail.com",
-  whatsapp: "https://wa.me/51934109477", // Peru +51 934109477
   instagram: "https://www.instagram.com/lucasrucu/",
 } as const;
 
