@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 
 import { Eyebrow } from "@/components/Eyebrow";
@@ -7,10 +8,22 @@ import { OTHER_PROJECTS, PROJECTS, type Project } from "@/lib/profile";
 function ProjectCard({ project }: { project: Project }) {
   return (
     <article className="flex h-full flex-col overflow-hidden rounded-lg border border-border bg-card">
-      <PhotoSkeleton
-        label={`${project.name} — app screenshot`}
-        className="aspect-[16/10] w-full rounded-none border-x-0 border-t-0"
-      />
+      {project.image ? (
+        <div className="relative aspect-[16/10] w-full overflow-hidden border-b border-border bg-secondary">
+          <Image
+            src={project.image}
+            alt={project.imageAlt ?? `${project.name} app screenshot`}
+            fill
+            sizes="(min-width: 768px) 50vw, 100vw"
+            className="object-cover"
+          />
+        </div>
+      ) : (
+        <PhotoSkeleton
+          label={`${project.name} — app screenshot`}
+          className="aspect-[16/10] w-full rounded-none border-x-0 border-t-0"
+        />
+      )}
       <div className="flex h-full flex-col p-6">
         <div className="flex items-start justify-between gap-3">
           <h3 className="text-lg font-medium text-foreground">{project.name}</h3>
@@ -35,6 +48,24 @@ function ProjectCard({ project }: { project: Project }) {
             </li>
           ))}
         </ul>
+        {project.gallery && project.gallery.length > 0 ? (
+          <div className="mt-5 grid grid-cols-2 gap-3">
+            {project.gallery.map((shot) => (
+              <div
+                key={shot.src}
+                className="relative aspect-[16/10] w-full overflow-hidden rounded-md border border-border bg-secondary"
+              >
+                <Image
+                  src={shot.src}
+                  alt={shot.alt}
+                  fill
+                  sizes="(min-width: 768px) 25vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            ))}
+          </div>
+        ) : null}
         <div className="mt-auto flex flex-wrap gap-3 pt-6">
           {project.page ? (
             <a

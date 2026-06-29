@@ -149,6 +149,12 @@ export type Project = {
   context?: string;
   // True for the flagship/case-study treatment (no live link, framed as a build).
   flagship?: boolean;
+  // Card hero image (public path under /public). Omit to fall back to the placeholder.
+  image?: string;
+  // Alt text for the hero image. Required when image is set.
+  imageAlt?: string;
+  // Extra screenshots shown as a small gallery under the card body.
+  gallery?: { src: string; alt: string }[];
 };
 
 // Featured projects, ordered strongest-first. Each one proves the niche:
@@ -183,6 +189,8 @@ export const PROJECTS: Project[] = [
     tech: ["Python", "Claude Agent SDK", "Multi-agent", "Voice (STT/TTS)", "FastAPI"],
     page: "/otto",
     flagship: true,
+    image: "/projects/otto-dashboard.png",
+    imageAlt: "Otto's dashboard: a glowing gold orb HUD with a command bar, the voice-first control center.",
   },
   {
     name: "PIMS & RFCC Automation",
@@ -250,6 +258,24 @@ export const OTTO = {
 
 // Secondary row — good builds, but they don't lead the niche story.
 export const OTHER_PROJECTS: Project[] = [
+  {
+    name: "rapid-pdf",
+    context: "rapidpdf.qori.land",
+    tagline: "A fast Windows desktop app for real PDF work.",
+    description:
+      "Reorder, delete, and combine pages, then mark them up with text, rectangles, and lines, all in one keyboard-driven canvas. A shipped, installable Windows product, not a demo. Light and dark themes built in.",
+    tech: ["Python", "PySide6", "PyMuPDF", "Desktop"],
+    live: "https://rapidpdf.qori.land",
+    repo: "https://github.com/lucasrucu/rapid-pdf",
+    image: "/projects/rapid-pdf-editor.png",
+    imageAlt: "rapid-pdf editor: a PDF page on a canvas with markup tools and a page sidebar, in dark mode.",
+    gallery: [
+      {
+        src: "/projects/rapid-pdf-organizer.png",
+        alt: "rapid-pdf organizer: page thumbnails you can drag to reorder, delete, or combine.",
+      },
+    ],
+  },
   {
     name: "Snip",
     context: "links.qori.land",

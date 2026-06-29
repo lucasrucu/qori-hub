@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ArrowLeft, Brain, Mic, Workflow, Zap } from "lucide-react";
 
 import { Eyebrow } from "@/components/Eyebrow";
@@ -49,10 +50,15 @@ export default function OttoPage() {
               <p className="mt-6 max-w-xl text-lg text-muted-foreground">{OTTO.intro}</p>
             </div>
             <div className="mx-auto w-full max-w-xs md:mx-0">
-              <PhotoSkeleton
-                label="Demo GIF: the orb (voice in, automation runs)"
-                className="aspect-square w-full ring-4 ring-primary/20"
-              />
+              <div className="relative aspect-square w-full overflow-hidden rounded-xl border border-border bg-secondary ring-4 ring-primary/20">
+                <Image
+                  src="/projects/otto-dashboard.png"
+                  alt="Otto's dashboard: a glowing gold orb HUD with a command bar, the voice-first control center."
+                  fill
+                  sizes="(min-width: 768px) 20rem, 100vw"
+                  className="object-cover"
+                />
+              </div>
             </div>
           </div>
         </section>
