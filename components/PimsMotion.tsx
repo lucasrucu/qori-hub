@@ -174,7 +174,7 @@ export function PimsSignoffArt() {
         <rect width="150" height="120" rx="8" fill="#FFFDF8" stroke="#D9CDB2" strokeWidth="1.4" />
         <rect x="0" y="0" width="150" height="26" rx="8" fill="#F1AE0420" />
         <text x="14" y="17" fontSize="10" fontWeight="700" fill={INK} fontFamily="monospace">RFCC</text>
-        <text x="136" y="17" textAnchor="end" fontSize="8" fill="#A89A7E" fontFamily="monospace">4191-50</text>
+        <text x="136" y="17" textAnchor="end" fontSize="8" fill="#A89A7E" fontFamily="monospace">XXXX-XX</text>
         <line x1="14" y1="44" x2="120" y2="44" stroke="#E0D4B8" strokeWidth="2.5" />
         <line x1="14" y1="56" x2="98" y2="56" stroke="#E0D4B8" strokeWidth="2.5" />
         <line x1="14" y1="68" x2="112" y2="68" stroke="#E0D4B8" strokeWidth="2.5" />
