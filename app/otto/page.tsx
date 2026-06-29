@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { ArrowLeft, Brain, Mic, Workflow, Zap } from "lucide-react";
 
+import { AppWindowFrame } from "@/components/DeviceFrame";
 import { Eyebrow } from "@/components/Eyebrow";
-import { PhotoSkeleton } from "@/components/PhotoSkeleton";
+import { OttoCommandDemo, OttoOrbDemo } from "@/components/OttoMotion";
 import { QoriMark } from "@/components/QoriMark";
 import { OTTO, PROFILE } from "@/lib/profile";
 
@@ -49,16 +49,18 @@ export default function OttoPage() {
               <p className="mt-4 text-xl text-foreground/90">{OTTO.tagline}</p>
               <p className="mt-6 max-w-xl text-lg text-muted-foreground">{OTTO.intro}</p>
             </div>
-            <div className="mx-auto w-full max-w-xs md:mx-0">
-              <div className="relative aspect-square w-full overflow-hidden rounded-xl border border-border bg-secondary ring-4 ring-primary/20">
-                <Image
-                  src="/projects/otto-dashboard.png"
-                  alt="Otto's dashboard: a glowing gold orb HUD with a command bar, the voice-first control center."
-                  fill
-                  sizes="(min-width: 768px) 20rem, 100vw"
-                  className="object-cover"
-                />
-              </div>
+            <div className="mx-auto w-full max-w-sm md:mx-0">
+              <AppWindowFrame
+                image={{
+                  src: "/projects/otto-dashboard.png",
+                  alt: "Otto's dashboard: a glowing gold orb HUD with a command bar, the voice-first control center.",
+                  aspect: "16 / 10",
+                }}
+                title="Otto · voice HUD"
+                priority
+                sizes="(min-width: 768px) 24rem, 100vw"
+                className="rounded-2xl ring-1 ring-primary/15"
+              />
             </div>
           </div>
         </section>
@@ -110,10 +112,19 @@ export default function OttoPage() {
                 <h2 className="mt-6 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                   In motion
                 </h2>
-                <div className="mt-8 grid gap-4">
-                  {OTTO.demos.map((demo) => (
-                    <PhotoSkeleton key={demo} label={demo} className="aspect-[16/10] w-full" />
-                  ))}
+                <div className="mt-8 grid gap-5">
+                  <figure>
+                    <OttoOrbDemo />
+                    <figcaption className="mt-2 text-xs text-muted-foreground">
+                      {OTTO.demos[0]}
+                    </figcaption>
+                  </figure>
+                  <figure>
+                    <OttoCommandDemo />
+                    <figcaption className="mt-2 text-xs text-muted-foreground">
+                      {OTTO.demos[1]}
+                    </figcaption>
+                  </figure>
                 </div>
               </div>
               <div>

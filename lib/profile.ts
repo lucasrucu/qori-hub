@@ -153,6 +153,14 @@ export type Project = {
   image?: string;
   // Alt text for the hero image. Required when image is set.
   imageAlt?: string;
+  // How to frame the hero image. "browser" = web-app chrome with a URL pill;
+  // "window" = native desktop titlebar. Omit to render the bare image.
+  frame?: "browser" | "window";
+  // Label shown in the frame chrome (URL for browser, app title for window).
+  frameLabel?: string;
+  // How the screenshot sits inside the frame. "contain" keeps the whole shot
+  // visible (good for dense desktop UIs); defaults to "cover".
+  frameFit?: "cover" | "contain";
   // Extra screenshots shown as a small gallery under the card body.
   gallery?: { src: string; alt: string }[];
 };
@@ -191,6 +199,30 @@ export const PROJECTS: Project[] = [
     flagship: true,
     image: "/projects/otto-dashboard.png",
     imageAlt: "Otto's dashboard: a glowing gold orb HUD with a command bar, the voice-first control center.",
+    frame: "window",
+    frameLabel: "Otto · voice HUD",
+    frameFit: "cover",
+  },
+  {
+    name: "rapid-pdf",
+    context: "rapidpdf.qori.land",
+    tagline: "A fast Windows desktop app for real PDF work.",
+    description:
+      "Reorder, delete, and combine pages, then mark them up with text, rectangles, and lines, all in one keyboard-driven canvas. A shipped, installable Windows product, not a demo. Light and dark themes built in.",
+    tech: ["Python", "PySide6", "PyMuPDF", "Desktop"],
+    live: "https://rapidpdf.qori.land",
+    repo: "https://github.com/lucasrucu/rapid-pdf",
+    image: "/projects/rapid-pdf-editor.png",
+    imageAlt: "rapid-pdf editor: a PDF page on a canvas with markup tools and a page sidebar, in dark mode.",
+    frame: "window",
+    frameLabel: "rapid-pdf · Editor",
+    frameFit: "cover",
+    gallery: [
+      {
+        src: "/projects/rapid-pdf-organizer.png",
+        alt: "rapid-pdf organizer: page thumbnails you can drag to reorder, delete, or combine.",
+      },
+    ],
   },
   {
     name: "PIMS & RFCC Automation",
@@ -258,24 +290,6 @@ export const OTTO = {
 
 // Secondary row — good builds, but they don't lead the niche story.
 export const OTHER_PROJECTS: Project[] = [
-  {
-    name: "rapid-pdf",
-    context: "rapidpdf.qori.land",
-    tagline: "A fast Windows desktop app for real PDF work.",
-    description:
-      "Reorder, delete, and combine pages, then mark them up with text, rectangles, and lines, all in one keyboard-driven canvas. A shipped, installable Windows product, not a demo. Light and dark themes built in.",
-    tech: ["Python", "PySide6", "PyMuPDF", "Desktop"],
-    live: "https://rapidpdf.qori.land",
-    repo: "https://github.com/lucasrucu/rapid-pdf",
-    image: "/projects/rapid-pdf-editor.png",
-    imageAlt: "rapid-pdf editor: a PDF page on a canvas with markup tools and a page sidebar, in dark mode.",
-    gallery: [
-      {
-        src: "/projects/rapid-pdf-organizer.png",
-        alt: "rapid-pdf organizer: page thumbnails you can drag to reorder, delete, or combine.",
-      },
-    ],
-  },
   {
     name: "Snip",
     context: "links.qori.land",
