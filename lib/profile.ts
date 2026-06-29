@@ -6,17 +6,18 @@ export const PROFILE = {
   name: "Lucas Ruiz",
   firstName: "Lucas",
   lastName: "Ruiz",
-  title: "Data & Automation Engineer",
+  title: "AI & Automation Engineer",
   location: "Salt Lake City, UT",
   languages: "English & Spanish",
-  tagline: "I build tools I actually use.",
-  // Hero subhead — one line, what I do.
+  // Hero headline — the niche, stated plainly. What I do before what my title is.
+  tagline: "I build AI agents and automations that kill manual work.",
+  // Hero subhead — one line, the rare intersection that makes the niche mine.
   intro:
-    "Data & automation engineer. I turn manual, repetitive work into software — on real industrial projects, and for myself.",
-  // About — who I am, two short paragraphs.
+    "I write the software that removes repetitive, high-stakes data work from real industrial projects. Field engineer who builds, builder who has worked the field.",
+  // About — who I am. Lead with the bridge: the thing nobody else can say.
   about: [
-    "Software engineer by training, industrial data & automation engineer by trade. I build Python pipelines, AI-powered dashboards, and workflow automations deployed on real projects across the U.S., Canada, Indonesia, and Peru.",
-    "Right now I'm embedded on a large-scale mining expansion in Indonesia, managing 10,000+ equipment records and building scraping and ETL automations. Off the clock, I ship AI side-projects — and train as an amateur triathlete.",
+    "I build AI agents and automations that remove manual work from data-heavy industrial projects. Right now I am the PIMS data specialist on a large mining expansion in Indonesia, managing 10,000+ equipment and instrument records. The job is full of repetitive, high-stakes data work: pulling records, validating them, formatting reports, signing off readiness packages. So I automate it.",
+    "What makes the combination uncommon is the bridge. I have spent years on real mining and industrial sites in the U.S., Canada, Indonesia, and Peru, reading P&IDs, QC-ing equipment packages, owning the data nobody else wants to touch. I also build software. Most people in industrial data ops do not build, and most people who build have never seen a field. I do both, which means the automations I write actually fit how the work happens.",
   ],
   // "Currently" chips under the about copy.
   now: [
@@ -89,20 +90,20 @@ export type SkillGroup = { label: string; items: string[] };
 
 export const SKILLS: SkillGroup[] = [
   {
-    label: "Data & Platforms",
-    items: ["PIMS (omega 365)", "Azure SQL", "MySQL", "PostgreSQL", "Vertabelo"],
+    label: "AI & Agents",
+    items: ["Claude", "Claude Agent SDK", "LLMs", "AI Agents", "Prompt Engineering", "RAG"],
   },
   {
     label: "Automation & Scripting",
-    items: ["Python", "Playwright", "Power Query M", "Power Automate", "Power Apps", "Power FX"],
+    items: ["Python", "Playwright", "Web Scraping", "Power Query M", "Power Automate", "Power Apps", "Power FX"],
   },
   {
-    label: "Engineering & PM",
-    items: ["P&ID Review", "Document Control", "Process Standardization", "SharePoint", "Salesforce PM+"],
+    label: "Data & Platforms",
+    items: ["PIMS (omega 365)", "Azure SQL", "PostgreSQL", "Supabase", "ETL", "Data Validation"],
   },
   {
-    label: "Also worked with",
-    items: ["JavaScript", "Java", "SQL", "Git / GitHub", "Spring Boot", "Flutter"],
+    label: "Web & Tooling",
+    items: ["Next.js", "TypeScript", "Plaid", "Git / GitHub", "Vercel", "SharePoint"],
   },
 ];
 
@@ -127,6 +128,136 @@ export const INTERESTS: Interest[] = [
   {
     icon: "mountain",
     title: "Snowboarding",
-    detail: "Off-season on the mountain — still chasing the same drive to improve.",
+    detail: "Off-season on the mountain. Still chasing the same drive to improve.",
+  },
+];
+
+export type Project = {
+  name: string;
+  // One-line "what it is" for the card.
+  tagline: string;
+  // The niche-proof angle: the impressive technical truth, plainly stated.
+  description: string;
+  tech: string[];
+  // Live demo URL (public, clickable). Omit for internal/private work.
+  live?: string;
+  // Public repo. Omit for private code.
+  repo?: string;
+  // Internal showcase page on this site (e.g. Otto). Omit if not applicable.
+  page?: string;
+  // Short subdomain or context label shown under the title.
+  context?: string;
+  // True for the flagship/case-study treatment (no live link, framed as a build).
+  flagship?: boolean;
+};
+
+// Featured projects, ordered strongest-first. Each one proves the niche:
+// AI agents and automations that kill manual work in data-heavy environments.
+export const PROJECTS: Project[] = [
+  {
+    name: "Career Agent",
+    context: "career.qori.land",
+    tagline: "An AI agent that runs a job search end to end.",
+    description:
+      "Reads your resume into a structured profile, pulls real job listings through the Adzuna API, scores how well you match each role, and drafts a tailored, ATS-friendly resume from your real experience. Not a script. An agent that does the whole job. Live and yours to test.",
+    tech: ["Next.js", "Claude", "Adzuna", "Supabase", "TypeScript"],
+    live: "https://career.qori.land",
+    repo: "https://github.com/lucasrucu/career-agent",
+  },
+  {
+    name: "Financial Dashboard",
+    context: "finance.qori.land",
+    tagline: "A production data pipeline with an AI layer on real money.",
+    description:
+      "Plaid pulls real transactions from multiple banks, Claude analyzes spending, and Supabase stores everything behind row-level security. A real, secure, multi-user data product with AI on top, not a toy demo.",
+    tech: ["Next.js", "Plaid", "Claude", "Supabase", "TypeScript"],
+    live: "https://finance.qori.land",
+    repo: "https://github.com/lucasrucu/Financial-Dashboard",
+  },
+  {
+    name: "Otto",
+    context: "Personal AI assistant OS",
+    tagline: "A voice-first assistant that runs my own work automations.",
+    description:
+      "A local AI assistant built on the Claude Agent SDK with a voice-driven HUD and multi-agent orchestration. Speak a command, watch an automation run: PIMS pulls, report generation, RFCC sign-offs. The clearest single example of agents killing manual industrial work.",
+    tech: ["Python", "Claude Agent SDK", "Multi-agent", "Voice (STT/TTS)", "FastAPI"],
+    page: "/otto",
+    flagship: true,
+  },
+  {
+    name: "PIMS & RFCC Automation",
+    context: "Live mining project · case study",
+    tagline: "Replaced manual report and readiness-package work with code.",
+    description:
+      "On a live mining expansion, report and readiness-package creation used to be hours of manual data pulling and formatting. I rebuilt it with Python, Playwright, and the PIMS API: data collection, validation, and sign-off packages, automated. Cleaner data, faster turnaround, fewer correction cycles.",
+    tech: ["Python", "Playwright", "PIMS API", "Power Query", "ETL"],
+    flagship: true,
+  },
+];
+
+// Otto showcase content. Otto's code is private; this is the public capabilities
+// page that presents it as a flagship personal build. Lives at /otto.
+export const OTTO = {
+  name: "Otto",
+  // Hero line for the showcase page.
+  tagline: "A voice-first AI assistant that runs my work.",
+  intro:
+    "Otto is my personal AI operating layer. It is built on the Claude Agent SDK, talks back, and actually executes my automations on command. A flagship personal build, not a public product.",
+  // Plain framing of what it is.
+  what: [
+    "I do a lot of repetitive, high-stakes data work on industrial projects: pulling records, generating reports, signing off readiness packages. Otto is how I stopped driving each of those by hand.",
+    "It runs locally on my machine, authenticated once. I speak a command, Otto figures out which automation to run, runs it, and reports back. Same brain across every task: one set of skills, one shared memory, one assistant.",
+  ],
+  capabilities: [
+    {
+      icon: "mic",
+      title: "Voice-first interface",
+      detail:
+        "A glowing orb is the centerpiece. Push to talk, Otto listens, thinks, and speaks back a short natural summary. Local speech-to-text and text-to-speech, swappable behind a provider seam.",
+    },
+    {
+      icon: "workflow",
+      title: "Multi-agent orchestration",
+      detail:
+        "Bigger jobs get fanned out to a lead agent and parallel workers, then merged. Otto picks solo, parallel, or full workflow based on the task instead of doing everything in one thread.",
+    },
+    {
+      icon: "zap",
+      title: "Runs real automations",
+      detail:
+        "PIMS data pulls, report generation, RFCC sign-offs, Trello triage. Registry-driven cards mean adding a new automation is a config edit, not a UI rebuild.",
+    },
+    {
+      icon: "brain",
+      title: "Persistent memory",
+      detail:
+        "Otto remembers projects, decisions, and preferences across sessions through a version-controlled memory layer, so context carries over instead of starting cold each time.",
+    },
+  ] as const,
+  architecture: [
+    "Python backend on the Claude Agent SDK, browser HUD on the front.",
+    "Rides a Claude subscription login. No metered API, no per-call cost.",
+    "Registry-driven automation cards with live progress, each writing its own status.",
+    "Local Whisper for speech-in, local Piper for speech-out, both swappable.",
+    "Version-controlled memory shared across machines.",
+  ],
+  // Demo GIF spots. No assets yet. Placeholders flagged for Lucas to fill.
+  demos: [
+    "Demo: the orb listening, then speaking back",
+    "Demo: a voice command launching an automation",
+  ],
+} as const;
+
+// Secondary row — good builds, but they don't lead the niche story.
+export const OTHER_PROJECTS: Project[] = [
+  {
+    name: "Snip",
+    context: "links.qori.land",
+    tagline: "A personal URL shortener with click tracking.",
+    description:
+      "Paste a long link, get a short one on my own domain, and track how often it is used.",
+    tech: ["Next.js", "Supabase", "TypeScript"],
+    live: "https://links.qori.land",
+    repo: "https://github.com/lucasrucu/snip",
   },
 ];

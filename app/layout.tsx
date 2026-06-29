@@ -19,9 +19,9 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://qori.land"),
-  title: "Qori — I build tools I actually use",
+  title: "Lucas Ruiz — AI & Automation Engineer",
   description:
-    "Data & automation engineer. I turn manual, repetitive work into software — on real industrial projects, and for myself.",
+    "I build AI agents and automations that kill manual work in data-heavy industrial environments. Field engineer who builds, builder who has worked the field.",
 };
 
 export default function RootLayout({

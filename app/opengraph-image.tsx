@@ -16,8 +16,8 @@ export const alt = "Qori";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const TITLE = "Qori";
-const SUBTITLE = "I build tools I actually use.";
+const TITLE = "Lucas Ruiz";
+const SUBTITLE = "AI agents and automations that kill manual work.";
 
 export default function OpengraphImage() {
   return new ImageResponse(
