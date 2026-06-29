@@ -2,6 +2,8 @@
 // resume (Lucas_Ruiz_Resume_2026_v2.docx) + memory. Edit copy here — components
 // only render it. Keeps the hub and the /card page in sync.
 
+import type { ArtKey } from "@/components/CardArt";
+
 export const PROFILE = {
   name: "Lucas Ruiz",
   firstName: "Lucas",
@@ -149,6 +151,8 @@ export type Project = {
   context?: string;
   // True for the flagship/case-study treatment (no live link, framed as a build).
   flagship?: boolean;
+  // Bespoke coded card artwork (components/CardArt.tsx). One per card, no screenshots.
+  art?: ArtKey;
 };
 
 // Featured projects, ordered strongest-first. Each one proves the niche:
@@ -163,6 +167,7 @@ export const PROJECTS: Project[] = [
     tech: ["Next.js", "Claude", "Adzuna", "Supabase", "TypeScript"],
     live: "https://career.qori.land",
     repo: "https://github.com/lucasrucu/career-agent",
+    art: "radar",
   },
   {
     name: "Financial Dashboard",
@@ -173,6 +178,7 @@ export const PROJECTS: Project[] = [
     tech: ["Next.js", "Plaid", "Claude", "Supabase", "TypeScript"],
     live: "https://finance.qori.land",
     repo: "https://github.com/lucasrucu/Financial-Dashboard",
+    art: "flow",
   },
   {
     name: "Otto",
@@ -183,6 +189,18 @@ export const PROJECTS: Project[] = [
     tech: ["Python", "Claude Agent SDK", "Multi-agent", "Voice (STT/TTS)", "FastAPI"],
     page: "/otto",
     flagship: true,
+    art: "orb",
+  },
+  {
+    name: "rapid-pdf",
+    context: "rapidpdf.qori.land",
+    tagline: "A fast Windows desktop app for real PDF work.",
+    description:
+      "Reorder, delete, and combine pages, then mark them up with text, rectangles, and lines, all in one keyboard-driven canvas. A shipped, installable Windows product, not a demo. Light and dark themes built in.",
+    tech: ["Python", "PySide6", "PyMuPDF", "Desktop"],
+    live: "https://rapidpdf.qori.land",
+    repo: "https://github.com/lucasrucu/rapid-pdf",
+    art: "pages",
   },
   {
     name: "PIMS & RFCC Automation",
@@ -192,6 +210,18 @@ export const PROJECTS: Project[] = [
       "On a live mining expansion, report and readiness-package creation used to be hours of manual data pulling and formatting. I rebuilt it with Python, Playwright, and the PIMS API: data collection, validation, and sign-off packages, automated. Cleaner data, faster turnaround, fewer correction cycles.",
     tech: ["Python", "Playwright", "PIMS API", "Power Query", "ETL"],
     flagship: true,
+    art: "pipeline",
+  },
+  {
+    name: "Snip",
+    context: "links.qori.land",
+    tagline: "A personal URL shortener with click tracking.",
+    description:
+      "Paste a long link, get a short one on my own domain, and track how often it is used. A small, complete product end to end.",
+    tech: ["Next.js", "Supabase", "TypeScript"],
+    live: "https://links.qori.land",
+    repo: "https://github.com/lucasrucu/snip",
+    art: "link",
   },
 ];
 
@@ -249,15 +279,5 @@ export const OTTO = {
 } as const;
 
 // Secondary row — good builds, but they don't lead the niche story.
-export const OTHER_PROJECTS: Project[] = [
-  {
-    name: "Snip",
-    context: "links.qori.land",
-    tagline: "A personal URL shortener with click tracking.",
-    description:
-      "Paste a long link, get a short one on my own domain, and track how often it is used.",
-    tech: ["Next.js", "Supabase", "TypeScript"],
-    live: "https://links.qori.land",
-    repo: "https://github.com/lucasrucu/snip",
-  },
-];
+// Kept for compatibility; Snip now lives in the unified PROJECTS grid.
+export const OTHER_PROJECTS: Project[] = [];

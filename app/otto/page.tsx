@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ArrowLeft, Brain, Mic, Workflow, Zap } from "lucide-react";
 
 import { Eyebrow } from "@/components/Eyebrow";
-import { PhotoSkeleton } from "@/components/PhotoSkeleton";
+import { OttoCommandDemo, OttoOrbDemo } from "@/components/OttoMotion";
 import { QoriMark } from "@/components/QoriMark";
 import { OTTO, PROFILE } from "@/lib/profile";
 
@@ -48,11 +48,8 @@ export default function OttoPage() {
               <p className="mt-4 text-xl text-foreground/90">{OTTO.tagline}</p>
               <p className="mt-6 max-w-xl text-lg text-muted-foreground">{OTTO.intro}</p>
             </div>
-            <div className="mx-auto w-full max-w-xs md:mx-0">
-              <PhotoSkeleton
-                label="Demo GIF: the orb (voice in, automation runs)"
-                className="aspect-square w-full ring-4 ring-primary/20"
-              />
+            <div className="mx-auto w-full max-w-sm md:mx-0">
+              <OttoOrbDemo />
             </div>
           </div>
         </section>
@@ -105,9 +102,8 @@ export default function OttoPage() {
                   In motion
                 </h2>
                 <div className="mt-8 grid gap-4">
-                  {OTTO.demos.map((demo) => (
-                    <PhotoSkeleton key={demo} label={demo} className="aspect-[16/10] w-full" />
-                  ))}
+                  <OttoOrbDemo />
+                  <OttoCommandDemo />
                 </div>
               </div>
               <div>
