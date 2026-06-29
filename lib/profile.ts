@@ -209,6 +209,7 @@ export const PROJECTS: Project[] = [
     description:
       "On a live mining expansion, report and readiness-package creation used to be hours of manual data pulling and formatting. I rebuilt it with Python, Playwright, and the PIMS API: data collection, validation, and sign-off packages, automated. Cleaner data, faster turnaround, fewer correction cycles.",
     tech: ["Python", "Playwright", "PIMS API", "Power Query", "ETL"],
+    page: "/pims-rfcc",
     flagship: true,
     art: "pipeline",
   },
@@ -275,6 +276,71 @@ export const OTTO = {
   demos: [
     "Demo: the orb listening, then speaking back",
     "Demo: a voice command launching an automation",
+  ],
+} as const;
+
+// PIMS & RFCC case-study content. Real field-engineering automation Lucas runs
+// daily on a live mining expansion. The code is private; this is the public
+// case-study page that presents it as a flagship build. Lives at /pims-rfcc.
+export const PIMS_RFCC = {
+  name: "PIMS & RFCC Automation",
+  context: "Live mining project · case study",
+  // Hero line for the case-study page.
+  tagline: "Manual report and readiness-package work, replaced with code.",
+  intro:
+    "On a live mining expansion in Indonesia, building reports and signing off readiness packages used to be hours of pulling records, formatting, and chasing documents by hand. I rebuilt that work as automation: Python, Playwright, and the PIMS API doing the collection, validation, and sign-off.",
+  // Plain framing of what it is and why it exists.
+  what: [
+    "PIMS is the engineering data platform of record on the project: tens of thousands of equipment and instrument records, checklists, and commissioning data. The day-to-day work is repetitive and high-stakes. Pull the right records, validate them, format a report, assemble a readiness package, sign it off. Get one field wrong and a correction cycle costs days.",
+    "I write the software that takes that work off my hands. Two automations carry most of it: a CLI that generates subsystem-readiness reports straight from the PIMS API, and an end-to-end RFCC sign-off flow that imports the 3WLA list, pulls HOP documents from Aconex, uploads the metadata and files back into PIMS, and signs the readiness certificates.",
+  ],
+  // The two automation pillars, each with concrete detail.
+  pillars: [
+    {
+      icon: "fileChart",
+      title: "Subsystem-readiness reports",
+      detail:
+        "A Python CLI fetches checklist data from the PIMS API, aggregates it by subsystem, and outputs a formatted PDF and Excel in one run. It flags which subsystems are 100% ready and which are almost there, grouping checksheets by work package. Checksheets with no package assignment are excluded by design so completion percentages stay honest.",
+    },
+    {
+      icon: "fileSignature",
+      title: "RFCC sign-off flow",
+      detail:
+        "One command runs the whole readiness-certificate cycle. It imports the 3WLA CSV, downloads the HOP documents from Aconex with Playwright, uploads the metadata and files into PIMS, and signs the RFCCs. What used to be a manual, multi-system slog is now a single automated pass.",
+    },
+  ] as const,
+  // The pipeline stages, in order. Mirrors the bespoke pipeline art.
+  pipeline: [
+    {
+      step: "Collect",
+      detail: "Pull checklist and equipment records from the PIMS API; import the 3WLA list.",
+    },
+    {
+      step: "Validate",
+      detail: "Aggregate by subsystem, filter unpackaged checksheets, check fields against the rules.",
+    },
+    {
+      step: "Assemble",
+      detail: "Generate the PDF and Excel report; download HOP documents from Aconex.",
+    },
+    {
+      step: "Sign off",
+      detail: "Upload metadata and files into PIMS and sign the readiness certificates.",
+    },
+  ],
+  // How it is built, plainly.
+  architecture: [
+    "Python CLI core: pims_client.py fetches, report_logic.py aggregates, pdf_export.py and excel_export.py render.",
+    "Playwright drives Aconex to export the document register and download HOP files.",
+    "Power Query M shapes the supporting data feeds that the reports lean on.",
+    "Config-driven thresholds: the readiness cutoff and grouping rules live in one place, not in the code paths.",
+    "Runs daily against live project data, not a sandbox.",
+  ],
+  // Outcome statements. Concrete, no invented numbers.
+  outcomes: [
+    "Report creation dropped from hours of manual pulling and formatting to a single command.",
+    "Cleaner data and fewer correction cycles, because validation runs the same way every time.",
+    "Faster turnaround on readiness packages, so sign-off is not the bottleneck.",
   ],
 } as const;
 
