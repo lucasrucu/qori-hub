@@ -1,9 +1,10 @@
+import Image from "next/image";
 import { ArrowRight, MapPin } from "lucide-react";
 
 import { Eyebrow } from "@/components/Eyebrow";
 import { GitHubIcon, LinkedInIcon } from "@/components/BrandIcons";
-import { PhotoSkeleton } from "@/components/PhotoSkeleton";
 import { AuroraText } from "@/components/ui/aurora-text";
+import { BorderBeam } from "@/components/ui/border-beam";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { PROFILE, SOCIALS } from "@/lib/profile";
 
@@ -83,11 +84,26 @@ export function Hero() {
           </div>
         </div>
 
-        <div className="mx-auto w-full max-w-xs md:mx-0">
-          <PhotoSkeleton
-            label="Your headshot goes here (4:5)"
-            className="aspect-[4/5] w-full ring-4 ring-primary/20"
-          />
+        <div className="mx-auto w-full max-w-[15rem] sm:max-w-xs md:mx-0">
+          <div className="relative">
+            {/* Soft amber glow behind the frame. */}
+            <div
+              aria-hidden="true"
+              className="absolute -inset-3 -z-10 rounded-[1.75rem] bg-primary/20 blur-2xl"
+            />
+            <div className="relative aspect-square overflow-hidden rounded-3xl border border-primary/30 bg-card shadow-xl ring-4 ring-primary/15">
+              <Image
+                src="/lucas.jpg"
+                alt={`${PROFILE.name}, ${PROFILE.title}`}
+                fill
+                priority
+                sizes="(max-width: 768px) 60vw, 320px"
+                className="object-cover"
+              />
+              {/* Animated amber edge beam, on-brand Sovereign accent. */}
+              <BorderBeam size={70} duration={8} borderWidth={2} />
+            </div>
+          </div>
         </div>
       </div>
     </section>

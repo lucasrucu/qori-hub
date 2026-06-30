@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { ArrowLeft, Mail, MapPin } from "lucide-react";
 
 import {
@@ -6,7 +7,6 @@ import {
   InstagramIcon,
   LinkedInIcon,
 } from "@/components/BrandIcons";
-import { PhotoSkeleton } from "@/components/PhotoSkeleton";
 import { QoriMark } from "@/components/QoriMark";
 import { SaveContactButton } from "@/components/SaveContactButton";
 import { PROFILE, SOCIALS } from "@/lib/profile";
@@ -30,11 +30,16 @@ export default function CardPage() {
       <main className="w-full max-w-sm">
         <div className="rounded-2xl border border-border bg-card p-8 shadow-sm">
           <div className="flex flex-col items-center text-center">
-            <PhotoSkeleton
-              label="Avatar"
-              rounded="full"
-              className="h-24 w-24 ring-4 ring-primary/20"
-            />
+            <div className="relative h-24 w-24 overflow-hidden rounded-full ring-4 ring-primary/20">
+              <Image
+                src="/lucas-avatar.jpg"
+                alt={PROFILE.name}
+                fill
+                priority
+                sizes="96px"
+                className="object-cover"
+              />
+            </div>
             <h1 className="mt-5 text-2xl font-semibold tracking-tight text-foreground">
               {PROFILE.name}
             </h1>
