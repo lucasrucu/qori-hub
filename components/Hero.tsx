@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { ArrowRight, MapPin } from "lucide-react";
 
+import { Avatar } from "@/components/Avatar";
 import { Eyebrow } from "@/components/Eyebrow";
 import { GitHubIcon, LinkedInIcon } from "@/components/BrandIcons";
 import { AuroraText } from "@/components/ui/aurora-text";
@@ -92,14 +92,8 @@ export function Hero() {
               className="absolute -inset-3 -z-10 rounded-[1.75rem] bg-primary/20 blur-2xl"
             />
             <div className="relative aspect-square overflow-hidden rounded-3xl border border-primary/30 bg-card shadow-xl ring-4 ring-primary/15">
-              <Image
-                src="/lucas.jpg"
-                alt={`${PROFILE.name}, ${PROFILE.title}`}
-                fill
-                priority
-                sizes="(max-width: 768px) 60vw, 320px"
-                className="object-cover"
-              />
+              {/* Animated SVG mascot in place of a headshot. */}
+              <Avatar />
               {/* Animated amber edge beam, on-brand Sovereign accent. */}
               <BorderBeam size={70} duration={8} borderWidth={2} />
             </div>

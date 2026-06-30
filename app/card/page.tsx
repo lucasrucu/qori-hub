@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { ArrowLeft, Mail, MapPin } from "lucide-react";
 
+import { Avatar } from "@/components/Avatar";
 import {
   GitHubIcon,
   InstagramIcon,
@@ -31,14 +31,8 @@ export default function CardPage() {
         <div className="rounded-2xl border border-border bg-card p-8 shadow-sm">
           <div className="flex flex-col items-center text-center">
             <div className="relative h-24 w-24 overflow-hidden rounded-full ring-4 ring-primary/20">
-              <Image
-                src="/lucas-avatar.jpg"
-                alt={PROFILE.name}
-                fill
-                priority
-                sizes="96px"
-                className="object-cover"
-              />
+              {/* Animated SVG mascot in place of a headshot. */}
+              <Avatar />
             </div>
             <h1 className="mt-5 text-2xl font-semibold tracking-tight text-foreground">
               {PROFILE.name}

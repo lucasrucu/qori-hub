@@ -54,6 +54,24 @@
   100% { opacity: 0; transform: translateY(0); }
 }
 
+/* Animated avatar mascot (components/Avatar.tsx). A glowing amber orb that
+   breathes, with a slow halo sweep and a gentle scanline. Subtle, looped. */
+@keyframes avatar-breathe {
+  0%, 100% { transform: scale(1); opacity: 0.95; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+@keyframes avatar-halo {
+  to { transform: rotate(360deg); }
+}
+@keyframes avatar-scan {
+  0%, 100% { transform: translateY(-22%); opacity: 0; }
+  50% { transform: translateY(22%); opacity: 0.55; }
+}
+@keyframes avatar-blink {
+  0%, 92%, 100% { transform: scaleY(1); }
+  96% { transform: scaleY(0.12); }
+}
+
 /* Respect reduced-motion: freeze the loops in a sensible resting state. */
 @media (prefers-reduced-motion: reduce) {
   [class*="otto-breathe"],
@@ -62,6 +80,7 @@
   [class*="otto-line"],
   [class*="otto-status"],
   [class*="qart-"],
+  [class*="avatar-"],
   .animate-aurora {
     animation: none !important;
   }
