@@ -15,7 +15,8 @@ export type ArtKey =
   | "orb"
   | "pages"
   | "pipeline"
-  | "link";
+  | "link"
+  | "noe";
 
 const AMBER = "#F1AE04";
 const GOLD = "#F6C44A";
@@ -54,18 +55,27 @@ function ArtFrame({
 function Radar() {
   return (
     <ArtFrame title="Match radar">
+      {/* rings + blips, centered on the radar origin (160,100) */}
       <g transform="translate(160,100)">
         <circle r="78" fill="none" stroke="#E7D9B4" strokeWidth="1.2" />
         <circle r="54" fill="none" stroke="#E7D9B4" strokeWidth="1.2" />
         <circle r="30" fill="none" stroke="#E7D9B4" strokeWidth="1.2" />
-        <g style={spin(4)}>
-          <path d="M0 0 L0 -80 A80 80 0 0 1 56 -56 Z" fill="#F1AE0433" />
-          <line x1="0" y1="0" x2="0" y2="-80" stroke={AMBER} strokeWidth="2" />
-        </g>
         <circle cx="34" cy="-22" r="4" fill={AMBER} />
         <circle cx="-44" cy="14" r="4" fill={INK} />
         <circle cx="10" cy="46" r="4" fill={INK} />
         <circle cx="-18" cy="-40" r="4" fill={AMBER} />
+      </g>
+      {/* sweep beam in absolute coords, pinned to the radar center so it rotates
+          cleanly around (160,100) instead of around its own bounding box */}
+      <g
+        style={{
+          animation: "otto-spin 4s linear infinite",
+          transformOrigin: "160px 100px",
+          transformBox: "view-box",
+        }}
+      >
+        <path d="M160 100 L160 20 A80 80 0 0 1 216 44 Z" fill="#F1AE0433" />
+        <line x1="160" y1="100" x2="160" y2="20" stroke={AMBER} strokeWidth="2" />
       </g>
       <text x="22" y="34" fontSize="22" fontWeight="700" fill={INK} fontFamily="monospace">
         92%
@@ -256,6 +266,65 @@ function Link() {
   );
 }
 
+// NoE Toolkit — the launcher window with three tool tiles, one gently pulsing.
+function Noe() {
+  const tiles = [
+    { x: 36, glyph: "doc" as const, d: 0 },
+    { x: 130, glyph: "brush" as const, d: 0.5 },
+    { x: 224, glyph: "find" as const, d: 1 },
+  ];
+  return (
+    <ArtFrame title="NoE launcher with three commissioning tools">
+      {/* App window chrome */}
+      <rect x="20" y="30" width="280" height="140" rx="10" fill="#FFFDF8" stroke="#D9CDB2" strokeWidth="1.5" />
+      <rect x="20" y="30" width="280" height="24" rx="10" fill="#F1AE0420" />
+      <circle cx="34" cy="42" r="3.5" fill="#C97A04" />
+      <circle cx="46" cy="42" r="3.5" fill={GOLD} />
+      <circle cx="58" cy="42" r="3.5" fill="#2E7D44" />
+      <text x="160" y="46" textAnchor="middle" fontSize="9" fontWeight="700" fill={INK} fontFamily="monospace">
+        NoE Toolkit
+      </text>
+
+      {/* Three tool tiles */}
+      {tiles.map((t) => (
+        <g key={t.x} transform={`translate(${t.x},72)`}>
+          <rect
+            width="60"
+            height="78"
+            rx="7"
+            fill="#FBF6EA"
+            stroke={AMBER}
+            strokeWidth="1.3"
+            style={{ animation: `otto-breathe 3.2s ease-in-out ${t.d}s infinite`, transformOrigin: "center", transformBox: "fill-box" }}
+          />
+          <g transform="translate(30,30)" stroke={AMBER} strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round">
+            {t.glyph === "doc" && (
+              <>
+                <rect x="-11" y="-13" width="22" height="26" rx="2" fill="#F1AE0418" />
+                <line x1="-6" y1="-6" x2="6" y2="-6" />
+                <line x1="-6" y1="0" x2="6" y2="0" />
+                <line x1="-6" y1="6" x2="2" y2="6" />
+              </>
+            )}
+            {t.glyph === "brush" && (
+              <>
+                <path d="M-9 11 q-2 -8 6 -10 l8 -10 6 6 -10 8 q-2 8 -10 6 z" fill="#F1AE0418" />
+                <line x1="3" y1="-3" x2="9" y2="-9" />
+              </>
+            )}
+            {t.glyph === "find" && (
+              <>
+                <circle cx="-3" cy="-3" r="9" fill="#F1AE0418" />
+                <line x1="4" y1="4" x2="12" y2="12" />
+              </>
+            )}
+          </g>
+        </g>
+      ))}
+    </ArtFrame>
+  );
+}
+
 const ART: Record<ArtKey, () => JSX.Element> = {
   radar: Radar,
   flow: Flow,
@@ -263,6 +332,7 @@ const ART: Record<ArtKey, () => JSX.Element> = {
   pages: Pages,
   pipeline: Pipeline,
   link: Link,
+  noe: Noe,
 };
 
 export function CardArt({ art, className }: { art: ArtKey; className?: string }) {
