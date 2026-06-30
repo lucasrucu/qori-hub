@@ -23,7 +23,7 @@ export const PROFILE = {
   ],
   // "Currently" chips under the about copy.
   now: [
-    "Amman mining expansion · Indonesia",
+    "Large mining expansion · Indonesia",
     "10,000+ equipment records",
     "Triathlon Worlds 2026",
   ],
@@ -48,15 +48,15 @@ export type Experience = {
 // Top 4 roles only — keeps the timeline uncrowded. Full history lives on the resume.
 export const EXPERIENCE: Experience[] = [
   {
-    company: "Reliable Controls Corporation",
+    company: "Commissioning contractor",
     role: "CMS / PIMS Data Specialist",
     dates: "Oct 2025 — Present",
-    location: "PT Amman Mining Expansion · Indonesia",
+    location: "Large mining expansion · Indonesia",
     blurb:
       "Engineering data management on a large-scale mining expansion: validated and uploaded 10,000+ equipment records into PIMS, and built Python & Playwright automations to replace manual data collection.",
   },
   {
-    company: "Reliable Controls Corporation",
+    company: "Commissioning contractor",
     role: "Project Engineer — Cloud Application Development",
     dates: "Jan 2024 — Dec 2024",
     location: "Salt Lake City, UT",
@@ -64,7 +64,7 @@ export const EXPERIENCE: Experience[] = [
       "Led end-to-end development of a cloud-based internal app with Power Apps, Power Automate, and Azure SQL — selected after evaluating low-code platforms, schema designed in Vertabelo.",
   },
   {
-    company: "IAMGOLD Mining Project",
+    company: "Gold mining project",
     role: "Project Engineer",
     dates: "Jul 2023 — Jul 2024",
     location: "Canada",
@@ -72,7 +72,7 @@ export const EXPERIENCE: Experience[] = [
       "Produced and QC'd equipment work packages for mining instrumentation, verifying accuracy against P&IDs and scope-of-work documents, and built Excel/Word templates to standardize the workflow.",
   },
   {
-    company: "Rio Tinto Mine Project",
+    company: "Copper mining project",
     role: "Engineering Intern",
     dates: "Dec 2022 — Dec 2023",
     location: "Utah",
@@ -355,15 +355,15 @@ export const PIMS_RFCC = {
   ],
 } as const;
 
-// NoE Toolkit case-study content. The real product is "RCC NoE Maker Toolkit"
-// (v1.0.0), a Windows desktop toolkit co-developed by Cesar Roa and Lucas Ruiz to
-// take the energization-document and drawing-markup busywork off commissioning
-// engineers on a live mining expansion. The code is private; this is the public
-// case-study page. Lives at /noe. Real tool screenshots live in public/noe/.
+// NoE Toolkit case-study content. The product is the "NoE Maker Toolkit"
+// (v1.0.0), a Windows desktop toolkit built to take the energization-document
+// and drawing-markup busywork off commissioning engineers on a live mining
+// expansion. The code is private; this is the public case-study page. Lives at
+// /noe. Tool screenshots live in public/noe/ (omitted publicly to avoid logo exposure).
 export const NOE = {
-  // Short label for the homepage card; the page itself shows the real product name.
+  // Short label for the homepage card; the page itself shows the product name.
   name: "NoE Toolkit",
-  productName: "RCC NoE Maker Toolkit",
+  productName: "NoE Maker Toolkit",
   version: "v1.0.0",
   context: "Industrial commissioning · case study",
   tagline: "The commissioning paperwork, done by three desktop tools.",
@@ -372,7 +372,7 @@ export const NOE = {
   // Plain framing of what it is and why it exists.
   what: [
     "Commissioning a plant means proving each subsystem is ready to energize, and that proof is paperwork: a Notice of Energization per subsystem, marked-up drawings showing what is live, and the constant hunt for which drawing a tag even lives on. Done by hand across hundreds of subsystems, it is slow and error-prone, and a wrong drawing or a missed tag costs real time on a live project.",
-    "The RCC NoE Maker Toolkit takes that work off the engineer's hands. A single launcher opens three focused tools, each running as its own crash-isolated process so one tool falling over never takes the others down. It is packaged as one NoE.exe with PyInstaller, so an engineer installs nothing and just runs it. The UI is bilingual, so it fits a Spanish-speaking field team as well as an English-speaking one.",
+    "The NoE Maker Toolkit takes that work off the engineer's hands. A single launcher opens three focused tools, each running as its own crash-isolated process so one tool falling over never takes the others down. It is packaged as one NoE.exe with PyInstaller, so an engineer installs nothing and just runs it. The UI is bilingual, so it fits a Spanish-speaking field team as well as an English-speaking one.",
   ],
   // The three tools, each problem -> solution. Mirrors the launcher.
   tools: [
@@ -415,8 +415,8 @@ export const NOE = {
   // Where it stands now. Honest: shipped, used, then parked as a clean skeleton.
   status:
     "Shipped at v1.0.0 and used on the project, then parked as a clean, documented skeleton with a roadmap. It may be revived; the bones are kept ready.",
-  // Honest co-development credit. Cesar built the original; Lucas updated it.
-  credit: "Built with Cesar Roa.",
+  // Honest co-development credit. A colleague built the original; Lucas updated it.
+  credit: "Co-developed with a colleague.",
   // The do-if-revived vision (docs/ROADMAP.md).
   roadmap: [
     "One shared window hosting all three tools instead of three separate processes.",
