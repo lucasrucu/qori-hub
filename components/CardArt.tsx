@@ -16,11 +16,14 @@ export type ArtKey =
   | "pages"
   | "pipeline"
   | "link"
-  | "noe";
+  | "noe"
+  | "commissioning";
 
 const AMBER = "#F1AE04";
 const GOLD = "#F6C44A";
 const INK = "#221C14";
+const TEAL = "#0F7E78";
+const TEAL_BRIGHT = "#1FB8AD";
 
 const spin = (s: number, rev = false): React.CSSProperties => ({
   animation: `otto-spin${rev ? "-rev" : ""} ${s}s linear infinite`,
@@ -325,6 +328,62 @@ function Noe() {
   );
 }
 
+// Industrial commissioning automation — the umbrella card. A ring of automation
+// nodes feeding a central "hours saved" hub, on a deep teal HUD. Color-coded to
+// the experience accent, distinct from the amber cards.
+function Commissioning() {
+  const nodes = [-90, -38, 14, 66, 118, 170, 222, 274];
+  const cx = 160;
+  const cy = 100;
+  const r = 64;
+  return (
+    <ArtFrame title="A toolkit of automations feeding hours back into a project" dark>
+      <rect width="320" height="200" fill="#0A2A28" />
+      <g transform={`translate(${cx},${cy})`}>
+        <circle r={r} fill="none" stroke={`${TEAL_BRIGHT}22`} strokeWidth="1" />
+      </g>
+      {nodes.map((a, i) => {
+        const rad = (a * Math.PI) / 180;
+        const x = cx + Math.cos(rad) * r;
+        const y = cy + Math.sin(rad) * r;
+        return (
+          <g key={i}>
+            <line
+              x1={cx}
+              y1={cy}
+              x2={x}
+              y2={y}
+              stroke={`${TEAL_BRIGHT}3a`}
+              strokeWidth="1.4"
+              strokeDasharray="4 5"
+              style={{ animation: `qart-flow ${1.4 + (i % 3) * 0.3}s linear infinite` }}
+            />
+            <circle
+              cx={x}
+              cy={y}
+              r="6.5"
+              fill="#0C3633"
+              stroke={i % 3 === 0 ? GOLD : TEAL_BRIGHT}
+              strokeWidth="1.5"
+              style={{ animation: `otto-breathe ${3 + (i % 4) * 0.4}s ease-in-out ${i * 0.2}s infinite`, transformOrigin: "center", transformBox: "fill-box" }}
+            />
+          </g>
+        );
+      })}
+      <g transform={`translate(${cx},${cy})`}>
+        <circle r="32" fill="#0C3633" stroke={TEAL_BRIGHT} strokeWidth="1.6" />
+        <circle r="38" fill="none" stroke={`${GOLD}55`} strokeWidth="1" strokeDasharray="3 6" style={spin(12)} />
+        <text x="0" y="-1" textAnchor="middle" fontSize="17" fontWeight="700" fill="#FFFFFF" fontFamily="monospace">
+          1,000+
+        </text>
+        <text x="0" y="13" textAnchor="middle" fontSize="7.5" fill={TEAL_BRIGHT} fontFamily="monospace">
+          hours saved
+        </text>
+      </g>
+    </ArtFrame>
+  );
+}
+
 const ART: Record<ArtKey, () => JSX.Element> = {
   radar: Radar,
   flow: Flow,
@@ -333,6 +392,7 @@ const ART: Record<ArtKey, () => JSX.Element> = {
   pipeline: Pipeline,
   link: Link,
   noe: Noe,
+  commissioning: Commissioning,
 };
 
 export function CardArt({ art, className }: { art: ArtKey; className?: string }) {

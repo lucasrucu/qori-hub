@@ -153,6 +153,10 @@ export type Project = {
   flagship?: boolean;
   // Bespoke coded card artwork (components/CardArt.tsx). One per card, no screenshots.
   art?: ArtKey;
+  // Optional per-card accent. "experience" color-codes the card to the teal
+  // experience accent instead of the default Sovereign amber. Used by the
+  // umbrella commissioning-automation case study.
+  accent?: "experience";
 };
 
 // Featured projects, ordered strongest-first. Each one proves the niche:
@@ -203,26 +207,16 @@ export const PROJECTS: Project[] = [
     art: "pages",
   },
   {
-    name: "PIMS & RFCC Automation",
-    context: "Live mining project · case study",
-    tagline: "Replaced manual report and readiness-package work with code.",
+    name: "Industrial commissioning automation",
+    context: "Large industrial project · field case study",
+    tagline: "A body of automations that turned the commissioning paperwork into software.",
     description:
-      "On a live mining expansion, report and readiness-package creation used to be hours of manual data pulling and formatting. I rebuilt it with Python, Playwright, and the PIMS API: data collection, validation, and sign-off packages, automated. Cleaner data, faster turnaround, fewer correction cycles.",
-    tech: ["Python", "Playwright", "PIMS API", "Power Query", "ETL"],
-    page: "/pims-rfcc",
+      "On a large minerals-processing expansion, my day was repetitive, high-stakes data work across ~1,300+ subsystems and ~14,000 tags. I built a toolkit of 13 automations plus an AI assistant that runs them. The flagship cut energization-document work from up to ~6 hours/day to under an hour. Projected to remove 1,000+ hours over the project (estimate).",
+    tech: ["Python", "Playwright", "REST APIs", "Power BI", "AI Agents"],
+    page: "/experience",
     flagship: true,
-    art: "pipeline",
-  },
-  {
-    name: "NoE Toolkit",
-    context: "Commissioning desktop tool · case study",
-    tagline: "Three desktop tools that kill the commissioning paperwork.",
-    description:
-      "Commissioning engineers on a mining expansion burned hours on energization documents and Visio drawing markup by hand. I built a Windows toolkit that generates the documents, batch-repaints the drawings, and finds any subsystem across a huge drawing tree. One launcher, three crash-isolated tools, packaged as a single .exe.",
-    tech: ["Python", "CustomTkinter", "Visio COM", "PyMuPDF", "PyInstaller"],
-    page: "/noe",
-    flagship: true,
-    art: "noe",
+    art: "commissioning",
+    accent: "experience",
   },
   {
     name: "Snip",
@@ -422,6 +416,223 @@ export const NOE = {
     "One shared window hosting all three tools instead of three separate processes.",
     "Unified history across the tools, so recent COMM numbers and subsystems carry over.",
     "Live cross-tool subsystem sync, so picking a subsystem in one tool sets it in the others.",
+  ],
+} as const;
+
+// Cluster item in the experience toolkit. `featured` flags the strongest 3-4.
+type ClusterItem = {
+  title: string;
+  does: string;
+  tech: string;
+  impact: string;
+  featured?: boolean;
+};
+type Cluster = {
+  icon: "fileSignature" | "barChart" | "database" | "workflow";
+  theme: string;
+  summary: string;
+  items: ClusterItem[];
+};
+
+// ---------------------------------------------------------------------------
+// Industrial commissioning automation — the PARENT experience case study.
+// One coherent story about the body of automations Lucas built on a large
+// industrial project. The PIMS/RFCC and NoE pages fold UNDER this as sub-cases.
+// Fully anonymized (no client/employer/project/person names). All numbers are
+// ESTIMATES, framed honestly. Lives at /experience. Source: the Lucas-approved
+// anonymized automation inventory in the assistant's memory.
+// ---------------------------------------------------------------------------
+export const EXPERIENCE_STUDY = {
+  name: "Industrial commissioning automation",
+  context: "Large minerals-processing expansion · commissioning & handover",
+  eyebrow: "Field experience · case study",
+  // Hero line: the role, plainly.
+  tagline:
+    "I turned the commissioning paperwork of a large industrial project into software.",
+  // Hero subhead: the role + the headline estimate, framed as an estimate.
+  intro:
+    "As the data specialist on a large minerals-processing expansion in its commissioning and handover phase, my day was repetitive, high-stakes data work: pulling records, validating them, formatting reports, signing off readiness packages. So I built a toolkit of automations to do it. Across the project, that toolkit is projected to remove on the order of 1,000+ hours of manual work. That figure is an estimate, projected to project end.",
+  // The headline stat block under the hero. Every number framed as an estimate.
+  headline: {
+    value: "1,000+",
+    unit: "hours",
+    label: "of repetitive manual work projected to be removed over the project",
+    note: "Estimate, projected to project end. The project is still running.",
+  },
+  // Scale anchors — real, non-identifying, safe to cite.
+  scale: [
+    { value: "~1,300+", label: "subsystems on the project" },
+    { value: "~14,000", label: "equipment tags" },
+    { value: "~13,000+", label: "checksheets" },
+  ],
+  // FLAGSHIP — lead with NoE. The single biggest time-saver.
+  flagship: {
+    eyebrow: "The flagship win",
+    title: "Energization documents: from a full day to under an hour",
+    before: "~6 hrs/day",
+    after: "~30-60 min",
+    saved: "~5 hrs/day",
+    body: [
+      "Generating Notices of Energization (NoE) by hand took up to roughly six hours on the heaviest days. Each one is a structured document tied to a subsystem, and some outputs run past 200 pages. It was the single largest repetitive cost in the workflow.",
+      "The tool cut that to roughly thirty to sixty minutes depending on size. On the heaviest days that is about five hours back, every day. It is the headline automation in the whole toolkit, and everything else grew up around it.",
+    ],
+    // The spin-off product, born from the NoE work.
+    spinoff:
+      "The large multi-hundred-page NoE PDFs were slow to mark up in heavyweight PDF software, so I built rapid-pdf: a fast Windows PDF editor for page management and markup, tailored to those documents. Same workflow, not a separate hobby project.",
+    note: "All figures are estimates from real before/after observation.",
+  },
+  // The toolkit, grouped into themed clusters. The strongest cluster leads.
+  // Each cluster: a theme, and its automations (each with what it does + an
+  // honest impact estimate). Featured items get the richer treatment.
+  clusters: ([
+    {
+      icon: "fileSignature",
+      theme: "Sign-off & certificates",
+      summary:
+        "The readiness and custody paperwork that gates a handover, taken off my hands and made consistent.",
+      items: [
+        {
+          title: "Readiness-certificate (RFCC) sign-off bot",
+          does: "Imports the readiness list, logs into the register, downloads HOP documents, uploads files and metadata into the commissioning database, and signs the certificates unattended.",
+          tech: "Python · Playwright · REST API",
+          impact:
+            "~1,300+ certificates at roughly 10-15 minutes each by hand. An estimated 200-300 hours removed by project end, and re-keying errors eliminated.",
+          featured: true,
+        },
+        {
+          title: "Boundary-certificate (BIC) custody highlighter",
+          does: "Resolves every tag to its subsystem and readiness, shades the document by custody (grey for commissioning, red for construction), and writes a custody report. Also a one-click desktop app.",
+          tech: "Python · pandas · python-docx · PySide6",
+          impact:
+            "Roughly 20 minutes per document down to seconds. An estimated 60-100 hours saved, and mis-marking eliminated.",
+          featured: true,
+        },
+        {
+          title: "Subsystem-readiness (RFWCC) reporter",
+          does: "A CLI that generates PDF and Excel readiness reports straight from the commissioning database API, on demand.",
+          tech: "Python · REST API",
+          impact: "Readiness reporting on demand instead of manual compilation.",
+        },
+      ],
+    },
+    {
+      icon: "barChart",
+      theme: "Daily reporting & dashboards",
+      summary:
+        "The reporting that has to land on time, every day, made reliable and near one-click.",
+      items: [
+        {
+          title: "Commissioning-progress dashboard refresh",
+          does: "One command pulls the database exports, exports the construction register through browser automation, syncs the readiness sheet, and refreshes the Power BI model.",
+          tech: "Python · Playwright · Power BI / TOM · openpyxl",
+          impact:
+            "Roughly 30-45 minutes a day down to near one-click. An estimated 100+ hours across the project, and reliable on-time daily delivery.",
+          featured: true,
+        },
+        {
+          title: "Daily report generator",
+          does: "Pulls completed task-board cards for a date range and generates formatted Word reports.",
+          tech: "Python · Trello API · python-docx",
+          impact: "An estimated 10-15 minutes a day removed.",
+        },
+        {
+          title: "Timesheet auto-fill",
+          does: "Reads the daily reports, logs into the timesheet web app, and fills hours and descriptions per day. Submit stays manual.",
+          tech: "Python · Playwright",
+          impact: "An estimated 20-30 minutes a week automated.",
+        },
+      ],
+    },
+    {
+      icon: "database",
+      theme: "Data sync & integrity",
+      summary:
+        "Keeping tens of thousands of records correct and in sync across systems, by delta rather than by hand.",
+      items: [
+        {
+          title: "Energization (NoE) linker",
+          does: "Unpivots the register, computes the energized list, and bulk-links tags to their commissioning numbers via API. Hundreds of associations per run.",
+          tech: "Python · REST API",
+          impact: "Hundreds of links per run instead of hand entry. (Generation is the flagship above.)",
+          featured: true,
+        },
+        {
+          title: "Checksheet field sync",
+          does: "Reads the update file, diffs only the changed rows, and syncs the deltas through a batched API across ~13,000+ checksheets.",
+          tech: "Python · REST API",
+          impact: "Dozens of hours saved (estimated), with fewer entry errors.",
+        },
+        {
+          title: "Live readiness data pipeline",
+          does: "Automated sync and live pull from a shared sheet, making it the single source of truth for subsystem readiness and custody.",
+          tech: "Python · browser automation · Sheets export",
+          impact: "Daily manual copying between systems eliminated.",
+        },
+        {
+          title: "Document-register (HOP) exporter",
+          does: "A browser bot logs in, filters the construction handover register to HOP, exports to Excel, and downloads it.",
+          tech: "Playwright",
+          impact: "A manual filter-and-export turned into one command.",
+        },
+      ],
+    },
+    {
+      icon: "workflow",
+      theme: "Orchestration",
+      summary:
+        "Running the toolkit without a person at the keyboard.",
+      items: [
+        {
+          title: "Overnight unattended orchestration",
+          does: "A scheduled task runs the headless morning pipeline overnight and leaves draft outputs ready for review.",
+          tech: "Python · Windows Scheduler · Outlook COM",
+          impact: "The morning routine runs before the day starts, no keyboard required.",
+          featured: true,
+        },
+        {
+          title: "Task-board triage",
+          does: "Audits the board for missing labels, wrong lists, and overdue cards, then applies fixes on confirmation.",
+          tech: "Python · Trello API",
+          impact: "Continuous board hygiene instead of periodic cleanup.",
+        },
+        {
+          title: "Fast desktop PDF editor (rapid-pdf)",
+          does: "Fast page management and highlight/markup tailored to the large NoE PDFs. Born from the NoE work.",
+          tech: "Python · desktop",
+          impact: "Large NoE documents are quick to finalize.",
+        },
+      ],
+    },
+  ] as Cluster[]),
+  // The AI meta-layer that ties the discrete tools into one system.
+  meta: {
+    eyebrow: "The layer that ties it together",
+    title: "An AI assistant that runs the whole toolkit",
+    body: [
+      "The automations above started as discrete scripts. The layer that turns them into one system is an AI assistant I built on top of them.",
+      "It delegates work to background agents, runs the tools on command, and keeps a versioned memory that travels across machines. Instead of remembering which script to run and how, I talk to one assistant and it orchestrates the rest.",
+    ],
+    points: [
+      "Delegates bigger jobs to background agents and merges the results.",
+      "Runs the discrete automations as a single, callable toolkit.",
+      "Keeps a version-controlled memory shared across machines.",
+    ],
+  },
+  // Honest framing note about the numbers.
+  estimatesNote:
+    "Every figure on this page is a conservative estimate from real before/after observation, and several are projected to the end of a project that is still running. They are presented as estimates, not measured fact, on purpose. The point is the shape of the work removed, not a precise hour count.",
+  // The two deep-dive sub-cases that fold under this parent.
+  subCases: [
+    {
+      name: "NoE Toolkit",
+      blurb: "The energization-document and drawing-markup desktop toolkit, in depth.",
+      page: "/noe",
+    },
+    {
+      name: "PIMS & RFCC Automation",
+      blurb: "The readiness reporting and certificate sign-off flow, in depth.",
+      page: "/pims-rfcc",
+    },
   ],
 } as const;
 

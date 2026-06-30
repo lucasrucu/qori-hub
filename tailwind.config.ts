@@ -46,6 +46,11 @@ const config: Config = {
         ring: "hsl(var(--ring))",
         positive: "hsl(var(--positive))",
         negative: "hsl(var(--negative))",
+        experience: {
+          DEFAULT: "hsl(var(--experience))",
+          foreground: "hsl(var(--experience-foreground))",
+          bright: "hsl(var(--experience-bright))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

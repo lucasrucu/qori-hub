@@ -6,8 +6,15 @@ import { BorderBeam } from "@/components/ui/border-beam";
 import { PROJECTS, type Project } from "@/lib/profile";
 
 function ProjectCard({ project }: { project: Project }) {
+  const exp = project.accent === "experience";
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-shadow hover:shadow-[0_18px_40px_-24px_rgba(120,80,10,0.4)]">
+    <article
+      className={
+        exp
+          ? "group relative flex h-full flex-col overflow-hidden rounded-xl border border-experience/40 bg-card transition-shadow hover:shadow-[0_18px_40px_-24px_rgba(12,90,86,0.5)]"
+          : "group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-card transition-shadow hover:shadow-[0_18px_40px_-24px_rgba(120,80,10,0.4)]"
+      }
+    >
       {/* Bespoke coded artwork — one consistent system, no screenshots. */}
       <div className="border-b border-border">
         {project.art ? (
@@ -21,7 +28,13 @@ function ProjectCard({ project }: { project: Project }) {
         <div className="flex items-start justify-between gap-2">
           <h3 className="text-base font-semibold text-foreground">{project.name}</h3>
           {project.flagship ? (
-            <span className="shrink-0 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary">
+            <span
+              className={
+                exp
+                  ? "shrink-0 rounded-full bg-experience/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-experience"
+                  : "shrink-0 rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-primary"
+              }
+            >
               Flagship
             </span>
           ) : null}
@@ -49,7 +62,11 @@ function ProjectCard({ project }: { project: Project }) {
               href={project.page}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-1.5 rounded-md bg-primary px-3.5 py-2 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              className={
+                exp
+                  ? "inline-flex items-center justify-center gap-1.5 rounded-md bg-experience px-3.5 py-2 text-xs font-medium text-experience-foreground transition-opacity hover:opacity-90"
+                  : "inline-flex items-center justify-center gap-1.5 rounded-md bg-primary px-3.5 py-2 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              }
             >
               See how it works
               <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
@@ -78,9 +95,14 @@ function ProjectCard({ project }: { project: Project }) {
         </div>
       </div>
 
-      {/* Flagship builds get a slow gold beam tracing the card border. */}
+      {/* Flagship builds get a slow beam tracing the card border. The umbrella
+          experience card traces in teal; the rest in Sovereign gold. */}
       {project.flagship ? (
-        <BorderBeam size={70} duration={9} className="opacity-90" />
+        exp ? (
+          <BorderBeam size={70} duration={9} className="opacity-90" colorFrom="#0F7E78" colorTo="#1FB8AD" />
+        ) : (
+          <BorderBeam size={70} duration={9} className="opacity-90" />
+        )
       ) : null}
     </article>
   );

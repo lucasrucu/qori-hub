@@ -113,6 +113,13 @@
     --positive: 142 55% 32%;
     --negative: 0 72% 48%;
     --radius: 0.625rem;
+
+    /* Experience case study accent — a deep jewel teal. Distinct from the
+       Sovereign amber, but a complementary jewel tone that pairs naturally
+       with gold. Color-codes the /experience page and its homepage card. */
+    --experience: 178 78% 27%;
+    --experience-foreground: 0 0% 100%;
+    --experience-bright: 174 72% 41%;
   }
 
   * {
