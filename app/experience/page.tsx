@@ -1,19 +1,7 @@
 import type { Metadata } from "next";
-import {
-  ArrowLeft,
-  ArrowRight,
-  BarChart3,
-  Database,
-  FileSignature,
-  Workflow,
-} from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 
-import { Eyebrow } from "@/components/Eyebrow";
-import {
-  ExperienceFlagshipArt,
-  ExperienceHero,
-  ExperienceMetaArt,
-} from "@/components/ExperienceMotion";
+import { ExperienceHero, ExperienceMetaArt } from "@/components/ExperienceMotion";
 import { QoriMark } from "@/components/QoriMark";
 import { EXPERIENCE_STUDY, PROFILE } from "@/lib/profile";
 
@@ -22,15 +10,10 @@ export const metadata: Metadata = {
   description: EXPERIENCE_STUDY.intro,
 };
 
-const CLUSTER_ICONS = {
-  fileSignature: FileSignature,
-  barChart: BarChart3,
-  database: Database,
-  workflow: Workflow,
-} as const;
-
 export default function ExperiencePage() {
   const study = EXPERIENCE_STUDY;
+  const featured = study.automations.filter((a) => a.featured);
+  const rest = study.automations.filter((a) => !a.featured);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -52,7 +35,6 @@ export default function ExperiencePage() {
       <main>
         {/* Hero — a deep teal band so the page opens rich, not white. */}
         <section className="relative overflow-hidden border-b border-experience/30 bg-[#0A2A28] text-white">
-          {/* layered teal glows for depth */}
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -left-24 -top-24 h-80 w-80 rounded-full bg-experience-bright/20 blur-3xl"
@@ -104,171 +86,66 @@ export default function ExperiencePage() {
           </div>
         </section>
 
-        {/* Flagship — the NoE win, on a light band with a strong teal frame. */}
-        <section className="border-b border-border">
+        {/* By the numbers — the scale it ran against + the NoE headline stat.
+            Light band so it breaks up the teal. */}
+        <section className="border-b border-border bg-secondary/40">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
             <span className="inline-flex items-center gap-2.5">
               <span className="h-px w-6 bg-experience" aria-hidden="true" />
               <span className="text-xs font-semibold uppercase tracking-widest text-experience">
-                {study.flagship.eyebrow}
+                By the numbers
               </span>
             </span>
-            <div className="mt-6 grid items-center gap-12 md:grid-cols-[1fr_1.05fr]">
-              <div>
-                <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-                  {study.flagship.title}
-                </h2>
 
-                {/* before / after / saved chips */}
-                <div className="mt-7 flex flex-wrap items-center gap-3">
-                  <div className="rounded-xl border border-border bg-secondary px-4 py-3">
-                    <p className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
-                      By hand
-                    </p>
-                    <p className="text-xl font-semibold text-foreground">{study.flagship.before}</p>
-                  </div>
-                  <ArrowRight className="h-5 w-5 text-experience" aria-hidden="true" />
-                  <div className="rounded-xl border border-experience/40 bg-experience/10 px-4 py-3">
-                    <p className="font-mono text-[11px] uppercase tracking-wide text-experience">
-                      With the tool
-                    </p>
-                    <p className="text-xl font-semibold text-experience">{study.flagship.after}</p>
-                  </div>
-                  <div className="rounded-xl bg-experience px-4 py-3 text-experience-foreground">
-                    <p className="font-mono text-[11px] uppercase tracking-wide opacity-80">
-                      Saved
-                    </p>
-                    <p className="text-xl font-semibold">{study.flagship.saved}/day</p>
-                  </div>
-                </div>
-
-                <div className="mt-7 space-y-4">
-                  {study.flagship.body.map((para) => (
-                    <p key={para} className="text-base leading-relaxed text-foreground/80">
-                      {para}
-                    </p>
-                  ))}
-                </div>
-
-                {/* the rapid-pdf spin-off */}
-                <div className="mt-6 rounded-xl border-l-2 border-experience bg-secondary/70 p-5">
+            {/* The NoE flagship, as one stat. */}
+            <div className="mt-8 overflow-hidden rounded-2xl border border-experience/30 bg-card">
+              <div className="grid gap-px bg-border sm:grid-cols-[1.4fr_1fr_1fr_1fr]">
+                <div className="bg-card p-6">
                   <p className="font-mono text-[11px] uppercase tracking-wide text-experience">
-                    Born from this work
+                    Flagship
                   </p>
-                  <p className="mt-1.5 text-sm leading-relaxed text-foreground/80">
-                    {study.flagship.spinoff}
+                  <p className="mt-1.5 text-base font-medium leading-snug text-foreground">
+                    {study.noe.label}
                   </p>
                 </div>
-                <p className="mt-4 font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
-                  {study.flagship.note}
-                </p>
-              </div>
-              <div className="w-full">
-                <ExperienceFlagshipArt />
+                <div className="bg-card p-6">
+                  <p className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
+                    By hand
+                  </p>
+                  <p className="mt-1.5 text-2xl font-semibold text-foreground">{study.noe.before}</p>
+                </div>
+                <div className="bg-card p-6">
+                  <p className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
+                    With the tool
+                  </p>
+                  <p className="mt-1.5 text-2xl font-semibold text-experience">{study.noe.after}</p>
+                </div>
+                <div className="bg-experience p-6 text-experience-foreground">
+                  <p className="font-mono text-[11px] uppercase tracking-wide opacity-80">Saved</p>
+                  <p className="mt-1.5 text-2xl font-semibold">{study.noe.saved}</p>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+            <p className="mt-2.5 font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
+              {study.noe.note}
+            </p>
 
-        {/* Scale anchors — a teal band of real, non-identifying numbers. */}
-        <section className="border-b border-experience/30 bg-[#0A2A28] text-white">
-          <div className="mx-auto max-w-5xl px-6 py-14 sm:py-16">
-            <span className="inline-flex items-center gap-2.5">
-              <span className="h-px w-6 bg-experience-bright" aria-hidden="true" />
-              <span className="text-xs font-semibold uppercase tracking-widest text-experience-bright">
-                The scale this ran against
-              </span>
-            </span>
-            <div className="mt-8 grid gap-5 sm:grid-cols-3">
+            {/* The scale anchors. */}
+            <div className="mt-10 grid gap-5 sm:grid-cols-3">
               {study.scale.map((s) => (
-                <div
-                  key={s.label}
-                  className="rounded-xl border border-experience-bright/20 bg-white/[0.04] p-6 backdrop-blur"
-                >
-                  <p className="text-3xl font-semibold tracking-tight text-experience-bright sm:text-4xl">
+                <div key={s.label} className="rounded-xl border border-border bg-card p-6">
+                  <p className="text-3xl font-semibold tracking-tight text-experience sm:text-4xl">
                     {s.value}
                   </p>
-                  <p className="mt-2 text-sm text-white/70">{s.label}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{s.label}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* The toolkit, grouped into themed clusters. */}
-        <section className="border-b border-border bg-secondary/40">
-          <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
-            <span className="inline-flex items-center gap-2.5">
-              <span className="h-px w-6 bg-experience" aria-hidden="true" />
-              <span className="text-xs font-semibold uppercase tracking-widest text-experience">
-                The toolkit
-              </span>
-            </span>
-            <h2 className="mt-6 max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              Thirteen automations, in four themes
-            </h2>
-            <p className="mt-4 max-w-2xl text-muted-foreground">
-              The flagship is the energization win above. The rest of the toolkit groups into the
-              work it took off my hands: sign-off, daily reporting, data integrity, and running it
-              all unattended.
-            </p>
-
-            <div className="mt-12 space-y-10">
-              {study.clusters.map((cluster) => {
-                const Icon = CLUSTER_ICONS[cluster.icon];
-                return (
-                  <div
-                    key={cluster.theme}
-                    className="overflow-hidden rounded-2xl border border-border bg-card"
-                  >
-                    {/* cluster header — a thin teal band */}
-                    <div className="flex items-start gap-4 border-b border-border bg-experience/[0.07] px-6 py-5">
-                      <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-experience text-experience-foreground">
-                        <Icon className="h-5 w-5" aria-hidden="true" />
-                      </span>
-                      <div>
-                        <h3 className="text-lg font-semibold text-foreground">{cluster.theme}</h3>
-                        <p className="mt-1 text-sm text-muted-foreground">{cluster.summary}</p>
-                      </div>
-                    </div>
-
-                    {/* cluster items */}
-                    <ul className="divide-y divide-border">
-                      {cluster.items.map((item) => (
-                        <li
-                          key={item.title}
-                          className={
-                            item.featured
-                              ? "px-6 py-5 [box-shadow:inset_3px_0_0_hsl(var(--experience))]"
-                              : "px-6 py-5"
-                          }
-                        >
-                          <div className="flex flex-wrap items-center gap-2">
-                            <h4 className="text-base font-medium text-foreground">{item.title}</h4>
-                            {item.featured ? (
-                              <span className="rounded-full bg-experience/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-experience">
-                                Featured
-                              </span>
-                            ) : null}
-                          </div>
-                          <p className="mt-2 text-sm leading-relaxed text-foreground/80">
-                            {item.does}
-                          </p>
-                          <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                            <p className="font-mono text-[11px] text-muted-foreground">{item.tech}</p>
-                            <p className="text-[13px] font-medium text-experience">{item.impact}</p>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* The AI meta-layer — a dark teal band, hero of the whole story. */}
+        {/* The AI meta-layer — moved up, before the toolkit. The thing that ties
+            the discrete tools into one system. A dark teal band, the hero idea. */}
         <section className="relative overflow-hidden border-b border-experience/30 bg-[#0A2A28] text-white">
           <div
             aria-hidden="true"
@@ -312,8 +189,51 @@ export default function ExperiencePage() {
           </div>
         </section>
 
-        {/* Deep dives — the two sub-cases that fold under this parent. */}
+        {/* The toolkit — a flat set of cards. 4 spotlighted, the rest compact.
+            Each card is just what it does. No tech list, no time figure. */}
         <section className="border-b border-border">
+          <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+            <span className="inline-flex items-center gap-2.5">
+              <span className="h-px w-6 bg-experience" aria-hidden="true" />
+              <span className="text-xs font-semibold uppercase tracking-widest text-experience">
+                The toolkit
+              </span>
+            </span>
+            <h2 className="mt-6 max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              Thirteen automations, doing the repetitive work
+            </h2>
+            <p className="mt-4 max-w-2xl text-muted-foreground">
+              The four that did the most heavy lifting, then the rest of the toolkit.
+            </p>
+
+            {/* Spotlight: the 4 featured. */}
+            <div className="mt-10 grid gap-5 sm:grid-cols-2">
+              {featured.map((a) => (
+                <div
+                  key={a.title}
+                  className="rounded-2xl border border-experience/30 bg-card p-6 [box-shadow:inset_3px_0_0_hsl(var(--experience))]"
+                >
+                  <h3 className="text-lg font-semibold text-foreground">{a.title}</h3>
+                  <p className="mt-2.5 text-sm leading-relaxed text-foreground/80">{a.does}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* The rest, compact. */}
+            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {rest.map((a) => (
+                <div key={a.title} className="rounded-xl border border-border bg-card p-5">
+                  <h3 className="text-sm font-semibold text-foreground">{a.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{a.does}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Deep dives — the two sub-cases that fold under this parent. Open in a
+            new tab, and both pages carry this experience theme. */}
+        <section className="border-b border-border bg-secondary/40">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
             <span className="inline-flex items-center gap-2.5">
               <span className="h-px w-6 bg-experience" aria-hidden="true" />
@@ -333,14 +253,16 @@ export default function ExperiencePage() {
                 <a
                   key={sub.page}
                   href={sub.page}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="group flex items-center justify-between gap-4 rounded-xl border border-border bg-card p-6 transition-colors hover:border-experience/50 hover:bg-experience/[0.04]"
                 >
                   <div>
                     <h3 className="text-base font-semibold text-foreground">{sub.name}</h3>
                     <p className="mt-1 text-sm text-muted-foreground">{sub.blurb}</p>
                   </div>
-                  <ArrowRight
-                    className="h-5 w-5 shrink-0 text-experience transition-transform group-hover:translate-x-0.5"
+                  <ArrowUpRight
+                    className="h-5 w-5 shrink-0 text-experience transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
                     aria-hidden="true"
                   />
                 </a>
@@ -350,7 +272,7 @@ export default function ExperiencePage() {
         </section>
 
         {/* Honest estimates note. */}
-        <section className="border-b border-border bg-secondary/40">
+        <section className="border-b border-border">
           <div className="mx-auto max-w-5xl px-6 py-12">
             <div className="max-w-3xl rounded-xl border-l-2 border-experience bg-card p-6">
               <p className="font-mono text-[11px] uppercase tracking-wide text-experience">

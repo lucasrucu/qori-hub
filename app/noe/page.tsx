@@ -57,7 +57,7 @@ export default function NoePage() {
                 <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
                   {NOE.productName}
                 </h1>
-                <p className="mt-2 font-mono text-xs uppercase tracking-widest text-primary">
+                <p className="mt-2 font-mono text-xs uppercase tracking-widest text-experience">
                   {NOE.version}
                 </p>
                 <p className="mt-4 text-xl text-foreground/90">{NOE.tagline}</p>
@@ -116,7 +116,7 @@ export default function NoePage() {
                       />
                     </div>
                     <div className={i % 2 === 1 ? "md:order-1" : undefined}>
-                      <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
+                      <Icon className="h-6 w-6 text-experience" aria-hidden="true" />
                       <h3 className="mt-4 text-lg font-medium text-foreground">{tool.title}</h3>
                       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                         {tool.detail}
@@ -145,7 +145,7 @@ export default function NoePage() {
                   {NOE.architecture.map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/80">
                       <span
-                        className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
+                        className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-experience"
                         aria-hidden="true"
                       />
                       {item}
@@ -207,7 +207,7 @@ export default function NoePage() {
               </div>
               <a
                 href="/#projects"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-experience px-5 py-2.5 text-sm font-medium text-experience-foreground transition-opacity hover:opacity-90"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 Back to projects

@@ -85,7 +85,7 @@ export default function PimsRfccPage() {
                 return (
                   <div key={pillar.title} className="flex flex-col">
                     <div className="mb-6">{i === 0 ? <PimsReportArt /> : <PimsSignoffArt />}</div>
-                    <Icon className="h-6 w-6 text-primary" aria-hidden="true" />
+                    <Icon className="h-6 w-6 text-experience" aria-hidden="true" />
                     <h3 className="mt-4 text-lg font-medium text-foreground">{pillar.title}</h3>
                     <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                       {pillar.detail}
@@ -107,7 +107,7 @@ export default function PimsRfccPage() {
             <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
               {PIMS_RFCC.pipeline.map((stage, i) => (
                 <li key={stage.step} className="rounded-lg border border-border bg-card p-6">
-                  <span className="font-mono text-xs font-semibold text-primary">
+                  <span className="font-mono text-xs font-semibold text-experience">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-3 text-base font-medium text-foreground">{stage.step}</h3>
@@ -133,7 +133,7 @@ export default function PimsRfccPage() {
                   {PIMS_RFCC.architecture.map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/80">
                       <span
-                        className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
+                        className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-experience"
                         aria-hidden="true"
                       />
                       {item}
@@ -176,7 +176,7 @@ export default function PimsRfccPage() {
               </div>
               <a
                 href="/#projects"
-                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-experience px-5 py-2.5 text-sm font-medium text-experience-foreground transition-opacity hover:opacity-90"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 Back to projects
