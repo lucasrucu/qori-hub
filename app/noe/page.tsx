@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { ArrowLeft, FileText, Paintbrush, Search } from "lucide-react";
 
 import { Eyebrow } from "@/components/Eyebrow";
-import { NoeArchitecture, NoeLauncherHero, ToolFrame } from "@/components/NoeMotion";
+import { NoeArchitecture, ToolFrame } from "@/components/NoeMotion";
 import { QoriMark } from "@/components/QoriMark";
 import { NOE, PROFILE } from "@/lib/profile";
 
@@ -55,8 +55,11 @@ export default function NoePage() {
               <div>
                 <Eyebrow>Commissioning tool · case study</Eyebrow>
                 <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-                  {NOE.name}
+                  {NOE.productName}
                 </h1>
+                <p className="mt-2 font-mono text-xs uppercase tracking-widest text-primary">
+                  {NOE.version}
+                </p>
                 <p className="mt-4 text-xl text-foreground/90">{NOE.tagline}</p>
                 <p className="mt-6 max-w-xl text-lg text-muted-foreground">{NOE.intro}</p>
                 <p className="mt-6 font-mono text-xs uppercase tracking-widest text-muted-foreground">
@@ -64,7 +67,11 @@ export default function NoePage() {
                 </p>
               </div>
               <div className="w-full">
-                <NoeLauncherHero />
+                <ToolFrame
+                  title={NOE.productName}
+                  shot={hasShot("/noe/launcher.png") ? "/noe/launcher.png" : null}
+                  glyph="doc"
+                />
               </div>
             </div>
           </div>
@@ -172,6 +179,7 @@ export default function NoePage() {
             <Eyebrow>Where it stands</Eyebrow>
             <div className="mt-6 max-w-3xl">
               <p className="text-lg leading-relaxed text-foreground/80">{NOE.status}</p>
+              <p className="mt-4 text-sm font-medium text-muted-foreground">{NOE.credit}</p>
             </div>
             <h3 className="mt-10 text-base font-medium text-foreground">If it gets revived</h3>
             <ul className="mt-6 grid gap-5 sm:grid-cols-3">

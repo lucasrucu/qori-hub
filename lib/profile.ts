@@ -355,20 +355,24 @@ export const PIMS_RFCC = {
   ],
 } as const;
 
-// NoE Toolkit case-study content. A Windows desktop toolkit Lucas built to take the
-// energization-document and Visio-markup busywork off commissioning engineers on a
-// live mining expansion. The code is private; this is the public case-study page.
-// Lives at /noe. Tool screenshots drop into public/noe/ when Ada ships them.
+// NoE Toolkit case-study content. The real product is "RCC NoE Maker Toolkit"
+// (v1.0.0), a Windows desktop toolkit co-developed by Cesar Roa and Lucas Ruiz to
+// take the energization-document and drawing-markup busywork off commissioning
+// engineers on a live mining expansion. The code is private; this is the public
+// case-study page. Lives at /noe. Real tool screenshots live in public/noe/.
 export const NOE = {
+  // Short label for the homepage card; the page itself shows the real product name.
   name: "NoE Toolkit",
+  productName: "RCC NoE Maker Toolkit",
+  version: "v1.0.0",
   context: "Industrial commissioning · case study",
   tagline: "The commissioning paperwork, done by three desktop tools.",
   intro:
-    "On a large mining expansion in Indonesia, commissioning engineers lose hours to energization documents and Visio drawing markup, all by hand. I built a Windows toolkit that does the busywork: it generates the documents, batch-repaints the drawings, and finds any subsystem across a huge drawing tree.",
+    "On a large mining expansion in Indonesia, commissioning engineers lose hours to energization documents and drawing markup, all by hand. We built a Windows toolkit that does the busywork: it generates the documents, batch-repaints the drawings, and finds any subsystem across a huge drawing tree.",
   // Plain framing of what it is and why it exists.
   what: [
-    "Commissioning a plant means proving each subsystem is ready to energize, and that proof is paperwork: a Notice of Energization per subsystem, marked-up Visio drawings showing what is live, and the constant hunt for which drawing a tag even lives on. Done by hand across hundreds of subsystems, it is slow and error-prone, and a wrong drawing or a missed tag costs real time on a live project.",
-    "The toolkit takes that work off the engineer's hands. A single launcher opens three focused tools, each running as its own crash-isolated process so one tool falling over never takes the others down. It is packaged as one NoE.exe with PyInstaller, so an engineer installs nothing and just runs it.",
+    "Commissioning a plant means proving each subsystem is ready to energize, and that proof is paperwork: a Notice of Energization per subsystem, marked-up drawings showing what is live, and the constant hunt for which drawing a tag even lives on. Done by hand across hundreds of subsystems, it is slow and error-prone, and a wrong drawing or a missed tag costs real time on a live project.",
+    "The RCC NoE Maker Toolkit takes that work off the engineer's hands. A single launcher opens three focused tools, each running as its own crash-isolated process so one tool falling over never takes the others down. It is packaged as one NoE.exe with PyInstaller, so an engineer installs nothing and just runs it. The UI is bilingual, so it fits a Spanish-speaking field team as well as an English-speaking one.",
   ],
   // The three tools, each problem -> solution. Mirrors the launcher.
   tools: [
@@ -391,7 +395,7 @@ export const NOE = {
       title: "Drawing Finder",
       shot: "/noe/finder.png",
       detail:
-        "Finding which drawing and page a subsystem or tag lives on, across a deep folder tree of Visio files, is painful. The Finder searches .vsdx/.vsdm/.vsd trees for codes, tags, or text and reveals each match in Explorer.",
+        "Finding which drawing and page a subsystem or tag lives on, across a deep folder tree, is painful. The Finder searches Visio and PDF drawings by subsystem or tag, scanning subfolders automatically, and reveals each match in Explorer.",
     },
   ] as const,
   // How it is built, plainly.
@@ -410,7 +414,9 @@ export const NOE = {
   ],
   // Where it stands now. Honest: shipped, used, then parked as a clean skeleton.
   status:
-    "Shipped and used on the project, then parked as a clean, documented skeleton with a roadmap. It may be revived; the bones are kept ready.",
+    "Shipped at v1.0.0 and used on the project, then parked as a clean, documented skeleton with a roadmap. It may be revived; the bones are kept ready.",
+  // Honest co-development credit. Cesar built the original; Lucas updated it.
+  credit: "Built with Cesar Roa.",
   // The do-if-revived vision (docs/ROADMAP.md).
   roadmap: [
     "One shared window hosting all three tools instead of three separate processes.",
