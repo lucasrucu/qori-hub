@@ -214,6 +214,17 @@ export const PROJECTS: Project[] = [
     art: "pipeline",
   },
   {
+    name: "NoE Toolkit",
+    context: "Commissioning desktop tool · case study",
+    tagline: "Three desktop tools that kill the commissioning paperwork.",
+    description:
+      "Commissioning engineers on a mining expansion burned hours on energization documents and Visio drawing markup by hand. I built a Windows toolkit that generates the documents, batch-repaints the drawings, and finds any subsystem across a huge drawing tree. One launcher, three crash-isolated tools, packaged as a single .exe.",
+    tech: ["Python", "CustomTkinter", "Visio COM", "PyMuPDF", "PyInstaller"],
+    page: "/noe",
+    flagship: true,
+    art: "noe",
+  },
+  {
     name: "Snip",
     context: "links.qori.land",
     tagline: "A personal URL shortener with click tracking.",
@@ -341,6 +352,70 @@ export const PIMS_RFCC = {
     "Report creation dropped from hours of manual pulling and formatting to a single command.",
     "Cleaner data and fewer correction cycles, because validation runs the same way every time.",
     "Faster turnaround on readiness packages, so sign-off is not the bottleneck.",
+  ],
+} as const;
+
+// NoE Toolkit case-study content. A Windows desktop toolkit Lucas built to take the
+// energization-document and Visio-markup busywork off commissioning engineers on a
+// live mining expansion. The code is private; this is the public case-study page.
+// Lives at /noe. Tool screenshots drop into public/noe/ when Ada ships them.
+export const NOE = {
+  name: "NoE Toolkit",
+  context: "Industrial commissioning · case study",
+  tagline: "The commissioning paperwork, done by three desktop tools.",
+  intro:
+    "On a large mining expansion in Indonesia, commissioning engineers lose hours to energization documents and Visio drawing markup, all by hand. I built a Windows toolkit that does the busywork: it generates the documents, batch-repaints the drawings, and finds any subsystem across a huge drawing tree.",
+  // Plain framing of what it is and why it exists.
+  what: [
+    "Commissioning a plant means proving each subsystem is ready to energize, and that proof is paperwork: a Notice of Energization per subsystem, marked-up Visio drawings showing what is live, and the constant hunt for which drawing a tag even lives on. Done by hand across hundreds of subsystems, it is slow and error-prone, and a wrong drawing or a missed tag costs real time on a live project.",
+    "The toolkit takes that work off the engineer's hands. A single launcher opens three focused tools, each running as its own crash-isolated process so one tool falling over never takes the others down. It is packaged as one NoE.exe with PyInstaller, so an engineer installs nothing and just runs it.",
+  ],
+  // The three tools, each problem -> solution. Mirrors the launcher.
+  tools: [
+    {
+      icon: "fileText",
+      title: "NoE Generator",
+      shot: "/noe/generator.png",
+      detail:
+        "Notices of Energization have to exist for every subsystem, and writing them by hand is slow and repetitive. Give the Generator a COMM number, the subsystems, and a signer, and it produces the finished .docx from templates.",
+    },
+    {
+      icon: "paintbrush",
+      title: "Drawing Plan Painter",
+      shot: "/noe/painter.png",
+      detail:
+        "Engineers mark up Visio drawings per subsystem and export PDFs, tediously and one shape at a time. The Painter drives Visio over COM to batch-repaint the subsystem shapes and export per-page PDFs in one pass.",
+    },
+    {
+      icon: "search",
+      title: "Drawing Finder",
+      shot: "/noe/finder.png",
+      detail:
+        "Finding which drawing and page a subsystem or tag lives on, across a deep folder tree of Visio files, is painful. The Finder searches .vsdx/.vsdm/.vsd trees for codes, tags, or text and reveals each match in Explorer.",
+    },
+  ] as const,
+  // How it is built, plainly.
+  architecture: [
+    "One launcher, three tools, each spawned as its own process so a crash stays isolated.",
+    "Python + CustomTkinter UI on a Catppuccin theme, dark and light.",
+    "python-docx renders the energization documents from templates.",
+    "pywin32 drives Visio over COM to repaint shapes; PyMuPDF and OpenCV handle the PDF and image work.",
+    "Packaged as a single NoE.exe with PyInstaller, so there is nothing to install.",
+  ],
+  // Outcome statements. Concrete, no invented numbers.
+  outcomes: [
+    "Energization documents that were typed by hand now generate from a template in one step.",
+    "Drawing markup that was shape-by-shape in Visio is now a single batch repaint-and-export.",
+    "Finding where a subsystem or tag lives went from manual hunting to a searchable lookup.",
+  ],
+  // Where it stands now. Honest: shipped, used, then parked as a clean skeleton.
+  status:
+    "Shipped and used on the project, then parked as a clean, documented skeleton with a roadmap. It may be revived; the bones are kept ready.",
+  // The do-if-revived vision (docs/ROADMAP.md).
+  roadmap: [
+    "One shared window hosting all three tools instead of three separate processes.",
+    "Unified history across the tools, so recent COMM numbers and subsystems carry over.",
+    "Live cross-tool subsystem sync, so picking a subsystem in one tool sets it in the others.",
   ],
 } as const;
 
