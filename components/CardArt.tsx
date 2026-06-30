@@ -55,18 +55,27 @@ function ArtFrame({
 function Radar() {
   return (
     <ArtFrame title="Match radar">
+      {/* rings + blips, centered on the radar origin (160,100) */}
       <g transform="translate(160,100)">
         <circle r="78" fill="none" stroke="#E7D9B4" strokeWidth="1.2" />
         <circle r="54" fill="none" stroke="#E7D9B4" strokeWidth="1.2" />
         <circle r="30" fill="none" stroke="#E7D9B4" strokeWidth="1.2" />
-        <g style={spin(4)}>
-          <path d="M0 0 L0 -80 A80 80 0 0 1 56 -56 Z" fill="#F1AE0433" />
-          <line x1="0" y1="0" x2="0" y2="-80" stroke={AMBER} strokeWidth="2" />
-        </g>
         <circle cx="34" cy="-22" r="4" fill={AMBER} />
         <circle cx="-44" cy="14" r="4" fill={INK} />
         <circle cx="10" cy="46" r="4" fill={INK} />
         <circle cx="-18" cy="-40" r="4" fill={AMBER} />
+      </g>
+      {/* sweep beam in absolute coords, pinned to the radar center so it rotates
+          cleanly around (160,100) instead of around its own bounding box */}
+      <g
+        style={{
+          animation: "otto-spin 4s linear infinite",
+          transformOrigin: "160px 100px",
+          transformBox: "view-box",
+        }}
+      >
+        <path d="M160 100 L160 20 A80 80 0 0 1 216 44 Z" fill="#F1AE0433" />
+        <line x1="160" y1="100" x2="160" y2="20" stroke={AMBER} strokeWidth="2" />
       </g>
       <text x="22" y="34" fontSize="22" fontWeight="700" fill={INK} fontFamily="monospace">
         92%
