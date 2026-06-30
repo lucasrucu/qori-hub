@@ -157,8 +157,12 @@ export function ToolFrame({
         <span className="ml-2 font-mono text-xs text-muted-foreground">{title}</span>
       </div>
       {shot ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img src={shot} alt={`${title} screenshot`} className="block aspect-[16/10] w-full object-cover" />
+        // Real captures are ~1.87:1; show the whole window (object-contain) on a dark
+        // backdrop that matches the app's theme, so nothing is cropped or off-center.
+        <div className="flex aspect-[16/9] w-full items-center justify-center overflow-hidden bg-[#1e1e2e]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={shot} alt={`${title} screenshot`} className="block h-full w-full object-contain" />
+        </div>
       ) : (
         <ToolPlaceholder glyph={glyph} />
       )}
