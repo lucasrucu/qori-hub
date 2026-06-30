@@ -280,7 +280,7 @@ export function NoeArchitecture() {
 
       {/* spawn arrows to three processes */}
       {tools.map((_, i) => {
-        const cx = 66 + i * 94;
+        const cx = 38 + i * 88;
         return (
           <path
             key={i}
@@ -297,7 +297,7 @@ export function NoeArchitecture() {
 
       {/* three isolated processes */}
       {tools.map((t, i) => {
-        const x = 66 + i * 94;
+        const x = 38 + i * 88;
         return (
           <g key={t} transform={`translate(${x},112)`}>
             <rect width="68" height="58" rx="8" fill="#FBF6EA" stroke="#D9CDB2" strokeWidth="1.3" />
