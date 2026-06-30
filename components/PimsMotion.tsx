@@ -6,13 +6,13 @@ import { cn } from "@/lib/utils";
 // through the qart-* / otto-* keyframes already defined in globals.css.
 //
 // Palette (hex mirrors the HSL tokens in globals.css):
-//   amber #F1AE04   gold #F6C44A   deep #C97A04   ink #221C14
-//   cream #FBF6EA   line #E0D4B8   green #2E7D44
+//   amber #0F7E78   gold #1FB8AD   deep #0C5A55   ink #221C14
+//   cream #FBF6EA   line #E0D4B8   green #14857C
 
-const AMBER = "#F1AE04";
-const GOLD = "#F6C44A";
+const AMBER = "#0F7E78";
+const GOLD = "#1FB8AD";
 const INK = "#221C14";
-const GREEN = "#2E7D44";
+const GREEN = "#14857C";
 
 const spin = (s: number, rev = false): React.CSSProperties => ({
   animation: `otto-spin${rev ? "-rev" : ""} ${s}s linear infinite`,
@@ -79,8 +79,8 @@ export function PimsPipelineHero() {
 
       {/* Validation node: a spinning ring + a check */}
       <g transform="translate(140,100)">
-        <circle r="26" fill="#F1AE0418" stroke={AMBER} strokeWidth="1.4" />
-        <circle r="32" fill="none" stroke="#F1AE0440" strokeWidth="1" strokeDasharray="3 6" style={spin(9)} />
+        <circle r="26" fill="#0F7E7818" stroke={AMBER} strokeWidth="1.4" />
+        <circle r="32" fill="none" stroke="#0F7E7840" strokeWidth="1" strokeDasharray="3 6" style={spin(9)} />
         <path d="M-9 0 l6 7 l12 -15" fill="none" stroke={AMBER} strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" />
         <text x="0" y="46" textAnchor="middle" fontSize="8" fill="#A89A7E" fontFamily="monospace">validate</text>
       </g>
@@ -92,7 +92,7 @@ export function PimsPipelineHero() {
       {/* Report doc (top branch) */}
       <g transform="translate(220,40)">
         <rect width="44" height="34" rx="4" fill="#FFFDF8" stroke="#D9CDB2" />
-        <rect x="0" y="0" width="44" height="9" rx="4" fill="#F1AE0426" />
+        <rect x="0" y="0" width="44" height="9" rx="4" fill="#0F7E7826" />
         <line x1="7" y1="18" x2="37" y2="18" stroke="#E0D4B8" strokeWidth="2" />
         <line x1="7" y1="24" x2="30" y2="24" stroke="#E0D4B8" strokeWidth="2" />
         <text x="22" y="-5" textAnchor="middle" fontSize="7.5" fill="#A89A7E" fontFamily="monospace">PDF + XLSX</text>
@@ -121,7 +121,7 @@ export function PimsPipelineHero() {
           style={{ animation: "otto-breathe 3.2s ease-in-out infinite", transformOrigin: "center", transformBox: "fill-box" }}
         />
         <path d="M11 20 l4 4 l7 -9" fill="none" stroke="#FFFFFF" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-        <text x="17" y="42" textAnchor="middle" fontSize="6.5" fill="#7A5800" fontFamily="monospace">SIGNED</text>
+        <text x="17" y="42" textAnchor="middle" fontSize="6.5" fill="#0A3F3B" fontFamily="monospace">SIGNED</text>
       </g>
     </Frame>
   );
@@ -157,7 +157,7 @@ export function PimsReportArt() {
         </g>
       ))}
       <g transform="translate(232,40)">
-        <rect x="-6" y="-12" width="64" height="20" rx="10" fill="#2E7D4418" stroke={GREEN} strokeWidth="1.2" />
+        <rect x="-6" y="-12" width="64" height="20" rx="10" fill="#14857C18" stroke={GREEN} strokeWidth="1.2" />
         <text x="26" y="2" textAnchor="middle" fontSize="9" fontWeight="700" fill={GREEN} fontFamily="monospace">READY</text>
       </g>
     </Frame>
@@ -172,7 +172,7 @@ export function PimsSignoffArt() {
       {/* Certificate */}
       <g transform="translate(54,40)">
         <rect width="150" height="120" rx="8" fill="#FFFDF8" stroke="#D9CDB2" strokeWidth="1.4" />
-        <rect x="0" y="0" width="150" height="26" rx="8" fill="#F1AE0420" />
+        <rect x="0" y="0" width="150" height="26" rx="8" fill="#0F7E7820" />
         <text x="14" y="17" fontSize="10" fontWeight="700" fill={INK} fontFamily="monospace">RFCC</text>
         <text x="136" y="17" textAnchor="end" fontSize="8" fill="#A89A7E" fontFamily="monospace">XXXX-XX</text>
         <line x1="14" y1="44" x2="120" y2="44" stroke="#E0D4B8" strokeWidth="2.5" />
@@ -184,7 +184,7 @@ export function PimsSignoffArt() {
 
       {/* Spinning dashed ring + green seal pressing in */}
       <g transform="translate(216,118)">
-        <circle r="34" fill="none" stroke="#2E7D4433" strokeWidth="1.2" strokeDasharray="3 6" style={spin(11)} />
+        <circle r="34" fill="none" stroke="#14857C33" strokeWidth="1.2" strokeDasharray="3 6" style={spin(11)} />
         <circle
           r="26"
           fill={GREEN}

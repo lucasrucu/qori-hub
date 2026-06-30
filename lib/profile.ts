@@ -213,7 +213,7 @@ export const PROJECTS: Project[] = [
     description:
       "On a large minerals-processing expansion, my day was repetitive, high-stakes data work across ~1,300+ subsystems and ~14,000 tags. I built a toolkit of 13 automations plus an AI assistant that runs them. The flagship cut energization-document work from up to ~6 hours/day to under an hour. Projected to remove 1,000+ hours over the project (estimate).",
     tech: ["Python", "Playwright", "REST APIs", "Power BI", "AI Agents"],
-    page: "/experience",
+    page: "/commissioning-automation",
     flagship: true,
     art: "commissioning",
     accent: "experience",

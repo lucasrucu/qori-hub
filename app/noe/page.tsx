@@ -53,7 +53,16 @@ export default function NoePage() {
           <div className="mx-auto max-w-5xl px-6 py-20 sm:py-24">
             <div className="grid items-center gap-12 md:grid-cols-[1.1fr_1fr]">
               <div>
-                <Eyebrow>Commissioning tool · case study</Eyebrow>
+                <a
+                  href="/commissioning-automation"
+                  className="inline-flex items-center gap-1.5 text-xs font-medium text-experience transition-opacity hover:opacity-80"
+                >
+                  <ArrowLeft className="h-3.5 w-3.5" aria-hidden="true" />
+                  Part of: Industrial commissioning automation
+                </a>
+                <div className="mt-4">
+                  <Eyebrow accent="experience">Commissioning tool · case study</Eyebrow>
+                </div>
                 <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
                   {NOE.productName}
                 </h1>
@@ -80,7 +89,7 @@ export default function NoePage() {
         {/* What it is */}
         <section className="border-b border-border bg-secondary/60">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
-            <Eyebrow>What it is</Eyebrow>
+            <Eyebrow accent="experience">What it is</Eyebrow>
             <div className="mt-6 max-w-3xl space-y-4">
               {NOE.what.map((para) => (
                 <p key={para} className="text-lg leading-relaxed text-foreground/80">
@@ -94,7 +103,7 @@ export default function NoePage() {
         {/* The three tools, each with its own window frame */}
         <section className="border-b border-border">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
-            <Eyebrow>The three tools</Eyebrow>
+            <Eyebrow accent="experience">The three tools</Eyebrow>
             <h2 className="mt-6 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               One launcher, three focused tools
             </h2>
@@ -134,7 +143,7 @@ export default function NoePage() {
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
             <div className="grid gap-12 md:grid-cols-2">
               <div>
-                <Eyebrow>Under the hood</Eyebrow>
+                <Eyebrow accent="experience">Under the hood</Eyebrow>
                 <h2 className="mt-6 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                   How it works
                 </h2>
@@ -154,7 +163,7 @@ export default function NoePage() {
                 </ul>
               </div>
               <div>
-                <Eyebrow>What changed</Eyebrow>
+                <Eyebrow accent="experience">What changed</Eyebrow>
                 <h2 className="mt-6 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                   Outcomes
                 </h2>
@@ -176,7 +185,7 @@ export default function NoePage() {
         {/* Where it stands */}
         <section className="border-b border-border">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
-            <Eyebrow>Where it stands</Eyebrow>
+            <Eyebrow accent="experience">Where it stands</Eyebrow>
             <div className="mt-6 max-w-3xl">
               <p className="text-lg leading-relaxed text-foreground/80">{NOE.status}</p>
               <p className="mt-4 text-sm font-medium text-muted-foreground">{NOE.credit}</p>
