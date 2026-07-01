@@ -60,8 +60,6 @@ function ProjectCard({ project }: { project: Project }) {
           {project.page ? (
             <a
               href={project.page}
-              target="_blank"
-              rel="noopener noreferrer"
               className={
                 exp
                   ? "inline-flex items-center justify-center gap-1.5 rounded-md bg-experience px-3.5 py-2 text-xs font-medium text-experience-foreground transition-opacity hover:opacity-90"
