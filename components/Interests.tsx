@@ -11,10 +11,13 @@ import { INTERESTS, type Interest } from "@/lib/profile";
 // populated today; the other activities (Endurance, Enduro MTB,
 // Snowboarding) will fill in as photos come in.
 const INTEREST_PHOTOS: CollagePhoto[] = [
+  // tri-paracas-4 goes first: it's the only shot with enough headroom above
+  // the subject to survive the hero tile's wide 2:1 crop on mobile/tablet
+  // without clipping his head (see PhotoCollage's `isHero` tile).
+  { src: "/images/interests/tri-paracas-4.jpg", alt: "Paracas triathlon, race day", activity: "Triathlon" },
   { src: "/images/interests/tri-paracas-1.jpg", alt: "Paracas triathlon, race day", activity: "Triathlon" },
   { src: "/images/interests/tri-paracas-2.jpg", alt: "Paracas triathlon, race day", activity: "Triathlon" },
   { src: "/images/interests/tri-paracas-3.jpg", alt: "Paracas triathlon, race day", activity: "Triathlon" },
-  { src: "/images/interests/tri-paracas-4.jpg", alt: "Paracas triathlon, race day", activity: "Triathlon" },
 ];
 
 const ICONS: Record<Interest["icon"], typeof Trophy> = {
