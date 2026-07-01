@@ -1,8 +1,16 @@
 import { Activity, Bike, Mountain, Trophy } from "lucide-react";
 
 import { Eyebrow } from "@/components/Eyebrow";
+import { ImageCarousel } from "@/components/ImageCarousel";
 import { PhotoSkeleton } from "@/components/PhotoSkeleton";
 import { INTERESTS, type Interest } from "@/lib/profile";
+
+const RACE_PHOTOS = [
+  { src: "/images/interests/tri-paracas-1.jpg", alt: "Paracas triathlon, race day" },
+  { src: "/images/interests/tri-paracas-2.jpg", alt: "Paracas triathlon, race day" },
+  { src: "/images/interests/tri-paracas-3.jpg", alt: "Paracas triathlon, race day" },
+  { src: "/images/interests/tri-paracas-4.jpg", alt: "Paracas triathlon, race day" },
+];
 
 const ICONS: Record<Interest["icon"], typeof Trophy> = {
   trophy: Trophy,
@@ -43,7 +51,7 @@ export function Interests() {
             })}
           </div>
           <div className="grid grid-rows-2 gap-4">
-            <PhotoSkeleton label="Action shot — race / trail" className="min-h-40" />
+            <ImageCarousel images={RACE_PHOTOS} className="min-h-40" />
             <PhotoSkeleton label="Action shot — bike / snow" className="min-h-40" />
           </div>
         </div>
