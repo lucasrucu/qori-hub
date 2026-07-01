@@ -1,23 +1,40 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
+
+const AUTOPLAY_MS = 4000;
 
 export function ImageCarousel({
   images,
   className,
+  autoplay = true,
 }: {
   images: { src: string; alt: string }[];
   className?: string;
+  autoplay?: boolean;
 }) {
   const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (!autoplay || paused || images.length <= 1) return;
+    const id = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, AUTOPLAY_MS);
+    return () => clearInterval(id);
+  }, [autoplay, paused, images.length]);
 
   if (images.length === 0) return null;
 
   return (
-    <div className={cn("group relative overflow-hidden rounded-xl", className)}>
+    <div
+      className={cn("group relative aspect-square overflow-hidden rounded-xl", className)}
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
       {images.map((image, i) => (
         <Image
           key={image.src}
