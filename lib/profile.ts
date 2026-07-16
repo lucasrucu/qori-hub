@@ -149,7 +149,9 @@ export type Project = {
   page?: string;
   // Short subdomain or context label shown under the title.
   context?: string;
-  // True for the four landing-page flagships: chip + border-beam treatment.
+  // True for the SINGLE flagship (Industrial commissioning automation only):
+  // chip + border-beam treatment. Every other featured card just sits in the
+  // featured grid with no badge.
   flagship?: boolean;
   // Bespoke coded card artwork (components/CardArt.tsx). One per card, no screenshots.
   art?: ArtKey;
@@ -159,9 +161,11 @@ export type Project = {
   accent?: "experience" | "quorum";
 };
 
-// The flagship four. The ONLY projects on the landing page, in this order.
-// Everything else lives on /projects.
-export const FLAGSHIP_PROJECTS: Project[] = [
+// The featured four on the landing page, in this order. Only the first one,
+// Industrial commissioning automation, is the flagship (badge + beam). The
+// other three are featured but carry no flagship label. Everything else
+// lives on /projects.
+export const FEATURED_PROJECTS: Project[] = [
   {
     name: "Industrial commissioning automation",
     context: "Large industrial project · field case study",
@@ -182,21 +186,18 @@ export const FLAGSHIP_PROJECTS: Project[] = [
       "An always-on OS where AI agents work as employees. An orchestrator dispatches the work, agents build in parallel inside isolated git worktrees, and a live pipeline board shows the one thing that actually needs me. Two-way Telegram control, one shared memory. My own system, and it ships real software.",
     tech: ["TypeScript", "Claude Agent SDK", "Next.js", "Telegram", "Git"],
     page: "/quorum",
-    flagship: true,
     art: "quorum",
     accent: "quorum",
   },
   {
-    name: "Career Agent",
-    context: "career.qori.land",
-    tagline: "An AI agent that runs a job search end to end.",
+    name: "Otto",
+    context: "Personal AI assistant OS",
+    tagline: "A voice-first assistant that runs my own work automations.",
     description:
-      "Reads your resume into a structured profile, pulls real job listings through the Adzuna API, scores how well you match each role, and drafts a tailored, ATS-friendly resume from your real experience. Not a script. An agent that does the whole job. Live and yours to test.",
-    tech: ["Next.js", "Claude", "Adzuna", "Supabase", "TypeScript"],
-    live: "https://career.qori.land",
-    repo: "https://github.com/lucasrucu/career-agent",
-    flagship: true,
-    art: "radar",
+      "A local AI assistant built on the Claude Agent SDK with a voice-driven HUD and multi-agent orchestration. Speak a command, watch an automation run: PIMS pulls, report generation, RFCC sign-offs. It is also the assistant that helped build the rest of this site.",
+    tech: ["Python", "Claude Agent SDK", "Multi-agent", "Voice (STT/TTS)", "FastAPI"],
+    page: "/otto",
+    art: "orb",
   },
   {
     name: "Financial Dashboard",
@@ -207,7 +208,6 @@ export const FLAGSHIP_PROJECTS: Project[] = [
     tech: ["Next.js", "Plaid", "Claude", "Supabase", "TypeScript"],
     live: "https://finance.qori.land",
     repo: "https://github.com/lucasrucu/Financial-Dashboard",
-    flagship: true,
     art: "flow",
   },
 ];
@@ -215,14 +215,15 @@ export const FLAGSHIP_PROJECTS: Project[] = [
 // The rest of the shelf. Listed on /projects as compact cards.
 export const MORE_PROJECTS: Project[] = [
   {
-    name: "Otto",
-    context: "Personal AI assistant OS",
-    tagline: "A voice-first assistant that runs my own work automations.",
+    name: "Career Agent",
+    context: "career.qori.land",
+    tagline: "An AI agent that runs a job search end to end.",
     description:
-      "A local AI assistant built on the Claude Agent SDK with a voice-driven HUD and multi-agent orchestration. Speak a command, watch an automation run: PIMS pulls, report generation, RFCC sign-offs.",
-    tech: ["Python", "Claude Agent SDK", "Multi-agent", "Voice (STT/TTS)", "FastAPI"],
-    page: "/otto",
-    art: "orb",
+      "Reads your resume into a structured profile, pulls real job listings through the Adzuna API, scores how well you match each role, and drafts a tailored, ATS-friendly resume from your real experience. Still a work in progress.",
+    tech: ["Next.js", "Claude", "Adzuna", "Supabase", "TypeScript"],
+    live: "https://career.qori.land",
+    repo: "https://github.com/lucasrucu/career-agent",
+    art: "radar",
   },
   {
     name: "NoE Toolkit",
@@ -295,7 +296,7 @@ export const OTTO = {
   // Hero line for the showcase page.
   tagline: "A voice-first AI assistant that runs my work.",
   intro:
-    "Otto is my personal AI operating layer. It is built on the Claude Agent SDK, talks back, and actually executes my automations on command. A flagship personal build, not a public product.",
+    "Otto is my personal AI operating layer. It is built on the Claude Agent SDK, talks back, and actually executes my automations on command. A personal build, not a public product.",
   // Plain framing of what it is.
   what: [
     "I do a lot of repetitive, high-stakes data work on industrial projects: pulling records, generating reports, signing off readiness packages. Otto is how I stopped driving each of those by hand.",
@@ -618,12 +619,12 @@ export const EXPERIENCE_STUDY = {
 } as const;
 
 // Quorum showcase content. The code is private; this is the public page that
-// presents it as a flagship personal build. Lives at /quorum. High-level on
+// presents it as a featured personal build. Lives at /quorum. High-level on
 // purpose: the concept and the capabilities, not the internals.
 export const QUORUM = {
   name: "Quorum",
   context: "Personal build · agent company OS",
-  eyebrow: "Flagship build · agent company",
+  eyebrow: "Featured build · agent company",
   tagline: "A company of AI agents, run by one person.",
   intro:
     "Quorum is my local agent-company OS. AI agents work as employees under my direction: an always-on daemon keeps the company running, an orchestrator dispatches the work, and only the few decisions that actually need a human reach me.",

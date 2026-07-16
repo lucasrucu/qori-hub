@@ -4,12 +4,12 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { CardArt } from "@/components/CardArt";
 import { Eyebrow } from "@/components/Eyebrow";
 import { QoriMark } from "@/components/QoriMark";
-import { FLAGSHIP_PROJECTS, MORE_PROJECTS, type Project } from "@/lib/profile";
+import { FEATURED_PROJECTS, MORE_PROJECTS, type Project } from "@/lib/profile";
 
 export const metadata: Metadata = {
   title: "All projects — Lucas Ruiz",
   description:
-    "The full shelf: every agent, automation, and desktop tool Lucas Ruiz has shipped, beyond the flagship four.",
+    "The full shelf: every agent, automation, and desktop tool Lucas Ruiz has shipped, beyond the featured four.",
 };
 
 // Per-accent border tints for the compact cards.
@@ -37,8 +37,12 @@ function CompactCard({ project }: { project: Project }) {
         <p className="mt-2 text-[13px] leading-relaxed text-foreground/85">{project.tagline}</p>
         <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 pt-4 text-xs font-medium">
           {project.page ? (
+            // New tab, scoped to this listing only: leaving /projects to a case
+            // study page with no back link would strand the visitor there.
             <a
               href={project.page}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-foreground transition-colors hover:text-primary"
             >
               Case study
@@ -99,19 +103,22 @@ export default function AllProjectsPage() {
               All projects
             </h1>
             <p className="mt-4 max-w-2xl text-muted-foreground">
-              Everything shipped beyond the flagship four: assistants, field automations, and
+              Everything shipped beyond the featured four: assistants, field automations, and
               desktop tools. Each one is real, built to remove some manual work from my own life.
             </p>
 
-            {/* The flagships, as a compact reference strip. */}
+            {/* The featured four, as a compact reference strip. New tab, same
+                reasoning as the cards below: don't strand the visitor. */}
             <div className="mt-8 flex flex-wrap items-center gap-2 text-xs">
               <span className="font-mono uppercase tracking-wide text-muted-foreground">
-                Flagships:
+                Featured:
               </span>
-              {FLAGSHIP_PROJECTS.map((p) => (
+              {FEATURED_PROJECTS.map((p) => (
                 <a
                   key={p.name}
                   href={p.page ?? p.live ?? "/#projects"}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="rounded-full border border-border bg-secondary px-3 py-1 font-medium text-secondary-foreground transition-colors hover:bg-accent"
                 >
                   {p.name}
@@ -138,7 +145,7 @@ export default function AllProjectsPage() {
                 className="inline-flex shrink-0 items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                See the flagships
+                See the featured builds
               </a>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { CardArt } from "@/components/CardArt";
 import { Eyebrow } from "@/components/Eyebrow";
 import { BorderBeam } from "@/components/ui/border-beam";
-import { FLAGSHIP_PROJECTS, type Project } from "@/lib/profile";
+import { FEATURED_PROJECTS, type Project } from "@/lib/profile";
 
 // Per-accent styling. Full literal class strings so Tailwind's content scan
 // picks them up. Beam colors mirror each accent's tokens in globals.css.
@@ -28,57 +28,52 @@ const ACCENTS = {
   },
 } as const;
 
+// Compact card for the landing page's featured row. Only a true flagship
+// (project.flagship) gets the badge + border-beam; the rest are featured but
+// unbadged, distinguished only by sitting in this row.
 export function ProjectCard({ project }: { project: Project }) {
   const accent = ACCENTS[project.accent ?? "default"];
   return (
     <article
-      className={`group relative flex h-full flex-col overflow-hidden rounded-xl border bg-card transition-shadow ${accent.card}`}
+      className={`group relative flex h-full flex-col overflow-hidden rounded-lg border bg-card transition-shadow ${accent.card}`}
     >
       {/* Bespoke coded artwork — one consistent system, no screenshots. */}
       <div className="border-b border-border">
         {project.art ? (
-          <CardArt art={project.art} />
+          <CardArt art={project.art} className="aspect-[16/9]" />
         ) : (
-          <div className="aspect-[16/10] w-full bg-secondary" />
+          <div className="aspect-[16/9] w-full bg-secondary" />
         )}
       </div>
 
-      <div className="flex h-full flex-col p-5">
+      <div className="flex h-full flex-col p-3.5">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="text-base font-semibold text-foreground">{project.name}</h3>
+          <h3 className="text-sm font-semibold text-foreground">{project.name}</h3>
           {project.flagship ? (
             <span
-              className={`shrink-0 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${accent.chip}`}
+              className={`shrink-0 rounded-full px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide ${accent.chip}`}
             >
               Flagship
             </span>
           ) : null}
         </div>
         {project.context ? (
-          <p className="mt-0.5 font-mono text-xs text-muted-foreground">{project.context}</p>
+          <p className="mt-0.5 font-mono text-[10px] text-muted-foreground">{project.context}</p>
         ) : null}
-        <p className="mt-3 text-sm font-medium text-foreground/90">{project.tagline}</p>
-        <p className="mt-2 line-clamp-3 text-[13px] leading-relaxed text-muted-foreground">
+        <p className="mt-2 text-[13px] font-medium leading-snug text-foreground/90">
+          {project.tagline}
+        </p>
+        <p className="mt-1.5 line-clamp-2 text-[12px] leading-relaxed text-muted-foreground">
           {project.description}
         </p>
-        <ul className="mt-4 flex flex-wrap gap-1.5">
-          {project.tech.slice(0, 4).map((tech) => (
-            <li
-              key={tech}
-              className="rounded-full border border-border bg-secondary px-2 py-0.5 text-[10px] font-medium text-secondary-foreground"
-            >
-              {tech}
-            </li>
-          ))}
-        </ul>
-        <div className="mt-auto flex flex-wrap gap-2 pt-5">
+        <div className="mt-auto flex flex-wrap gap-1.5 pt-3">
           {project.page ? (
             <a
               href={project.page}
-              className={`inline-flex items-center justify-center gap-1.5 rounded-md px-3.5 py-2 text-xs font-medium transition-opacity hover:opacity-90 ${accent.btn}`}
+              className={`inline-flex items-center justify-center gap-1 rounded-md px-2.5 py-1.5 text-[11px] font-medium transition-opacity hover:opacity-90 ${accent.btn}`}
             >
               See how it works
-              <ArrowRight className="h-3.5 w-3.5" aria-hidden="true" />
+              <ArrowRight className="h-3 w-3" aria-hidden="true" />
             </a>
           ) : null}
           {project.live ? (
@@ -86,7 +81,7 @@ export function ProjectCard({ project }: { project: Project }) {
               href={project.live}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md bg-primary px-3.5 py-2 text-xs font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              className="inline-flex items-center justify-center rounded-md bg-primary px-2.5 py-1.5 text-[11px] font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
               Try it live
             </a>
@@ -96,7 +91,7 @@ export function ProjectCard({ project }: { project: Project }) {
               href={project.repo}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-md border border-border bg-card px-3.5 py-2 text-xs font-medium text-foreground transition-colors hover:bg-accent"
+              className="inline-flex items-center justify-center rounded-md border border-border bg-card px-2.5 py-1.5 text-[11px] font-medium text-foreground transition-colors hover:bg-accent"
             >
               GitHub
             </a>
@@ -104,11 +99,10 @@ export function ProjectCard({ project }: { project: Project }) {
         </div>
       </div>
 
-      {/* Flagship builds get a slow beam tracing the card border, in the
-          card's own accent. */}
+      {/* Only the flagship gets the slow beam tracing the card border. */}
       {project.flagship ? (
         <BorderBeam
-          size={70}
+          size={60}
           duration={9}
           className="opacity-90"
           colorFrom={accent.beam.from}
@@ -125,21 +119,20 @@ export function Projects() {
       <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
         <Eyebrow>Selected work</Eyebrow>
         <h2 className="mt-6 max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-          The flagship builds
+          Featured builds
         </h2>
         <p className="mt-4 max-w-2xl text-muted-foreground">
-          Four builds that prove the niche: software that takes manual, high-stakes data work off
-          people&apos;s hands. Two are live and yours to try. The rest of the shelf is one click
-          away.
+          The flagship and three more that prove the niche: software that takes manual,
+          high-stakes data work off people&apos;s hands. The rest of the shelf is one click away.
         </p>
 
-        <div className="mt-10 grid grid-cols-1 items-stretch gap-6 sm:grid-cols-2">
-          {FLAGSHIP_PROJECTS.map((project) => (
+        <div className="mt-8 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {FEATURED_PROJECTS.map((project) => (
             <ProjectCard key={project.name} project={project} />
           ))}
         </div>
 
-        <div className="mt-10 flex justify-center">
+        <div className="mt-5 flex justify-center">
           <a
             href="/projects"
             className="inline-flex items-center gap-2 rounded-md border border-border bg-card px-5 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-accent"
