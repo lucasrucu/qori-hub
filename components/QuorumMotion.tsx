@@ -76,7 +76,7 @@ export function QuorumHero() {
     return { label, x: cx + Math.cos(rad) * r, y: cy + Math.sin(rad) * r };
   });
   return (
-    <Frame title="Six AI agents in a hexagon around the orchestrator core" className="aspect-[16/9]">
+    <Frame title="Six AI agents in a hexagon around the orchestrator core">
       {/* outer orbit ring */}
       <g transform={`translate(${cx},${cy})`}>
         <circle r="88" fill="none" stroke={`${BLUE}18`} strokeWidth="1" strokeDasharray="2 7" style={spin(26)} />
