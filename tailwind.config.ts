@@ -51,6 +51,11 @@ const config: Config = {
           foreground: "hsl(var(--experience-foreground))",
           bright: "hsl(var(--experience-bright))",
         },
+        quorum: {
+          DEFAULT: "hsl(var(--quorum))",
+          foreground: "hsl(var(--quorum-foreground))",
+          bright: "hsl(var(--quorum-bright))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

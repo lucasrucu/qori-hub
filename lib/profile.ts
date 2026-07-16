@@ -149,63 +149,19 @@ export type Project = {
   page?: string;
   // Short subdomain or context label shown under the title.
   context?: string;
-  // True for the flagship/case-study treatment (no live link, framed as a build).
+  // True for the four landing-page flagships: chip + border-beam treatment.
   flagship?: boolean;
   // Bespoke coded card artwork (components/CardArt.tsx). One per card, no screenshots.
   art?: ArtKey;
-  // Optional per-card accent. "experience" color-codes the card to the teal
-  // experience accent instead of the default Sovereign amber. Used by the
-  // umbrella commissioning-automation case study.
-  accent?: "experience";
+  // Optional per-card accent. "experience" color-codes to the teal Patina
+  // accent (commissioning-automation and its sub-cases); "quorum" to the
+  // electric agent blue. Default is Sovereign amber.
+  accent?: "experience" | "quorum";
 };
 
-// Featured projects, ordered strongest-first. Each one proves the niche:
-// AI agents and automations that kill manual work in data-heavy environments.
-export const PROJECTS: Project[] = [
-  {
-    name: "Career Agent",
-    context: "career.qori.land",
-    tagline: "An AI agent that runs a job search end to end.",
-    description:
-      "Reads your resume into a structured profile, pulls real job listings through the Adzuna API, scores how well you match each role, and drafts a tailored, ATS-friendly resume from your real experience. Not a script. An agent that does the whole job. Live and yours to test.",
-    tech: ["Next.js", "Claude", "Adzuna", "Supabase", "TypeScript"],
-    live: "https://career.qori.land",
-    repo: "https://github.com/lucasrucu/career-agent",
-    art: "radar",
-  },
-  {
-    name: "Financial Dashboard",
-    context: "finance.qori.land",
-    tagline: "A production data pipeline with an AI layer on real money.",
-    description:
-      "Plaid pulls real transactions from multiple banks, Claude analyzes spending, and Supabase stores everything behind row-level security. A real, secure, multi-user data product with AI on top, not a toy demo.",
-    tech: ["Next.js", "Plaid", "Claude", "Supabase", "TypeScript"],
-    live: "https://finance.qori.land",
-    repo: "https://github.com/lucasrucu/Financial-Dashboard",
-    art: "flow",
-  },
-  {
-    name: "Otto",
-    context: "Personal AI assistant OS",
-    tagline: "A voice-first assistant that runs my own work automations.",
-    description:
-      "A local AI assistant built on the Claude Agent SDK with a voice-driven HUD and multi-agent orchestration. Speak a command, watch an automation run: PIMS pulls, report generation, RFCC sign-offs. The clearest single example of agents killing manual industrial work.",
-    tech: ["Python", "Claude Agent SDK", "Multi-agent", "Voice (STT/TTS)", "FastAPI"],
-    page: "/otto",
-    flagship: true,
-    art: "orb",
-  },
-  {
-    name: "rapid-pdf",
-    context: "rapidpdf.qori.land",
-    tagline: "A fast Windows desktop app for real PDF work.",
-    description:
-      "Reorder, delete, and combine pages, then mark them up with text, rectangles, and lines, all in one keyboard-driven canvas. A shipped, installable Windows product, not a demo. Light and dark themes built in.",
-    tech: ["Python", "PySide6", "PyMuPDF", "Desktop"],
-    live: "https://rapidpdf.qori.land",
-    repo: "https://github.com/lucasrucu/rapid-pdf",
-    art: "pages",
-  },
+// The flagship four. The ONLY projects on the landing page, in this order.
+// Everything else lives on /projects.
+export const FLAGSHIP_PROJECTS: Project[] = [
   {
     name: "Industrial commissioning automation",
     context: "Large industrial project · field case study",
@@ -219,6 +175,89 @@ export const PROJECTS: Project[] = [
     accent: "experience",
   },
   {
+    name: "Quorum",
+    context: "Agent company OS",
+    tagline: "A company of AI agents, run by one person.",
+    description:
+      "An always-on OS where AI agents work as employees. An orchestrator dispatches the work, agents build in parallel inside isolated git worktrees, and a live pipeline board shows the one thing that actually needs me. Two-way Telegram control, one shared memory. My own system, and it ships real software.",
+    tech: ["TypeScript", "Claude Agent SDK", "Next.js", "Telegram", "Git"],
+    page: "/quorum",
+    flagship: true,
+    art: "quorum",
+    accent: "quorum",
+  },
+  {
+    name: "Career Agent",
+    context: "career.qori.land",
+    tagline: "An AI agent that runs a job search end to end.",
+    description:
+      "Reads your resume into a structured profile, pulls real job listings through the Adzuna API, scores how well you match each role, and drafts a tailored, ATS-friendly resume from your real experience. Not a script. An agent that does the whole job. Live and yours to test.",
+    tech: ["Next.js", "Claude", "Adzuna", "Supabase", "TypeScript"],
+    live: "https://career.qori.land",
+    repo: "https://github.com/lucasrucu/career-agent",
+    flagship: true,
+    art: "radar",
+  },
+  {
+    name: "Financial Dashboard",
+    context: "finance.qori.land",
+    tagline: "A production data pipeline with an AI layer on real money.",
+    description:
+      "Plaid pulls real transactions from multiple banks, Claude analyzes spending, and Supabase stores everything behind row-level security. A real, secure, multi-user data product with AI on top, not a toy demo.",
+    tech: ["Next.js", "Plaid", "Claude", "Supabase", "TypeScript"],
+    live: "https://finance.qori.land",
+    repo: "https://github.com/lucasrucu/Financial-Dashboard",
+    flagship: true,
+    art: "flow",
+  },
+];
+
+// The rest of the shelf. Listed on /projects as compact cards.
+export const MORE_PROJECTS: Project[] = [
+  {
+    name: "Otto",
+    context: "Personal AI assistant OS",
+    tagline: "A voice-first assistant that runs my own work automations.",
+    description:
+      "A local AI assistant built on the Claude Agent SDK with a voice-driven HUD and multi-agent orchestration. Speak a command, watch an automation run: PIMS pulls, report generation, RFCC sign-offs.",
+    tech: ["Python", "Claude Agent SDK", "Multi-agent", "Voice (STT/TTS)", "FastAPI"],
+    page: "/otto",
+    art: "orb",
+  },
+  {
+    name: "NoE Toolkit",
+    context: "Industrial commissioning · sub-case",
+    tagline: "The commissioning paperwork, done by three desktop tools.",
+    description:
+      "A Windows toolkit that generates energization documents, batch-repaints drawings, and finds any subsystem across a huge drawing tree. The single biggest time-saver in the commissioning toolkit.",
+    tech: ["Python", "CustomTkinter", "Visio COM", "PyInstaller"],
+    page: "/noe",
+    art: "noe",
+    accent: "experience",
+  },
+  {
+    name: "PIMS & RFCC Automation",
+    context: "Industrial commissioning · sub-case",
+    tagline: "Manual report and readiness-package work, replaced with code.",
+    description:
+      "Python, Playwright, and the PIMS API doing the record collection, validation, and readiness-certificate sign-off on a live mining expansion.",
+    tech: ["Python", "Playwright", "REST APIs"],
+    page: "/pims-rfcc",
+    art: "pipeline",
+    accent: "experience",
+  },
+  {
+    name: "rapid-pdf",
+    context: "rapidpdf.qori.land",
+    tagline: "A fast Windows desktop app for real PDF work.",
+    description:
+      "Reorder, delete, and combine pages, then mark them up with text, rectangles, and lines, all in one keyboard-driven canvas. A shipped, installable Windows product, not a demo.",
+    tech: ["Python", "PySide6", "PyMuPDF", "Desktop"],
+    live: "https://rapidpdf.qori.land",
+    repo: "https://github.com/lucasrucu/rapid-pdf",
+    art: "pages",
+  },
+  {
     name: "Snip",
     context: "links.qori.land",
     tagline: "A personal URL shortener with click tracking.",
@@ -228,6 +267,24 @@ export const PROJECTS: Project[] = [
     live: "https://links.qori.land",
     repo: "https://github.com/lucasrucu/snip",
     art: "link",
+  },
+  {
+    name: "rapid-cut",
+    context: "Local desktop tool",
+    tagline: "Batch clip cutting with local voice detection.",
+    description:
+      "Point it at raw footage and it cuts clips around the talking, using on-device voice-activity detection. ffmpeg does the cutting, nothing leaves the machine, no API cost.",
+    tech: ["Python", "PySide6", "ffmpeg", "Silero VAD"],
+    art: "cut",
+  },
+  {
+    name: "VideoOS",
+    context: "Desktop video editor",
+    tagline: "A video editor built from scratch on the rapid-cut engine.",
+    description:
+      "Timeline, clips, trims, and export in a native Qt app. Built far enough to prove the engine, then parked as a portfolio piece.",
+    tech: ["Python", "PySide6", "ffmpeg"],
+    art: "video",
   },
 ];
 
@@ -560,6 +617,67 @@ export const EXPERIENCE_STUDY = {
   ],
 } as const;
 
-// Secondary row — good builds, but they don't lead the niche story.
-// Kept for compatibility; Snip now lives in the unified PROJECTS grid.
-export const OTHER_PROJECTS: Project[] = [];
+// Quorum showcase content. The code is private; this is the public page that
+// presents it as a flagship personal build. Lives at /quorum. High-level on
+// purpose: the concept and the capabilities, not the internals.
+export const QUORUM = {
+  name: "Quorum",
+  context: "Personal build · agent company OS",
+  eyebrow: "Flagship build · agent company",
+  tagline: "A company of AI agents, run by one person.",
+  intro:
+    "Quorum is my local agent-company OS. AI agents work as employees under my direction: an always-on daemon keeps the company running, an orchestrator dispatches the work, and only the few decisions that actually need a human reach me.",
+  // The punch line under the hero art.
+  pitch: "One builder, a fleet of agents, real software shipped.",
+  // Capability chips in the hero.
+  chips: ["Always-on daemon", "Two-way Telegram control", "Git-isolated parallel builds"],
+  // The feature highlights, each with bespoke coded art (QuorumMotion.tsx).
+  features: [
+    {
+      art: "board",
+      title: "A live pipeline board",
+      detail:
+        "Every piece of work moves across four columns: Intake, Needs you, Working, Closed. One glance says what the company is doing and what is waiting on me. Nothing hides in a chat log.",
+    },
+    {
+      art: "dispatch",
+      title: "An orchestrator that filters",
+      detail:
+        "Ideas and tasks go to the orchestrator, not to me. It dispatches agents, tracks every run, and surfaces only the calls that need a human. I decide; the fleet executes.",
+    },
+    {
+      art: "isolation",
+      title: "Parallel builds, isolated",
+      detail:
+        "Each agent works in its own git worktree, so several features move at once without touching each other's code. Work merges only after it is built and verified.",
+    },
+    {
+      art: "control",
+      title: "Run it from anywhere",
+      detail:
+        "Full two-way control over Telegram. I can hand the company a task, approve a decision, or shut it down from a phone while the daemon keeps everything alive at home.",
+    },
+  ] as const,
+  // The shared-brain band.
+  brain: {
+    eyebrow: "The shared brain",
+    title: "One memory, every agent",
+    body: [
+      "The agents read and write a single version-controlled memory. Decisions, project state, and lessons persist across sessions and across the team, so nothing starts cold and nothing gets re-learned.",
+      "Agents talk to each other too. Inter-agent chat and an idea pipeline with accept and deny mean the company proposes work on its own, and I stay the one who says yes.",
+    ],
+    points: [
+      "Version-controlled memory shared by every agent.",
+      "Inter-agent chat for handoffs and reviews.",
+      "An idea pipeline: the company proposes, I approve or deny.",
+    ],
+  },
+  // How it is built, plainly. High level only.
+  architecture: [
+    "TypeScript core on the Claude Agent SDK, with a Next.js dashboard.",
+    "An always-on daemon with a heartbeat, so the company survives reboots and reports its own health.",
+    "Git worktree isolation per agent, with a review gate before anything merges.",
+    "A Telegram bridge for full two-way control away from the desk.",
+    "Smoke-tested on every change: over a thousand checks run before work lands.",
+  ],
+} as const;
