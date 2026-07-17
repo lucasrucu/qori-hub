@@ -41,7 +41,7 @@ export default function OttoPage() {
         <section className="border-b border-border">
           <div className="mx-auto grid max-w-5xl items-center gap-12 px-6 py-20 sm:py-24 md:grid-cols-[1.4fr_1fr]">
             <div>
-              <Eyebrow>Flagship build</Eyebrow>
+              <Eyebrow>Featured build</Eyebrow>
               <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
                 {OTTO.name}
               </h1>

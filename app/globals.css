@@ -54,6 +54,21 @@
   100% { opacity: 0; transform: translateY(0); }
 }
 
+/* Quorum pipeline-board motion (components/QuorumMotion.tsx). A card fades in,
+   slides one column over, rests, and fades out. Subtle, looped. */
+@keyframes quorum-slide {
+  0% { transform: translateX(0); opacity: 0; }
+  10%, 32% { transform: translateX(0); opacity: 1; }
+  48%, 86% { transform: translateX(66px); opacity: 1; }
+  100% { transform: translateX(66px); opacity: 0; }
+}
+/* Chat bubbles on the Telegram control art: appear, hold, reset. */
+@keyframes quorum-bubble {
+  0%, 12% { opacity: 0; transform: translateY(4px); }
+  22%, 90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(0); }
+}
+
 /* Animated avatar mascot (components/Avatar.tsx). A glowing amber orb that
    breathes, with a slow halo sweep and a gentle scanline. Subtle, looped. */
 @keyframes avatar-breathe {
@@ -81,6 +96,8 @@
   [class*="otto-status"],
   [class*="qart-"],
   [class*="avatar-"],
+  [class*="quorum-slide"],
+  [class*="quorum-bubble"],
   .animate-aurora {
     animation: none !important;
   }
@@ -122,6 +139,14 @@
     --experience: 178 78% 27%;
     --experience-foreground: 0 0% 100%;
     --experience-bright: 174 72% 41%;
+
+    /* Quorum — the agent-company OS accent, pulled straight from its brand
+       mark (quorum-mark.svg): electric agent blue #4d7cfe on deep navy
+       #141626, with lavender #8388ad nodes. Color-codes /quorum and the
+       homepage Quorum card. */
+    --quorum: 224 99% 65%;
+    --quorum-foreground: 0 0% 100%;
+    --quorum-bright: 226 100% 77%;
   }
 
   * {

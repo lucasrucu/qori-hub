@@ -17,7 +17,10 @@ export type ArtKey =
   | "pipeline"
   | "link"
   | "noe"
-  | "commissioning";
+  | "commissioning"
+  | "quorum"
+  | "cut"
+  | "video";
 
 const AMBER = "#F1AE04";
 const GOLD = "#F6C44A";
@@ -384,6 +387,158 @@ function Commissioning() {
   );
 }
 
+// Quorum — the agent hexagon from its brand mark: six agent nodes around an
+// orchestrator core, on the Quorum navy. Its own palette, like the mark.
+function Quorum() {
+  const NAVY = "#141626";
+  const PANEL = "#1B1E33";
+  const BLUE = "#4D7CFE";
+  const LAVENDER = "#8388AD";
+  const cx = 160;
+  const cy = 100;
+  const r = 58;
+  const angles = [-90, -30, 30, 90, 150, 210];
+  const pts = angles.map((a) => {
+    const rad = (a * Math.PI) / 180;
+    return { x: cx + Math.cos(rad) * r, y: cy + Math.sin(rad) * r };
+  });
+  return (
+    <ArtFrame title="Six agent nodes around an orchestrator core" dark>
+      <rect width="320" height="200" fill={NAVY} />
+      {/* hexagon edges, flowing */}
+      {pts.map((p, i) => {
+        const q = pts[(i + 1) % pts.length];
+        return (
+          <line
+            key={i}
+            x1={p.x}
+            y1={p.y}
+            x2={q.x}
+            y2={q.y}
+            stroke={`${LAVENDER}55`}
+            strokeWidth="1.3"
+            strokeDasharray="4 5"
+            style={{ animation: `qart-flow ${1.6 + (i % 3) * 0.3}s linear infinite` }}
+          />
+        );
+      })}
+      {/* spokes into the core */}
+      {pts.map((p, i) => (
+        <line
+          key={`s${i}`}
+          x1={p.x}
+          y1={p.y}
+          x2={cx}
+          y2={cy}
+          stroke={`${BLUE}30`}
+          strokeWidth="1.2"
+          strokeDasharray="3 6"
+          style={{ animation: `qart-flow ${1.4 + (i % 2) * 0.4}s linear infinite` }}
+        />
+      ))}
+      {/* agent nodes */}
+      {pts.map((p, i) => (
+        <circle
+          key={`n${i}`}
+          cx={p.x}
+          cy={p.y}
+          r="6.5"
+          fill={PANEL}
+          stroke={i % 3 === 0 ? BLUE : LAVENDER}
+          strokeWidth="1.6"
+          style={{ animation: `otto-breathe ${3 + (i % 4) * 0.4}s ease-in-out ${i * 0.25}s infinite`, transformOrigin: "center", transformBox: "fill-box" }}
+        />
+      ))}
+      {/* orchestrator core */}
+      <g transform={`translate(${cx},${cy})`}>
+        <circle r="30" fill="none" stroke={`${BLUE}45`} strokeWidth="1" strokeDasharray="3 6" style={spin(12)} />
+        <circle r="22" fill={PANEL} stroke={BLUE} strokeWidth="1.6" />
+        <circle
+          r="11"
+          fill={BLUE}
+          opacity="0.9"
+          style={{ animation: "otto-breathe 3.2s ease-in-out infinite", transformOrigin: "center", transformBox: "fill-box" }}
+        />
+        <circle cx="-3.5" cy="-3.5" r="3" fill="#FFFFFF" opacity="0.85" />
+      </g>
+      <text x="160" y="188" textAnchor="middle" fontSize="8" fill={`${BLUE}cc`} fontFamily="monospace">
+        6 agents · 1 operator · always on
+      </text>
+    </ArtFrame>
+  );
+}
+
+// rapid-cut — a film strip with cut marks and the voiced region kept.
+function Cut() {
+  return (
+    <ArtFrame title="A clip batch-cut around the talking">
+      {/* film strip */}
+      <rect x="30" y="52" width="260" height="52" rx="6" fill="#FFFDF8" stroke="#D9CDB2" strokeWidth="1.5" />
+      {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+        <rect key={i} x={40 + i * 31} y="58" width="8" height="6" rx="1.5" fill="#E0D4B8" />
+      ))}
+      {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+        <rect key={i} x={40 + i * 31} y="92" width="8" height="6" rx="1.5" fill="#E0D4B8" />
+      ))}
+      {/* kept segment */}
+      <rect x="118" y="52" width="84" height="52" rx="6" fill="#F1AE0426" stroke={AMBER} strokeWidth="1.6" />
+      {/* cut marks */}
+      {[118, 202].map((x) => (
+        <line key={x} x1={x} y1="42" x2={x} y2="114" stroke="#C97A04" strokeWidth="2" strokeDasharray="4 4" style={{ animation: "qart-flow 1.8s linear infinite" }} />
+      ))}
+      {/* waveform under, voiced region amber */}
+      <g transform="translate(0,150)">
+        {[36, 48, 60, 72, 84, 96, 108, 120, 132, 144, 156, 168, 180, 192, 204, 216, 228, 240, 252, 264, 276].map((x, i) => {
+          const voiced = x >= 118 && x <= 202;
+          const h = voiced ? 12 + ((i * 7) % 16) : 3 + ((i * 5) % 5);
+          return (
+            <rect
+              key={x}
+              x={x}
+              y={-h}
+              width="5"
+              height={h * 2}
+              rx="2.5"
+              fill={voiced ? AMBER : "#E0D4B8"}
+              style={voiced ? { animation: `qart-rise 1.6s ease-in-out ${(i % 5) * 0.15}s infinite`, transformOrigin: "center", transformBox: "fill-box" } : undefined}
+            />
+          );
+        })}
+      </g>
+      <text x="160" y="34" textAnchor="middle" fontSize="9" fill="#A89A7E" fontFamily="monospace">
+        voice detected · kept
+      </text>
+    </ArtFrame>
+  );
+}
+
+// VideoOS — a timeline with clips and a preview monitor.
+function Video() {
+  return (
+    <ArtFrame title="A video editor timeline with a preview monitor">
+      {/* preview monitor */}
+      <rect x="96" y="24" width="128" height="76" rx="7" fill="#221C14" stroke="#D9CDB2" strokeWidth="1.5" />
+      <path d="M153 50 l22 12 -22 12 z" fill={AMBER} style={{ animation: "otto-breathe 3s ease-in-out infinite", transformOrigin: "center", transformBox: "fill-box" }} />
+      {/* timeline ruler */}
+      <line x1="28" y1="122" x2="292" y2="122" stroke="#E0D4B8" strokeWidth="1.5" />
+      {[28, 61, 94, 127, 160, 193, 226, 259, 292].map((x) => (
+        <line key={x} x1={x} y1="118" x2={x} y2="126" stroke="#D9CDB2" strokeWidth="1.2" />
+      ))}
+      {/* clips on the track */}
+      <rect x="34" y="132" width="74" height="26" rx="5" fill={AMBER} opacity="0.9" />
+      <rect x="114" y="132" width="96" height="26" rx="5" fill={GOLD} opacity="0.9" />
+      <rect x="216" y="132" width="58" height="26" rx="5" fill={AMBER} opacity="0.9" />
+      {/* audio track */}
+      <rect x="34" y="164" width="240" height="12" rx="4" fill="#F1AE041f" stroke="#E0D4B8" strokeWidth="1" />
+      {/* playhead */}
+      <g style={{ animation: "otto-breathe 2.6s ease-in-out infinite", transformOrigin: "center", transformBox: "fill-box" }}>
+        <line x1="150" y1="112" x2="150" y2="180" stroke={INK} strokeWidth="2" />
+        <path d="M144 112 h12 l-6 8 z" fill={INK} />
+      </g>
+    </ArtFrame>
+  );
+}
+
 const ART: Record<ArtKey, () => JSX.Element> = {
   radar: Radar,
   flow: Flow,
@@ -393,6 +548,9 @@ const ART: Record<ArtKey, () => JSX.Element> = {
   link: Link,
   noe: Noe,
   commissioning: Commissioning,
+  quorum: Quorum,
+  cut: Cut,
+  video: Video,
 };
 
 export function CardArt({ art, className }: { art: ArtKey; className?: string }) {
