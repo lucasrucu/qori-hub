@@ -14,8 +14,10 @@ export const PROFILE = {
   // Hero headline — the niche, stated plainly. What I do before what my title is.
   tagline: "I build AI agents and automations that kill manual work.",
   // Hero subhead — one line, the rare intersection that makes the niche mine.
+  // Written to be extractable verbatim by search snippets and AI answer engines:
+  // states name, role, and the published-paper credential in plain sentences.
   intro:
-    "I write the software that removes repetitive, high-stakes data work from real industrial projects. Field engineer who builds, builder who has worked the field.",
+    "Lucas Ruiz is an AI and automation engineer who builds software that removes manual work from data-heavy industrial projects. He is the PIMS data specialist on a large mining expansion in Indonesia, and he co-authored a peer-reviewed paper on a YOLO-based PPE monitoring system, published in the Proceedings of the Computer Vision Conference (CVC) 2026. Field engineer who builds, builder who has worked the field.",
   // About — who I am. Lead with the bridge: the thing nobody else can say.
   about: [
     "I build AI agents and automations that remove manual work from data-heavy industrial projects. Right now I am the PIMS data specialist on a large mining expansion in Indonesia, managing 10,000+ equipment and instrument records. The job is full of repetitive, high-stakes data work: pulling records, validating them, formatting reports, signing off readiness packages. So I automate it.",
@@ -35,6 +37,7 @@ export const SOCIALS = {
   github: "https://github.com/lucasrucu",
   email: "lucasruiz1336@gmail.com",
   instagram: "https://www.instagram.com/lucasrucu/",
+  orcid: "https://orcid.org/0009-0004-3747-3968",
 } as const;
 
 export type Experience = {
