@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Eyebrow } from "@/components/Eyebrow";
 import { QoriMark } from "@/components/QoriMark";
 import { PROFILE, RESEARCH } from "@/lib/profile";
+import { scholarlyArticleJsonLd } from "@/lib/schema";
 
 const PAPER = RESEARCH.find((p) => p.slug === "ppe-yolo");
 
@@ -22,6 +23,14 @@ export default function PpeYoloResearchPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      {/* ScholarlyArticle JSON-LD. Lucas's author entry links to the same
+          Person @id used on the homepage and carries his ORCID; co-authors
+          are named only, deliberately, with no external links attached. */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(scholarlyArticleJsonLd(paper)) }}
+      />
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
         <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
           <a href="/" aria-label="Qori home" className="inline-flex">

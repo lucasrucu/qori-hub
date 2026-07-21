@@ -10,6 +10,7 @@ import {
 import { QoriMark } from "@/components/QoriMark";
 import { SaveContactButton } from "@/components/SaveContactButton";
 import { PROFILE, SOCIALS } from "@/lib/profile";
+import { personJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
   title: `${PROFILE.name} — ${PROFILE.title}`,
@@ -27,6 +28,12 @@ const LINKS = [
 export default function CardPage() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-secondary/50 px-6 py-12">
+      {/* Person entity JSON-LD, same node as the homepage. */}
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd()) }}
+      />
       <main className="w-full max-w-sm">
         <div className="rounded-2xl border border-border bg-card p-8 shadow-sm">
           <div className="flex flex-col items-center text-center">
