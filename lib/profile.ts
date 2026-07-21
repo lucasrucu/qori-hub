@@ -17,15 +17,15 @@ export const PROFILE = {
   // Written to be extractable verbatim by search snippets and AI answer engines:
   // states name, role, and the published-paper credential in plain sentences.
   intro:
-    "Lucas Ruiz is an AI and automation engineer who builds software that removes manual work from data-heavy industrial projects. He is the PIMS data specialist on a large mining expansion in Indonesia, and he co-authored a peer-reviewed paper on a YOLO-based PPE monitoring system, published in the Proceedings of the Computer Vision Conference (CVC) 2026. Field engineer who builds, builder who has worked the field.",
+    "Lucas Ruiz is an AI and automation engineer who builds software that removes manual work from data-heavy industrial projects. He works as a data specialist on large-scale industrial commissioning, and he co-authored a peer-reviewed paper on a YOLO-based PPE monitoring system, published in the Proceedings of the Computer Vision Conference (CVC) 2026. Field engineer who builds, builder who has worked the field.",
   // About — who I am. Lead with the bridge: the thing nobody else can say.
   about: [
-    "I build AI agents and automations that remove manual work from data-heavy industrial projects. Right now I am the PIMS data specialist on a large mining expansion in Indonesia, managing 10,000+ equipment and instrument records. The job is full of repetitive, high-stakes data work: pulling records, validating them, formatting reports, signing off readiness packages. So I automate it.",
-    "What makes the combination uncommon is the bridge. I have spent years on real mining and industrial sites in the U.S., Canada, Indonesia, and Peru, reading P&IDs, QC-ing equipment packages, owning the data nobody else wants to touch. I also build software. Most people in industrial data ops do not build, and most people who build have never seen a field. I do both, which means the automations I write actually fit how the work happens.",
+    "I build AI agents and automations that remove manual work from data-heavy industrial projects. Right now I work as a data specialist on large-scale industrial commissioning, managing 10,000+ equipment and instrument records. The job is full of repetitive, high-stakes data work: pulling records, validating them, formatting reports, signing off readiness packages. So I automate it.",
+    "What makes the combination uncommon is the bridge. I have spent years on real industrial and commissioning sites across the U.S., Canada, Indonesia, and Peru, reading P&IDs, QC-ing equipment packages, owning the data nobody else wants to touch. I also build software. Most people in industrial data ops do not build, and most people who build have never seen a field. I do both, which means the automations I write actually fit how the work happens.",
   ],
   // "Currently" chips under the about copy.
   now: [
-    "Large mining expansion · Indonesia",
+    "Large-scale industrial commissioning",
     "10,000+ equipment records",
     "Triathlon Worlds 2026",
   ],
@@ -54,9 +54,9 @@ export const EXPERIENCE: Experience[] = [
     company: "Commissioning contractor",
     role: "CMS / PIMS Data Specialist",
     dates: "Oct 2025 — Present",
-    location: "Large mining expansion · Indonesia",
+    location: "Industrial commissioning · Indonesia",
     blurb:
-      "Engineering data management on a large-scale mining expansion: validated and uploaded 10,000+ equipment records into PIMS, and built Python & Playwright automations to replace manual data collection.",
+      "Engineering data management on a large-scale industrial commissioning project: validated and uploaded 10,000+ equipment records into PIMS, and built Python & Playwright automations to replace manual data collection.",
   },
   {
     company: "Commissioning contractor",
@@ -281,7 +281,7 @@ export const MORE_PROJECTS: Project[] = [
     context: "Industrial commissioning · sub-case",
     tagline: "Manual report and readiness-package work, replaced with code.",
     description:
-      "Python, Playwright, and the PIMS API doing the record collection, validation, and readiness-certificate sign-off on a live mining expansion.",
+      "Python, Playwright, and the PIMS API doing the record collection, validation, and readiness-certificate sign-off on a large-scale industrial commissioning project.",
     tech: ["Python", "Playwright", "REST APIs"],
     page: "/pims-rfcc",
     art: "pipeline",
@@ -383,7 +383,7 @@ export const OTTO = {
 } as const;
 
 // PIMS & RFCC case-study content. Real field-engineering automation Lucas runs
-// daily on a live mining expansion. The code is private; this is the public
+// daily on a large-scale industrial commissioning project. The code is private; this is the public
 // case-study page that presents it as a flagship build. Lives at /pims-rfcc.
 export const PIMS_RFCC = {
   name: "PIMS & RFCC Automation",
@@ -391,7 +391,7 @@ export const PIMS_RFCC = {
   // Hero line for the case-study page.
   tagline: "Manual report and readiness-package work, replaced with code.",
   intro:
-    "On a live mining expansion in Indonesia, building reports and signing off readiness packages used to be hours of pulling records, formatting, and chasing documents by hand. I rebuilt that work as automation: Python, Playwright, and the PIMS API doing the collection, validation, and sign-off.",
+    "On a large-scale industrial commissioning project, building reports and signing off readiness packages used to be hours of pulling records, formatting, and chasing documents by hand. I rebuilt that work as automation: Python, Playwright, and the PIMS API doing the collection, validation, and sign-off.",
   // Plain framing of what it is and why it exists.
   what: [
     "PIMS is the engineering data platform of record on the project: tens of thousands of equipment and instrument records, checklists, and commissioning data. The day-to-day work is repetitive and high-stakes. Pull the right records, validate them, format a report, assemble a readiness package, sign it off. Get one field wrong and a correction cycle costs days.",
@@ -460,7 +460,7 @@ export const NOE = {
   context: "Industrial commissioning · case study",
   tagline: "The commissioning paperwork, done by three desktop tools.",
   intro:
-    "On a large mining expansion in Indonesia, commissioning engineers lose hours to energization documents and drawing markup, all by hand. We built a Windows toolkit that does the busywork: it generates the documents, batch-repaints the drawings, and finds any subsystem across a huge drawing tree.",
+    "On a large-scale industrial commissioning project, commissioning engineers lose hours to energization documents and drawing markup, all by hand. We built a Windows toolkit that does the busywork: it generates the documents, batch-repaints the drawings, and finds any subsystem across a huge drawing tree.",
   // Plain framing of what it is and why it exists.
   what: [
     "Commissioning a plant means proving each subsystem is ready to energize, and that proof is paperwork: a Notice of Energization per subsystem, marked-up drawings showing what is live, and the constant hunt for which drawing a tag even lives on. Done by hand across hundreds of subsystems, it is slow and error-prone, and a wrong drawing or a missed tag costs real time on a live project.",
