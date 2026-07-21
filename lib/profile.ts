@@ -134,6 +134,43 @@ export const INTERESTS: Interest[] = [
   },
 ];
 
+export type Publication = {
+  slug: string;
+  title: string;
+  type: string;
+  venue: string;
+  pages: string;
+  date: string;
+  authors: string[];
+  description: string;
+  doi: string;
+  doiUrl: string;
+  // Local path under public/. Only set when a real cover was sourced from the
+  // publisher; never a fabricated image.
+  coverImage?: string;
+};
+
+// Published academic research. One entry so far. Source: the paper's own
+// Springer chapter page (title/venue/pages/date/authors/DOI all verified
+// against Springer's citation metadata, not guessed).
+export const RESEARCH: Publication[] = [
+  {
+    slug: "ppe-yolo",
+    title:
+      "Mobile Application Utilizing YOLO for Analysis and Monitoring of PPE Usage in a Manufacturing Plant in Lima",
+    type: "Conference paper",
+    venue: "Proceedings of the Computer Vision Conference (CVC) 2026, Volume 3",
+    pages: "38-53",
+    date: "03 June 2026",
+    authors: ["Lucas Ruiz", "Oliver Tuesta", "Abel Rosales"],
+    description:
+      "A mobile application using computer vision (YOLO) to analyze and monitor whether workers on a manufacturing floor are wearing their required personal protective equipment (PPE). The result of roughly a year of R&D and real-plant testing in Lima, Peru.",
+    doi: "10.1007/978-3-032-26217-2_4",
+    doiUrl: "https://link.springer.com/chapter/10.1007/978-3-032-26217-2_4",
+    coverImage: "/research/cvc-2026-vol3-cover.jpg",
+  },
+];
+
 export type Project = {
   name: string;
   // One-line "what it is" for the card.

@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { Interests } from "@/components/Interests";
 import { Nav } from "@/components/Nav";
 import { Projects } from "@/components/Projects";
+import { Research } from "@/components/Research";
 import { Skills } from "@/components/Skills";
 
 export default function HomePage() {
@@ -15,6 +16,7 @@ export default function HomePage() {
         <Hero />
         <About />
         <Experience />
+        <Research />
         <Skills />
         <Projects />
         <Interests />

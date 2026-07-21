@@ -5,6 +5,7 @@ import { SOCIALS } from "@/lib/profile";
 const LINKS = [
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
+  { href: "#research", label: "Research" },
   { href: "#projects", label: "Projects" },
   { href: "/card", label: "Card" },
 ];
