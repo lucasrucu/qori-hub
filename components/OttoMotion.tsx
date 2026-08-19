@@ -43,7 +43,7 @@ export function OttoOrbDemo() {
 // A voice command launching an automation: typed command + a fake run log.
 export function OttoCommandDemo() {
   const steps = [
-    "Routing to skill: powerbi-c2-report",
+    "Routing to skill: powerbi-progress-report",
     "Pulling PIMS exports…",
     "Refreshing dashboard…",
     "Done. Report ready.",
@@ -55,7 +55,7 @@ export function OttoCommandDemo() {
         <div className="flex items-center gap-2 border-b border-white/10 pb-3 text-amber-100/90">
           <span className="text-primary">›</span>
           <span className="overflow-hidden whitespace-nowrap [animation:otto-type_5s_steps(28)_infinite] border-r-2 border-primary/70">
-            update the C2 dashboard
+            update the progress dashboard
           </span>
         </div>
         {/* Run log, lines reveal in sequence */}
