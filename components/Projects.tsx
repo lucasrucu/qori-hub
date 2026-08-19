@@ -37,7 +37,7 @@ export function ProjectCard({ project }: { project: Project }) {
     <article
       className={`group relative flex h-full flex-col overflow-hidden rounded-lg border bg-card transition-shadow ${accent.card}`}
     >
-      {/* Bespoke coded artwork — one consistent system, no screenshots. */}
+      {/* Bespoke coded artwork: one consistent system, no screenshots. */}
       <div className="border-b border-border">
         {project.art ? (
           <CardArt art={project.art} className="aspect-[16/9]" />
@@ -122,11 +122,11 @@ export function Projects() {
           Featured builds
         </h2>
         <p className="mt-4 max-w-2xl text-muted-foreground">
-          The flagship and three more that prove the niche: software that takes manual,
+          The flagship and two more that prove the niche: software that takes manual,
           high-stakes data work off people&apos;s hands. The rest of the shelf is one click away.
         </p>
 
-        <div className="mt-8 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {FEATURED_PROJECTS.map((project) => (
             <ProjectCard key={project.name} project={project} />
           ))}

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Snowflake } from "lucide-react";
 
 import {
   QuorumBoardArt,
@@ -34,7 +34,7 @@ export default function QuorumPage() {
             <QoriMark glyph="q" label="Qori" />
           </a>
           <a
-            href="/#projects"
+            href="/projects"
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -44,7 +44,7 @@ export default function QuorumPage() {
       </header>
 
       <main>
-        {/* Hero — Quorum's deep navy, its own brand. */}
+        {/* Hero: Quorum's deep navy, its own brand. */}
         <section className="relative overflow-hidden border-b border-quorum/30 bg-[#12142C] text-white">
           <div
             aria-hidden="true"
@@ -70,7 +70,15 @@ export default function QuorumPage() {
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/70">
                   {QUORUM.intro}
                 </p>
-                <ul className="mt-7 flex flex-wrap gap-2">
+                {/* Frozen, stated at the top. The page used to open with "an
+                    always-on daemon keeps the company running", which is not
+                    true any more. Everything below is past tense for the same
+                    reason. */}
+                <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-white/25 bg-white/[0.06] px-3 py-1 text-xs font-medium text-white/80">
+                  <Snowflake className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                  Frozen. Built, run, and shipped from. Not in use today.
+                </p>
+                <ul className="mt-6 flex flex-wrap gap-2">
                   {QUORUM.chips.map((chip) => (
                     <li
                       key={chip}
@@ -91,21 +99,21 @@ export default function QuorumPage() {
           </div>
         </section>
 
-        {/* How it runs — the feature highlights, each with bespoke coded art. */}
+        {/* How it runs: the feature highlights, each with bespoke coded art. */}
         <section className="border-b border-border bg-secondary/40">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
             <span className="inline-flex items-center gap-2.5">
               <span className="h-px w-6 bg-quorum" aria-hidden="true" />
               <span className="text-xs font-semibold uppercase tracking-widest text-quorum">
-                How it runs
+                How it ran
               </span>
             </span>
             <h2 className="mt-6 max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               A company, not a chatbot
             </h2>
             <p className="mt-4 max-w-2xl text-muted-foreground">
-              Work flows through it the way it flows through a team: intake, dispatch, parallel
-              execution, review, merge. I direct; the agents do.
+              Work flowed through it the way it flows through a team: intake, dispatch, parallel
+              execution, review, merge. I directed; the agents did.
             </p>
 
             <div className="mt-10 grid gap-6 sm:grid-cols-2">
@@ -128,7 +136,7 @@ export default function QuorumPage() {
           </div>
         </section>
 
-        {/* The shared brain — dark navy band. */}
+        {/* The shared brain: dark navy band. */}
         <section className="relative overflow-hidden border-b border-quorum/30 bg-[#12142C] text-white">
           <div
             aria-hidden="true"
@@ -172,7 +180,7 @@ export default function QuorumPage() {
           </div>
         </section>
 
-        {/* Under the hood — brief, high level. */}
+        {/* Under the hood: brief, high level. */}
         <section className="border-b border-border">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
             <span className="inline-flex items-center gap-2.5">
@@ -198,6 +206,29 @@ export default function QuorumPage() {
           </div>
         </section>
 
+        {/* Where it stands. Same honest shape /noe uses for a parked build. */}
+        <section className="border-b border-border bg-secondary/40">
+          <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+            <span className="inline-flex items-center gap-2.5">
+              <span className="h-px w-6 bg-quorum" aria-hidden="true" />
+              <span className="text-xs font-semibold uppercase tracking-widest text-quorum">
+                Where it stands
+              </span>
+            </span>
+            <div className="mt-6 max-w-3xl">
+              <p className="text-lg leading-relaxed text-foreground/80">{QUORUM.status}</p>
+              <p className="mt-4 text-sm text-muted-foreground">
+                It is here because it was a real build and a real thing to learn from, not because
+                it is running.{" "}
+                <a href="/otto" className="text-primary hover:underline">
+                  Otto
+                </a>{" "}
+                is the one that is live.
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* CTA back */}
         <section>
           <div className="mx-auto max-w-5xl px-6 py-16">
@@ -212,7 +243,7 @@ export default function QuorumPage() {
                 </p>
               </div>
               <a
-                href="/#projects"
+                href="/projects"
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-quorum px-5 py-2.5 text-sm font-medium text-quorum-foreground transition-opacity hover:opacity-90"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />

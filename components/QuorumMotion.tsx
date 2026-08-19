@@ -64,7 +64,7 @@ function Frame({
   );
 }
 
-// HERO — the company as its mark: six agent chips in a hexagon around the
+// HERO: the company as its mark: six agent chips in a hexagon around the
 // orchestrator core. The signature visual for the page.
 export function QuorumHero() {
   const agents = ["build", "review", "scribe", "intake", "audit", "hr"];
@@ -145,13 +145,13 @@ export function QuorumHero() {
       </g>
 
       <text x="160" y="190" textAnchor="middle" fontSize="8" fill={`${BLUE_BRIGHT}cc`} fontFamily="monospace">
-        always on · one operator
+        one operator · a fleet of agents
       </text>
     </Frame>
   );
 }
 
-// BOARD — the live pipeline: Intake / Needs you / Working / Closed, with one
+// BOARD: the live pipeline: Intake / Needs you / Working / Closed, with one
 // card sliding from Working into Closed on a loop.
 export function QuorumBoardArt({ className }: { className?: string }) {
   const cols = [
@@ -209,7 +209,7 @@ export function QuorumBoardArt({ className }: { className?: string }) {
   );
 }
 
-// DISPATCH — the funnel: work flows into the orchestrator, agents execute,
+// DISPATCH: the funnel: work flows into the orchestrator, agents execute,
 // and a single gold line goes up to the human.
 export function QuorumDispatchArt({ className }: { className?: string }) {
   const workers = [
@@ -287,7 +287,7 @@ export function QuorumDispatchArt({ className }: { className?: string }) {
   );
 }
 
-// ISOLATION — a git graph: three worktree branches building in parallel off
+// ISOLATION: a git graph: three worktree branches building in parallel off
 // main, merging back only when proven.
 export function QuorumIsolationArt({ className }: { className?: string }) {
   return (
@@ -353,7 +353,7 @@ export function QuorumIsolationArt({ className }: { className?: string }) {
   );
 }
 
-// CONTROL — two-way Telegram: a phone with the conversation, the daemon
+// CONTROL: two-way Telegram: a phone with the conversation, the daemon
 // heartbeat up top.
 export function QuorumControlArt({ className }: { className?: string }) {
   return (
@@ -368,7 +368,7 @@ export function QuorumControlArt({ className }: { className?: string }) {
         <rect x="-42" y="-8" width="84" height="16" rx="8" fill="#1D2A4E" stroke={`${BLUE}66`} strokeWidth="1" />
         <circle cx="-32" cy="0" r="2.5" fill={BLUE_BRIGHT} style={breathe(2.2)} />
         <text x="4" y="2.8" textAnchor="middle" fontSize="7" fill="#D9DEF2" fontFamily="monospace">
-          daemon · live
+          daemon · while it ran
         </text>
       </g>
 
@@ -418,7 +418,7 @@ export function QuorumControlArt({ className }: { className?: string }) {
   );
 }
 
-// BRAIN — one shared memory, every agent reading and writing.
+// BRAIN: one shared memory, every agent reading and writing.
 export function QuorumBrainArt() {
   const agents = [
     { x: 62, y: 48 },

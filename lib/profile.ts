@@ -1,32 +1,45 @@
 // Single source of truth for all personal/landing content. Derived from Lucas's
-// resume (Lucas_Ruiz_Resume_2026_v2.docx) + memory. Edit copy here — components
+// resume (Lucas_Ruiz_Resume_2026_v2.docx) + memory. Edit copy here, components
 // only render it. Keeps the hub and the /card page in sync.
 
 import type { ArtKey } from "@/components/CardArt";
+
+// The project scale anchors, written ONE way and reused everywhere. Real,
+// non-identifying, and safe to cite. Do not restate them in a different form
+// on any page: the site said "10,000+ equipment records" in three places and
+// "tens of thousands" in a fourth for the same platform, which is how a
+// portfolio starts contradicting itself.
+export const SCALE = {
+  subsystems: "1,300+",
+  tags: "14,000",
+  checksheets: "13,000+",
+} as const;
 
 export const PROFILE = {
   name: "Lucas Ruiz",
   firstName: "Lucas",
   lastName: "Ruiz",
   title: "AI & Automation Engineer",
+  // The formal base, and the only thing that should ever read as "where he is".
+  // The Indonesia site posting is temporary and belongs on the ROLE, not here.
   location: "Salt Lake City, UT",
   languages: "English & Spanish",
-  // Hero headline — the niche, stated plainly. What I do before what my title is.
+  // Hero headline, the niche stated plainly. What I do before what my title is.
   tagline: "I build AI agents and automations that kill manual work.",
-  // Hero subhead — one line, the rare intersection that makes the niche mine.
+  // Hero subhead, one line, the rare intersection that makes the niche mine.
   // Written to be extractable verbatim by search snippets and AI answer engines:
   // states name, role, and the published-paper credential in plain sentences.
   intro:
     "Lucas Ruiz is an AI and automation engineer who builds software that removes manual work from data-heavy industrial projects. He works as a data specialist on large-scale industrial commissioning, and he co-authored a peer-reviewed paper on a YOLO-based PPE monitoring system, published in the Proceedings of the Computer Vision Conference (CVC) 2026. Field engineer who builds, builder who has worked the field.",
-  // About — who I am. Lead with the bridge: the thing nobody else can say.
+  // About, who I am. Lead with the bridge: the thing nobody else can say.
   about: [
-    "I build AI agents and automations that remove manual work from data-heavy industrial projects. Right now I work as a data specialist on large-scale industrial commissioning, managing 10,000+ equipment and instrument records. The job is full of repetitive, high-stakes data work: pulling records, validating them, formatting reports, signing off readiness packages. So I automate it.",
+    `I build AI agents and automations that remove manual work from data-heavy industrial projects. Right now I work as a data specialist on large-scale industrial commissioning: ${SCALE.subsystems} subsystems, ${SCALE.tags} equipment tags, ${SCALE.checksheets} checksheets. The job is full of repetitive, high-stakes data work: pulling records, validating them, formatting reports, signing off readiness packages. So I automate it.`,
     "What makes the combination uncommon is the bridge. I have spent years on real industrial and commissioning sites across the U.S., Canada, Indonesia, and Peru, reading P&IDs, QC-ing equipment packages, owning the data nobody else wants to touch. I also build software. Most people in industrial data ops do not build, and most people who build have never seen a field. I do both, which means the automations I write actually fit how the work happens.",
   ],
   // "Currently" chips under the about copy.
   now: [
     "Large-scale industrial commissioning",
-    "10,000+ equipment records",
+    `${SCALE.tags} equipment tags`,
     "Triathlon Worlds 2026",
   ],
 } as const;
@@ -48,28 +61,55 @@ export type Experience = {
   blurb: string;
 };
 
-// Top 4 roles only — keeps the timeline uncrowded. Full history lives on the resume.
+// Every role on the resume, newest start first. Several overlap because they
+// were concurrent project assignments under one employer, some run remotely,
+// which is what EXPERIENCE_NOTE says out loud so the timeline does not read as
+// a mistake. Client and project names stay anonymized.
 export const EXPERIENCE: Experience[] = [
   {
     company: "Commissioning contractor",
     role: "CMS / PIMS Data Specialist",
-    dates: "Oct 2025 — Present",
-    location: "Industrial commissioning · Indonesia",
-    blurb:
-      "Engineering data management on a large-scale industrial commissioning project: validated and uploaded 10,000+ equipment records into PIMS, and built Python & Playwright automations to replace manual data collection.",
+    dates: "Oct 2025 - Present",
+    // Base first, posting second. Indonesia is a temporary site posting.
+    location: "Salt Lake City, UT · temporary site posting in Indonesia",
+    blurb: `Engineering data management on a large-scale industrial commissioning project: validated and uploaded ${SCALE.tags} equipment tags into the project data platform, and built Python and Playwright automations to replace manual data collection.`,
   },
   {
     company: "Commissioning contractor",
-    role: "Project Engineer — Cloud Application Development",
-    dates: "Jan 2024 — Dec 2024",
+    role: "Project Engineer, Resource Loading Tool",
+    dates: "Feb 2025 - Jun 2025",
     location: "Salt Lake City, UT",
     blurb:
-      "Led end-to-end development of a cloud-based internal app with Power Apps, Power Automate, and Azure SQL — selected after evaluating low-code platforms, schema designed in Vertabelo.",
+      "Built a two-file Excel system that tracks resource allocation across projects and provisions availability data for each new team with no manual setup. Power Query M keeps the master sheet current, and the dashboards let leads watch capacity across 50+ people.",
+  },
+  {
+    company: "Commissioning contractor",
+    role: "Project Engineer, SharePoint Document Management",
+    dates: "Dec 2024 - Apr 2025",
+    location: "Salt Lake City, UT",
+    blurb:
+      "Evaluated Egnyte, OneDrive and SharePoint, then implemented SharePoint as the company's document control platform: controlled libraries, metadata schemas, multi-stage approvals, and Power Automate lifecycle flows wired into Teams.",
+  },
+  {
+    company: "Commissioning contractor",
+    role: "Project Engineer, Salesforce Configuration",
+    dates: "Dec 2024 - Apr 2025",
+    location: "Salt Lake City, UT",
+    blurb:
+      "Configured profiles, views and permissions for the internal project coordination app built on Salesforce PM+, then wrote the onboarding documentation and task-tracking automations that got the team onto it.",
+  },
+  {
+    company: "Commissioning contractor",
+    role: "Project Engineer, Cloud Application Development",
+    dates: "Jan 2024 - Dec 2024",
+    location: "Salt Lake City, UT",
+    blurb:
+      "Led end-to-end development of a cloud-based internal app with Power Apps, Power Automate, and Azure SQL, selected after evaluating low-code platforms, schema designed in Vertabelo.",
   },
   {
     company: "Gold mining project",
     role: "Project Engineer",
-    dates: "Jul 2023 — Jul 2024",
+    dates: "Jul 2023 - Jul 2024",
     location: "Canada",
     blurb:
       "Produced and QC'd equipment work packages for mining instrumentation, verifying accuracy against P&IDs and scope-of-work documents, and built Excel/Word templates to standardize the workflow.",
@@ -77,18 +117,22 @@ export const EXPERIENCE: Experience[] = [
   {
     company: "Copper mining project",
     role: "Engineering Intern",
-    dates: "Dec 2022 — Dec 2023",
+    dates: "Dec 2022 - Dec 2023",
     location: "Utah",
     blurb:
       "Assembled and QC'd checklist packages for mining equipment commissioning, coordinating with the team to meet client delivery deadlines.",
   },
 ];
 
+// Shown under the timeline. The overlapping dates are real and this is why.
+export const EXPERIENCE_NOTE =
+  "Dates overlap because these were concurrent project assignments under one employer, several of them run remotely.";
+
 export const EDUCATION = {
   degree: "B.S. Software Engineering",
   school: "Universidad Peruana de Ciencias Aplicadas (UPC)",
   location: "Lima, Peru",
-  dates: "2021 — 2025",
+  dates: "2021 - 2025",
 };
 
 export type SkillGroup = { label: string; items: string[] };
@@ -123,7 +167,7 @@ export const INTERESTS: Interest[] = [
   {
     icon: "activity",
     title: "Endurance",
-    detail: "Half Ironman and a full marathon — structured preparation and resilience under pressure.",
+    detail: "Half Ironman and a full marathon, structured preparation and resilience under pressure.",
   },
   {
     icon: "bike",
@@ -191,27 +235,29 @@ export type Project = {
   context?: string;
   // True for the SINGLE flagship (Industrial commissioning automation only):
   // chip + border-beam treatment. Every other featured card just sits in the
-  // featured grid with no badge.
+  // featured grid with no badge. One word, one meaning, one card.
   flagship?: boolean;
   // Bespoke coded card artwork (components/CardArt.tsx). One per card, no screenshots.
   art?: ArtKey;
   // Optional per-card accent. "experience" color-codes to the teal Patina
-  // accent (commissioning-automation and its sub-cases); "quorum" to the
+  // accent (commissioning-automation and its children); "quorum" to the
   // electric agent blue. Default is Sovereign amber.
   accent?: "experience" | "quorum";
 };
 
-// The featured four on the landing page, in this order. Only the first one,
-// Industrial commissioning automation, is the flagship (badge + beam). The
-// other three are featured but carry no flagship label. Everything else
-// lives on /projects.
+// The featured set, in ranked order, on the landing page AND at the top of
+// /projects. Only the first, Industrial commissioning automation, is the
+// flagship (badge + beam).
+//
+// Otto sits second on purpose: it is live, it is what actually runs the work,
+// and it built this site. Quorum used to sit here and has been moved down to
+// MORE_PROJECTS, because it is frozen.
 export const FEATURED_PROJECTS: Project[] = [
   {
     name: "Industrial commissioning automation",
     context: "Large industrial project · field case study",
     tagline: "A body of automations that turned the commissioning paperwork into software.",
-    description:
-      "On a large minerals-processing expansion, my day was repetitive, high-stakes data work across ~1,300+ subsystems and ~14,000 tags. I built a toolkit of 13 automations plus an AI assistant that runs them. The flagship cut energization-document work from up to ~6 hours/day to under an hour. Projected to remove 1,000+ hours over the project (estimate).",
+    description: `On a large minerals-processing expansion, my day was repetitive, high-stakes data work across ${SCALE.subsystems} subsystems and ${SCALE.tags} equipment tags. I built a toolkit of automations plus an AI assistant that runs them. The biggest single win cut energization-document work from up to 6 hours a day to under an hour. Projected to remove 1,000+ hours over the project (estimate).`,
     tech: ["Python", "Playwright", "REST APIs", "Power BI", "AI Agents"],
     page: "/commissioning-automation",
     flagship: true,
@@ -219,22 +265,11 @@ export const FEATURED_PROJECTS: Project[] = [
     accent: "experience",
   },
   {
-    name: "Quorum",
-    context: "Agent company OS",
-    tagline: "A company of AI agents, run by one person.",
-    description:
-      "An always-on OS where AI agents work as employees. An orchestrator dispatches the work, agents build in parallel inside isolated git worktrees, and a live pipeline board shows the one thing that actually needs me. Two-way Telegram control, one shared memory. My own system, and it ships real software.",
-    tech: ["TypeScript", "Claude Agent SDK", "Next.js", "Telegram", "Git"],
-    page: "/quorum",
-    art: "quorum",
-    accent: "quorum",
-  },
-  {
     name: "Otto",
     context: "Personal AI assistant OS",
     tagline: "A voice-first assistant that runs my own work automations.",
     description:
-      "A local AI assistant built on the Claude Agent SDK with a voice-driven HUD and multi-agent orchestration. Speak a command, watch an automation run: PIMS pulls, report generation, RFCC sign-offs. It is also the assistant that helped build the rest of this site.",
+      "A local AI assistant built on the Claude Agent SDK with a voice-driven HUD and multi-agent orchestration. Speak a command, watch an automation run: data pulls, report generation, readiness sign-offs. It is also the assistant that built the rest of this site.",
     tech: ["Python", "Claude Agent SDK", "Multi-agent", "Voice (STT/TTS)", "FastAPI"],
     page: "/otto",
     art: "orb",
@@ -252,8 +287,23 @@ export const FEATURED_PROJECTS: Project[] = [
   },
 ];
 
-// The rest of the shelf. Listed on /projects as compact cards.
+// The rest of the shelf. Listed on /projects under the featured set.
+//
+// This list is a portfolio, not an inventory. A card that links nowhere costs
+// more than it adds, which is why rapid-cut and VideoOS came off it: neither
+// had a live link, a repo, or a case study, so there was nothing to click.
 export const MORE_PROJECTS: Project[] = [
+  {
+    name: "Quorum",
+    context: "Personal build · frozen",
+    tagline: "A company of AI agents, run by one person.",
+    description:
+      "An OS where AI agents worked as employees. An orchestrator dispatched the work, agents built in parallel inside isolated git worktrees, and a live pipeline board showed the one thing that actually needed me. It shipped real software. Frozen now, because one assistant turned out to beat a company of them.",
+    tech: ["TypeScript", "Claude Agent SDK", "Next.js", "Telegram", "Git"],
+    page: "/quorum",
+    art: "quorum",
+    accent: "quorum",
+  },
   {
     name: "Career Agent",
     context: "career.qori.land",
@@ -270,7 +320,7 @@ export const MORE_PROJECTS: Project[] = [
     context: "Industrial commissioning · sub-case",
     tagline: "The commissioning paperwork, done by three desktop tools.",
     description:
-      "A Windows toolkit that generates energization documents, batch-repaints drawings, and finds any subsystem across a huge drawing tree. The single biggest time-saver in the commissioning toolkit.",
+      "A Windows toolkit that generates energization documents, batch-repaints drawings, and finds any subsystem across a huge drawing tree. The single biggest time-saver in the commissioning toolkit. Co-developed with a colleague.",
     tech: ["Python", "CustomTkinter", "Visio COM", "PyInstaller"],
     page: "/noe",
     art: "noe",
@@ -281,7 +331,7 @@ export const MORE_PROJECTS: Project[] = [
     context: "Industrial commissioning · sub-case",
     tagline: "Manual report and readiness-package work, replaced with code.",
     description:
-      "Python, Playwright, and the PIMS API doing the record collection, validation, and readiness-certificate sign-off on a large-scale industrial commissioning project.",
+      "Python, Playwright, and the project data-platform API doing the record collection, validation, and readiness-certificate sign-off on a large-scale industrial commissioning project.",
     tech: ["Python", "Playwright", "REST APIs"],
     page: "/pims-rfcc",
     art: "pipeline",
@@ -309,45 +359,59 @@ export const MORE_PROJECTS: Project[] = [
     repo: "https://github.com/lucasrucu/snip",
     art: "link",
   },
-  {
-    name: "rapid-cut",
-    context: "Local desktop tool",
-    tagline: "Batch clip cutting with local voice detection.",
-    description:
-      "Point it at raw footage and it cuts clips around the talking, using on-device voice-activity detection. ffmpeg does the cutting, nothing leaves the machine, no API cost.",
-    tech: ["Python", "PySide6", "ffmpeg", "Silero VAD"],
-    art: "cut",
-  },
-  {
-    name: "VideoOS",
-    context: "Desktop video editor",
-    tagline: "A video editor built from scratch on the rapid-cut engine.",
-    description:
-      "Timeline, clips, trims, and export in a native Qt app. Built far enough to prove the engine, then parked as a portfolio piece.",
-    tech: ["Python", "PySide6", "ffmpeg"],
-    art: "video",
-  },
 ];
 
+export type InBuildItem = {
+  name: string;
+  // What it is, one line.
+  blurb: string;
+  // REQUIRED. A real state or a real date, never "coming soon". If you cannot
+  // write one truthfully, the item does not go in this list.
+  state: string;
+};
+
+// Upcoming / in build.
+//
+// DELIBERATELY EMPTY. The component exists and renders nothing while the list
+// is empty, which is the point: a stale "coming soon" shelf reads worse than
+// no shelf at all. An entry only earns a place here with a real `state`, for
+// example "landing v1 in build, Sept 2026" or "beta with two testers".
+// Candidates Lucas should confirm before they go public are listed in the
+// handover notes, not here, because an unconfirmed one is aspiration.
+export const IN_BUILD: InBuildItem[] = [];
+
 // Otto showcase content. Otto's code is private; this is the public capabilities
-// page that presents it as a flagship personal build. Lives at /otto.
+// page that presents it as the flagship personal build. Lives at /otto.
+//
+// SECURITY, read before editing: Otto is wired into Lucas's real accounts and
+// this page is a live attack surface. Publish CAPABILITY only. Never publish
+// how he reaches it, where it runs, its endpoints, transports, ports, tokens,
+// hostnames, or any deployment detail. If you are unsure whether a line is a
+// connection detail, leave it out.
 export const OTTO = {
   name: "Otto",
+  // Deliberately parallel with Quorum's "Personal build · frozen", so the
+  // ranking between the two reads at a glance. "Flagship" is reserved for the
+  // single badge on the commissioning card: one word, one meaning.
+  eyebrow: "Personal build · live daily",
   // Hero line for the showcase page.
   tagline: "A voice-first AI assistant that runs my work.",
   intro:
     "Otto is my personal AI operating layer. It is built on the Claude Agent SDK, talks back, and actually executes my automations on command. A personal build, not a public product.",
+  // Honest current state. Otto is the one that is live, which is why it now
+  // outranks Quorum on this site.
+  status: "Live, used every day, and the assistant that built this site.",
   // Plain framing of what it is.
   what: [
     "I do a lot of repetitive, high-stakes data work on industrial projects: pulling records, generating reports, signing off readiness packages. Otto is how I stopped driving each of those by hand.",
-    "It runs locally on my machine, authenticated once. I speak a command, Otto figures out which automation to run, runs it, and reports back. Same brain across every task: one set of skills, one shared memory, one assistant.",
+    "I speak a command, Otto figures out which automation to run, runs it, and reports back. Same brain across every task: one set of skills, one shared memory, one assistant. It has grown well past the automations it started with, and it now writes and ships software of its own.",
   ],
   capabilities: [
     {
       icon: "mic",
       title: "Voice-first interface",
       detail:
-        "A glowing orb is the centerpiece. Push to talk, Otto listens, thinks, and speaks back a short natural summary. Local speech-to-text and text-to-speech, swappable behind a provider seam.",
+        "A glowing orb is the centerpiece. Push to talk, Otto listens, thinks, and speaks back a short natural summary. Speech-to-text and text-to-speech both run on the machine, swappable behind a provider seam.",
     },
     {
       icon: "workflow",
@@ -359,7 +423,19 @@ export const OTTO = {
       icon: "zap",
       title: "Runs real automations",
       detail:
-        "PIMS data pulls, report generation, RFCC sign-offs, Trello triage. Registry-driven cards mean adding a new automation is a config edit, not a UI rebuild.",
+        "Data pulls, report generation, readiness sign-offs, task-board triage. Registry-driven cards mean adding a new automation is a config edit, not a UI rebuild.",
+    },
+    {
+      icon: "code",
+      title: "Writes and ships software",
+      detail:
+        "Otto builds. It branches, writes the code, runs the build, reviews its own diff, and merges when it passes. This site is one of the things it shipped.",
+    },
+    {
+      icon: "schedule",
+      title: "Work that runs without me",
+      detail:
+        "Standing jobs run on their own schedule and report what they did: a morning brief, a weekly plan, a recurring report. Nothing waits for me to remember it.",
     },
     {
       icon: "brain",
@@ -368,12 +444,23 @@ export const OTTO = {
         "Otto remembers projects, decisions, and preferences across sessions through a version-controlled memory layer, so context carries over instead of starting cold each time.",
     },
   ] as const,
+  // Concrete jobs it actually does. Capability, never the plumbing.
+  does: [
+    "Generate the readiness and progress reports for a live industrial project.",
+    "Drive browser automations against systems that never shipped an API.",
+    "Audit a task board, fix the drift, and say what changed.",
+    "Plan a training week from real training data and explain the reasoning.",
+    "Draft, review and merge code across several repositories at once.",
+    "Keep a written record of decisions so nothing has to be explained twice.",
+  ],
   architecture: [
-    "Python backend on the Claude Agent SDK, browser HUD on the front.",
+    "Python on the Claude Agent SDK, with a browser HUD for the voice loop.",
+    "Capabilities are skills: a folder of instructions plus its own code, so a new one is a new directory rather than a rebuild.",
+    "Sub-agents each get an isolated git worktree, so parallel jobs never collide.",
     "Rides a Claude subscription login. No metered API, no per-call cost.",
     "Registry-driven automation cards with live progress, each writing its own status.",
-    "Local Whisper for speech-in, local Piper for speech-out, both swappable.",
-    "Version-controlled memory shared across machines.",
+    "A version-controlled memory vault carries context between sessions and machines.",
+    "Nothing merges until the conventions check and the build are both clean.",
   ],
   // Demo GIF spots. No assets yet. Placeholders flagged for Lucas to fill.
   demos: [
@@ -383,19 +470,21 @@ export const OTTO = {
 } as const;
 
 // PIMS & RFCC case-study content. Real field-engineering automation Lucas runs
-// daily on a large-scale industrial commissioning project. The code is private; this is the public
-// case-study page that presents it as a flagship build. Lives at /pims-rfcc.
+// daily on a large-scale industrial commissioning project. The code is private;
+// this is the public case-study page. A CHILD of the commissioning-automation
+// parent, so its eyebrow says sub-case, not flagship. Lives at /pims-rfcc.
 export const PIMS_RFCC = {
   name: "PIMS & RFCC Automation",
-  context: "Live mining project · case study",
+  eyebrow: "Commissioning automation · sub-case",
+  context: "Large industrial project · case study",
   // Hero line for the case-study page.
   tagline: "Manual report and readiness-package work, replaced with code.",
   intro:
-    "On a large-scale industrial commissioning project, building reports and signing off readiness packages used to be hours of pulling records, formatting, and chasing documents by hand. I rebuilt that work as automation: Python, Playwright, and the PIMS API doing the collection, validation, and sign-off.",
+    "On a large-scale industrial commissioning project, building reports and signing off readiness packages used to be hours of pulling records, formatting, and chasing documents by hand. I rebuilt that work as automation: Python, Playwright, and the platform API doing the collection, validation, and sign-off.",
   // Plain framing of what it is and why it exists.
   what: [
-    "PIMS is the engineering data platform of record on the project: tens of thousands of equipment and instrument records, checklists, and commissioning data. The day-to-day work is repetitive and high-stakes. Pull the right records, validate them, format a report, assemble a readiness package, sign it off. Get one field wrong and a correction cycle costs days.",
-    "I write the software that takes that work off my hands. Two automations carry most of it: a CLI that generates subsystem-readiness reports straight from the PIMS API, and an end-to-end RFCC sign-off flow that imports the 3WLA list, pulls HOP documents from Aconex, uploads the metadata and files back into PIMS, and signs the readiness certificates.",
+    `PIMS is the engineering data platform of record on the project: ${SCALE.subsystems} subsystems, ${SCALE.tags} equipment tags, and ${SCALE.checksheets} checksheets. The day-to-day work is repetitive and high-stakes. Pull the right records, validate them, format a report, assemble a readiness package, sign it off. Get one field wrong and a correction cycle costs days.`,
+    "I write the software that takes that work off my hands. Two automations carry most of it: a CLI that generates subsystem-readiness reports straight from the PIMS API, and an end-to-end RFCC sign-off flow that imports the 3WLA list, pulls HOP documents from the document register, uploads the metadata and files back into PIMS, and signs the readiness certificates.",
   ],
   // The two automation pillars, each with concrete detail.
   pillars: [
@@ -409,7 +498,7 @@ export const PIMS_RFCC = {
       icon: "fileSignature",
       title: "RFCC sign-off flow",
       detail:
-        "One command runs the whole readiness-certificate cycle. It imports the 3WLA CSV, downloads the HOP documents from Aconex with Playwright, uploads the metadata and files into PIMS, and signs the RFCCs. What used to be a manual, multi-system slog is now a single automated pass.",
+        "One command runs the whole readiness-certificate cycle. It imports the 3WLA CSV, downloads the HOP documents from the document register with Playwright, uploads the metadata and files into PIMS, and signs the RFCCs. What used to be a manual, multi-system slog is now a single automated pass.",
     },
   ] as const,
   // The pipeline stages, in order. Mirrors the bespoke pipeline art.
@@ -424,7 +513,7 @@ export const PIMS_RFCC = {
     },
     {
       step: "Assemble",
-      detail: "Generate the PDF and Excel report; download HOP documents from Aconex.",
+      detail: "Generate the PDF and Excel report; download HOP documents from the register.",
     },
     {
       step: "Sign off",
@@ -433,8 +522,8 @@ export const PIMS_RFCC = {
   ],
   // How it is built, plainly.
   architecture: [
-    "Python CLI core: pims_client.py fetches, report_logic.py aggregates, pdf_export.py and excel_export.py render.",
-    "Playwright drives Aconex to export the document register and download HOP files.",
+    "Python CLI core: one module fetches, one aggregates, two render the PDF and the Excel.",
+    "Playwright drives the document register to export the register and download HOP files.",
     "Power Query M shapes the supporting data feeds that the reports lean on.",
     "Config-driven thresholds: the readiness cutoff and grouping rules live in one place, not in the code paths.",
     "Runs daily against live project data, not a sandbox.",
@@ -447,24 +536,28 @@ export const PIMS_RFCC = {
   ],
 } as const;
 
-// NoE Toolkit case-study content. The product is the "NoE Maker Toolkit"
-// (v1.0.0), a Windows desktop toolkit built to take the energization-document
-// and drawing-markup busywork off commissioning engineers on a live mining
-// expansion. The code is private; this is the public case-study page. Lives at
-// /noe. Tool screenshots live in public/noe/ (omitted publicly to avoid logo exposure).
+// NoE Toolkit case-study content. A Windows desktop toolkit built to take the
+// energization-document and drawing-markup busywork off commissioning engineers
+// on a live industrial expansion. The code is private; this is the public
+// case-study page. Lives at /noe.
+//
+// The product name is "NoE Toolkit" everywhere: page H1, homepage card, parent
+// case study, /projects. It used to be "NoE Maker Toolkit" on this page alone.
 export const NOE = {
-  // Short label for the homepage card; the page itself shows the product name.
   name: "NoE Toolkit",
-  productName: "NoE Maker Toolkit",
   version: "v1.0.0",
-  context: "Industrial commissioning · case study",
+  eyebrow: "Commissioning automation · sub-case",
+  context: "Large industrial project · case study",
   tagline: "The commissioning paperwork, done by three desktop tools.",
+  // Note the antecedent. The page speaks as "we" because it IS joint work, so
+  // the collaboration is introduced in the first sentence rather than showing
+  // up unexplained in the copy and again in six grey words at the bottom.
   intro:
-    "On a large-scale industrial commissioning project, commissioning engineers lose hours to energization documents and drawing markup, all by hand. We built a Windows toolkit that does the busywork: it generates the documents, batch-repaints the drawings, and finds any subsystem across a huge drawing tree.",
+    "On a large-scale industrial commissioning project, engineers lose hours to energization documents and drawing markup, all by hand. A colleague and I built a Windows toolkit that does the busywork: it generates the documents, batch-repaints the drawings, and finds any subsystem across a huge drawing tree.",
   // Plain framing of what it is and why it exists.
   what: [
     "Commissioning a plant means proving each subsystem is ready to energize, and that proof is paperwork: a Notice of Energization per subsystem, marked-up drawings showing what is live, and the constant hunt for which drawing a tag even lives on. Done by hand across hundreds of subsystems, it is slow and error-prone, and a wrong drawing or a missed tag costs real time on a live project.",
-    "The NoE Maker Toolkit takes that work off the engineer's hands. A single launcher opens three focused tools, each running as its own crash-isolated process so one tool falling over never takes the others down. It is packaged as one NoE.exe with PyInstaller, so an engineer installs nothing and just runs it. The UI is bilingual, so it fits a Spanish-speaking field team as well as an English-speaking one.",
+    "The NoE Toolkit takes that work off the engineer's hands. A single launcher opens three focused tools, each running as its own crash-isolated process so one tool falling over never takes the others down. It is packaged as one NoE.exe with PyInstaller, so an engineer installs nothing and just runs it. The UI is bilingual, so it fits a Spanish-speaking field team as well as an English-speaking one.",
   ],
   // The three tools, each problem -> solution. Mirrors the launcher.
   tools: [
@@ -473,7 +566,7 @@ export const NOE = {
       title: "NoE Generator",
       shot: "/noe/generator.png",
       detail:
-        "Notices of Energization have to exist for every subsystem, and writing them by hand is slow and repetitive. Give the Generator a COMM number, the subsystems, and a signer, and it produces the finished .docx from templates.",
+        "Notices of Energization have to exist for every subsystem, and writing them by hand is slow and repetitive. Give the Generator a COMM number, the subsystems, and a signer, and it produces the finished .docx from templates. This is the tool behind the headline number on the parent case study, and it is my collaborator's work.",
     },
     {
       icon: "paintbrush",
@@ -507,8 +600,31 @@ export const NOE = {
   // Where it stands now. Honest: shipped, used, then parked as a clean skeleton.
   status:
     "Shipped at v1.0.0 and used on the project, then parked as a clean, documented skeleton with a roadmap. It may be revived; the bones are kept ready.",
-  // Honest co-development credit. A colleague built the original; Lucas updated it.
-  credit: "Co-developed with a colleague.",
+  // ------------------------------------------------------------------------
+  // THE CREDIT. This is joint work and it carries the biggest number on the
+  // site, so it gets byline weight, not a grey footnote.
+  //
+  // DO NOT ADD A NAME OR A LINK. There is a standing rule that this colleague
+  // is never named publicly and only Lucas can lift it. He is asking and has
+  // not confirmed.
+  //
+  // When he does confirm, this drops in with NO redesign: set `name` (and
+  // optionally `url`). Every place the credit renders reads `name` first and
+  // falls back to `anon`, and the name becomes a link when `url` is set.
+  // ------------------------------------------------------------------------
+  credit: {
+    // The collaborator's name. null until Lucas lifts the rule.
+    name: null as string | null,
+    // Their profile or site. null is fine even once `name` is set.
+    url: null as string | null,
+    // How to refer to them while unnamed.
+    anon: "a colleague",
+    // The role line, rendered next to the byline.
+    role: "Co-developer",
+    // The split, stated plainly, in the same place the paper states its authors.
+    detail:
+      "This one is not mine alone. A colleague built the original NoE Generator, the tool that turns a subsystem list into a finished energization document. I built the toolkit around it: the Drawing Plan Painter, the Drawing Finder, the shared launcher, the packaging, and the bilingual UI. The headline figure on the parent case study, roughly six hours a day down to under one, comes from their generator.",
+  },
   // The do-if-revived vision (docs/ROADMAP.md).
   roadmap: [
     "One shared window hosting all three tools instead of three separate processes.",
@@ -517,22 +633,40 @@ export const NOE = {
   ],
 } as const;
 
-// One automation card in the experience toolkit. Plain: what it does, nothing
-// more (no tech list, no time figure). `featured` flags the 4 standouts that
-// get the spotlight treatment.
+// One automation card in the supporting toolkit. Plain: what it does, nothing
+// more (no tech list, no time figure). The heavy hitters are NOT in here any
+// more, they are `children` below, where each carries its own numbers and its
+// own credit line.
 type Automation = {
   title: string;
   does: string;
-  featured?: boolean;
+};
+
+// A named child project under the commissioning-automation parent. The reason
+// these are separate entries and not rows in one flat "I built" list: one of
+// them is joint work, and separate entries let each carry its own numbers AND
+// its own credit line. That fixes attribution structurally rather than with a
+// disclaimer at the bottom of a shared page.
+export type ChildCase = {
+  name: string;
+  blurb: string;
+  // Internal case-study page, when one exists.
+  page?: string;
+  // Its own number. Always framed as an estimate, never as measured fact.
+  stat?: string;
+  // Its own credit line. Absent means solo work, which matches the page voice.
+  credit?: string;
+  // Not rendered. See the Commissioning Suite entry for the only use of this.
+  draft?: boolean;
 };
 
 // ---------------------------------------------------------------------------
-// Industrial commissioning automation — the PARENT experience case study.
-// One coherent story about the body of automations Lucas built on a large
-// industrial project. The PIMS/RFCC and NoE pages fold UNDER this as sub-cases.
+// Industrial commissioning automation. The PARENT CATEGORY, not a single
+// project. One coherent story about the body of automations Lucas built on a
+// large industrial project, with named children underneath it.
 // Fully anonymized (no client/employer/project/person names). All numbers are
-// ESTIMATES, framed honestly. Lives at /experience. Source: the Lucas-approved
-// anonymized automation inventory in the assistant's memory.
+// ESTIMATES, framed honestly. Lives at /commissioning-automation. Source: the
+// Lucas-approved anonymized automation inventory in the assistant's memory.
 // ---------------------------------------------------------------------------
 export const EXPERIENCE_STUDY = {
   name: "Industrial commissioning automation",
@@ -551,43 +685,84 @@ export const EXPERIENCE_STUDY = {
     label: "of repetitive manual work projected to be removed over the project",
     note: "Estimate, projected to project end. The project is still running.",
   },
-  // Scale anchors — real, non-identifying, safe to cite.
+  // Scale anchors, from the one shared SCALE constant so no page can drift.
   scale: [
-    { value: "~1,300+", label: "subsystems on the project" },
-    { value: "~14,000", label: "equipment tags" },
-    { value: "~13,000+", label: "checksheets" },
+    { value: SCALE.subsystems, label: "subsystems on the project" },
+    { value: SCALE.tags, label: "equipment tags" },
+    { value: SCALE.checksheets, label: "checksheets" },
   ],
-  // The NoE flagship as a SINGLE stat (no prose deep-dive on the parent page;
-  // the full story lives in the /noe sub-case). The biggest single time-saver.
+  // The NoE before/after as a SINGLE stat. The biggest single win, and the one
+  // number on this page that is not mine alone, which the credit line says.
   noe: {
-    label: "Energization documents (NoE), the single biggest win",
-    before: "~6 hrs/day",
+    label: "Energization documents (NoE), the biggest single win",
+    before: "up to 6 hrs/day",
     after: "under 1 hr",
     saved: "~5 hrs/day",
-    note: "Estimate from real before/after. The full story is in the NoE sub-case below.",
+    note: "Estimate from real before/after. The generator behind this number was built by a colleague; I built the toolkit around it. Full story in the NoE Toolkit child case.",
   },
-  // The toolkit as a flat set of cards. Each card is just what it does, plainly.
-  // The 4 featured ones get the spotlight; the rest are the supporting cast.
+  // The named children. Each carries its own numbers and its own credit.
+  children: ([
+    {
+      // ----------------------------------------------------------------
+      // HOLD. Not rendered, on purpose.
+      //
+      // Lucas wants the commissioning work reframed as "the Commissioning
+      // Suite" in his last week or two on the project (target September 2026),
+      // not before. The word "suite" appears nowhere on the site today and
+      // that stays true while `draft` is set.
+      //
+      // TO PUBLISH IN SEPTEMBER: write a real `blurb` and `stat`, then delete
+      // the `draft` line. Nothing else changes; the section renders it.
+      // ----------------------------------------------------------------
+      draft: true,
+      name: "Commissioning Suite",
+      blurb: "Placeholder. Lucas writes this entry in September.",
+    },
+    {
+      name: "NoE Toolkit",
+      blurb:
+        "Three desktop tools behind one launcher: generate the energization documents, batch-repaint the drawings in Visio, and find which drawing a subsystem or tag lives on. The biggest single time-saver in the whole toolkit.",
+      page: "/noe",
+      stat: "Up to 6 hrs/day by hand, under 1 hr with the tool (estimate)",
+      credit: "Co-developed with a colleague",
+    },
+    {
+      name: "PIMS & RFCC Automation",
+      blurb:
+        "Readiness reports generated straight from the data-platform API, and an unattended sign-off flow that imports the readiness list, pulls the handover documents, uploads files and metadata, and signs the certificates.",
+      page: "/pims-rfcc",
+      stat: "200 to 300 hours removed by project end (estimate)",
+    },
+    {
+      name: "Power BI progress dashboard",
+      blurb:
+        "One command pulls the data exports, drives the browser export of the document register, syncs the readiness sheet, and refreshes the Power BI model. Daily commissioning progress stopped depending on anyone being at a desk.",
+      stat: "30 to 45 min/day down to near one click, 100+ hours over the project (estimate)",
+    },
+    {
+      name: "WP Splitter",
+      blurb:
+        "Takes a scanned work pack, one PDF of hundreds of pages, OCRs every page, splits it into one PDF per checksheet, and attaches each file to the matching row in the commissioning database. A browser review step lets the engineer drag pages between checksheets and correct a misread code before anything uploads.",
+    },
+    {
+      name: "BIC custody highlighter",
+      blurb:
+        "Resolves every equipment tag to its subsystem and its readiness state, then shades the boundary document by custody: grey for commissioning, red for construction. Ships as a one-click desktop app as well as a script.",
+      stat: "20 min per document down to seconds, 60 to 100 hours (estimate)",
+    },
+    {
+      name: "Project report generator",
+      blurb:
+        "Pulls the completed task-board cards for any date range and writes them up as formatted Word reports, so the daily write-up is generated rather than typed.",
+      stat: "10 to 15 min/day removed (estimate)",
+    },
+  ] as ChildCase[]),
+  // The supporting cast. Flat cards, each just what it does. The named children
+  // above are deliberately NOT repeated here.
   automations: ([
-    {
-      title: "Readiness-certificate (RFCC) sign-off bot",
-      does: "Logs into the document register, downloads the handover docs, uploads files and metadata to the commissioning database, and signs the readiness certificates unattended.",
-      featured: true,
-    },
-    {
-      title: "Commissioning-progress dashboard refresh",
-      does: "One command pulls the data, runs the browser exports, syncs the readiness sheet, and refreshes the Power BI model.",
-      featured: true,
-    },
-    {
-      title: "Boundary-certificate (BIC) custody highlighter",
-      does: "Resolves every tag to its subsystem and shades the boundary document by custody: grey for commissioning, red for construction.",
-      featured: true,
-    },
     {
       title: "Overnight unattended orchestration",
       does: "Runs the whole morning pipeline headless overnight and leaves the draft outputs ready for review.",
-      featured: true,
     },
     {
       title: "Energization (NoE) linker",
@@ -595,7 +770,7 @@ export const EXPERIENCE_STUDY = {
     },
     {
       title: "Checksheet field sync",
-      does: "Diffs an update file and syncs only the changed rows across roughly 13,000 checksheets.",
+      does: `Diffs an update file and syncs only the changed rows across ${SCALE.checksheets} checksheets.`,
     },
     {
       title: "Live readiness data pipeline",
@@ -606,24 +781,12 @@ export const EXPERIENCE_STUDY = {
       does: "A browser bot filters the construction handover register and exports it to Excel.",
     },
     {
-      title: "Subsystem-readiness (RFWCC) reporter",
-      does: "Generates PDF and Excel readiness reports straight from the commissioning database API.",
-    },
-    {
-      title: "Daily report generator",
-      does: "Turns completed task-board cards into formatted Word reports for any date range.",
-    },
-    {
       title: "Timesheet auto-fill",
-      does: "Reads the daily reports and fills the timesheet web app, hours and descriptions per day.",
+      does: "Reads the generated reports and fills the timesheet web app, hours and descriptions per day.",
     },
     {
       title: "Task-board triage",
       does: "Audits the board for missing labels, wrong lists, and overdue cards, and fixes them on confirmation.",
-    },
-    {
-      title: "Fast desktop PDF editor (rapid-pdf)",
-      does: "A fast Windows PDF editor for page management and markup, built for the large energization documents.",
     },
   ] as Automation[]),
   // The AI meta-layer that ties the discrete tools into one system.
@@ -643,60 +806,54 @@ export const EXPERIENCE_STUDY = {
   // Honest framing note about the numbers.
   estimatesNote:
     "Every figure on this page is a conservative estimate from real before/after observation, and several are projected to the end of a project that is still running. They are presented as estimates, not measured fact, on purpose. The point is the shape of the work removed, not a precise hour count.",
-  // The two deep-dive sub-cases that fold under this parent.
-  subCases: [
-    {
-      name: "NoE Toolkit",
-      blurb: "The energization-document and drawing-markup desktop toolkit, in depth.",
-      page: "/noe",
-    },
-    {
-      name: "PIMS & RFCC Automation",
-      blurb: "The readiness reporting and certificate sign-off flow, in depth.",
-      page: "/pims-rfcc",
-    },
-  ],
 } as const;
 
-// Quorum showcase content. The code is private; this is the public page that
-// presents it as a featured personal build. Lives at /quorum. High-level on
-// purpose: the concept and the capabilities, not the internals.
+// Quorum showcase content. The code is private; this is the public page.
+// High-level on purpose: the concept and the capabilities, not the internals.
+//
+// STATUS: FROZEN. It was built, it ran, and it shipped real software, but it
+// did not pay off for one person and the work moved to Otto. Everything on
+// this page is written in the past tense for that reason. Do not put it back
+// into the present tense, and do not describe the daemon as running.
 export const QUORUM = {
   name: "Quorum",
-  context: "Personal build · agent company OS",
-  eyebrow: "Featured build · agent company",
+  context: "Personal build · frozen",
+  eyebrow: "Personal build · frozen",
   tagline: "A company of AI agents, run by one person.",
   intro:
-    "Quorum is my local agent-company OS. AI agents work as employees under my direction: an always-on daemon keeps the company running, an orchestrator dispatches the work, and only the few decisions that actually need a human reach me.",
+    "Quorum was my local agent-company OS. AI agents worked as employees under my direction: an orchestrator dispatched the work, agents built in parallel, and only the few decisions that actually needed a human reached me. It ran, and it shipped real software.",
+  // Where it stands now. Honest, and the reason it is no longer flagship.
+  status:
+    "Frozen. It worked, and agents shipped real software under it, but running a company of agents did not give me more than one good assistant does. The work moved to Otto, which is what I use every day now. Quorum is kept intact, not deleted.",
   // The punch line under the hero art.
   pitch: "One builder, a fleet of agents, real software shipped.",
   // Capability chips in the hero.
-  chips: ["Always-on daemon", "Two-way Telegram control", "Git-isolated parallel builds"],
+  chips: ["Orchestrator and daemon", "Two-way Telegram control", "Git-isolated parallel builds"],
   // The feature highlights, each with bespoke coded art (QuorumMotion.tsx).
   features: [
     {
       art: "board",
       title: "A live pipeline board",
       detail:
-        "Every piece of work moves across four columns: Intake, Needs you, Working, Closed. One glance says what the company is doing and what is waiting on me. Nothing hides in a chat log.",
+        "Every piece of work moved across four columns: Intake, Needs you, Working, Closed. One glance said what the company was doing and what was waiting on me. Nothing hid in a chat log.",
     },
     {
       art: "dispatch",
-      title: "An orchestrator that filters",
+      title: "An orchestrator that filtered",
       detail:
-        "Ideas and tasks go to the orchestrator, not to me. It dispatches agents, tracks every run, and surfaces only the calls that need a human. I decide; the fleet executes.",
+        "Ideas and tasks went to the orchestrator, not to me. It dispatched agents, tracked every run, and surfaced only the calls that needed a human. I decided; the fleet executed.",
     },
     {
       art: "isolation",
       title: "Parallel builds, isolated",
       detail:
-        "Each agent works in its own git worktree, so several features move at once without touching each other's code. Work merges only after it is built and verified.",
+        "Each agent worked in its own git worktree, so several features moved at once without touching each other's code. Work merged only after it was built and verified.",
     },
     {
       art: "control",
       title: "Run it from anywhere",
       detail:
-        "Full two-way control over Telegram. I can hand the company a task, approve a decision, or shut it down from a phone while the daemon keeps everything alive at home.",
+        "Full two-way control over Telegram. I could hand the company a task, approve a decision, or shut it down from a phone while the daemon kept everything alive at home.",
     },
   ] as const,
   // The shared-brain band.
@@ -704,21 +861,21 @@ export const QUORUM = {
     eyebrow: "The shared brain",
     title: "One memory, every agent",
     body: [
-      "The agents read and write a single version-controlled memory. Decisions, project state, and lessons persist across sessions and across the team, so nothing starts cold and nothing gets re-learned.",
-      "Agents talk to each other too. Inter-agent chat and an idea pipeline with accept and deny mean the company proposes work on its own, and I stay the one who says yes.",
+      "The agents read and wrote a single version-controlled memory. Decisions, project state, and lessons persisted across sessions and across the team, so nothing started cold and nothing got re-learned.",
+      "Agents talked to each other too. Inter-agent chat and an idea pipeline with accept and deny meant the company proposed work on its own, and I stayed the one who said yes.",
     ],
     points: [
       "Version-controlled memory shared by every agent.",
       "Inter-agent chat for handoffs and reviews.",
-      "An idea pipeline: the company proposes, I approve or deny.",
+      "An idea pipeline: the company proposed, I approved or denied.",
     ],
   },
-  // How it is built, plainly. High level only.
+  // How it was built, plainly. High level only.
   architecture: [
     "TypeScript core on the Claude Agent SDK, with a Next.js dashboard.",
-    "An always-on daemon with a heartbeat, so the company survives reboots and reports its own health.",
-    "Git worktree isolation per agent, with a review gate before anything merges.",
+    "A daemon with a heartbeat, so the company survived reboots and reported its own health.",
+    "Git worktree isolation per agent, with a review gate before anything merged.",
     "A Telegram bridge for full two-way control away from the desk.",
-    "Smoke-tested on every change: over a thousand checks run before work lands.",
+    "Smoke-tested on every change: over a thousand checks ran before work landed.",
   ],
 } as const;

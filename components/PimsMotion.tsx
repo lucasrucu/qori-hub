@@ -51,7 +51,7 @@ function Frame({
   );
 }
 
-// HERO — the full pipeline as one wide scene: a stack of records flows through
+// HERO: the full pipeline as one wide scene: a stack of records flows through
 // a validation node, fans into a report and an Aconex pull, then converges on a
 // signed certificate. This is the page's signature visual.
 export function PimsPipelineHero() {
@@ -127,7 +127,7 @@ export function PimsPipelineHero() {
   );
 }
 
-// REPORTS — a readiness report: a bar of subsystem completion, a 100%-ready
+// REPORTS: a readiness report: a bar of subsystem completion, a 100%-ready
 // badge, and an "almost" row. Speaks "subsystem-readiness report".
 export function PimsReportArt() {
   const rows = [
@@ -164,7 +164,7 @@ export function PimsReportArt() {
   );
 }
 
-// SIGN-OFF — the RFCC certificate getting stamped: a cert with fields and a
+// SIGN-OFF: the RFCC certificate getting stamped: a cert with fields and a
 // green signature seal pressing in. Speaks "RFCC sign-off flow".
 export function PimsSignoffArt() {
   return (

@@ -12,7 +12,7 @@ const PAPER = RESEARCH.find((p) => p.slug === "ppe-yolo");
 
 export const metadata: Metadata = PAPER
   ? {
-      title: `${PAPER.title} — Lucas Ruiz`,
+      title: `${PAPER.title} · Lucas Ruiz`,
       description: PAPER.description,
     }
   : {};
@@ -178,7 +178,7 @@ export default function PpeYoloResearchPage() {
                 </p>
               </div>
               <a
-                href="/#projects"
+                href="/projects"
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />

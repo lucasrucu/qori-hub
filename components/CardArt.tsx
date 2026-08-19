@@ -57,7 +57,7 @@ function ArtFrame({
   );
 }
 
-// Career Agent — a match radar: rings + a sweeping beam + job pins, a % readout.
+// Career Agent, a match radar: rings + a sweeping beam + job pins, a % readout.
 function Radar() {
   return (
     <ArtFrame title="Match radar">
@@ -93,7 +93,7 @@ function Radar() {
   );
 }
 
-// Financial Dashboard — money streams flowing into rising bars.
+// Financial Dashboard: money streams flowing into rising bars.
 function Flow() {
   return (
     <ArtFrame title="Money flow into a chart">
@@ -142,7 +142,7 @@ function Flow() {
   );
 }
 
-// Otto — the gold orb with rotating rings on a dark HUD.
+// Otto: the gold orb with rotating rings on a dark HUD.
 function Orb() {
   return (
     <ArtFrame title="Otto voice orb" dark>
@@ -183,7 +183,7 @@ function Orb() {
   );
 }
 
-// rapid-pdf — three pages, the middle one lifted, being reordered.
+// rapid-pdf: three pages, the middle one lifted, being reordered.
 function Pages() {
   return (
     <ArtFrame title="Reordering PDF pages">
@@ -204,7 +204,7 @@ function Pages() {
   );
 }
 
-// PIMS & RFCC — records flow through a validation node into a signed package.
+// PIMS & RFCC: records flow through a validation node into a signed package.
 function Pipeline() {
   return (
     <ArtFrame title="Records validated into a signed package">
@@ -234,7 +234,7 @@ function Pipeline() {
   );
 }
 
-// Snip — a long URL collapsing into a short link, with a click count.
+// Snip: a long URL collapsing into a short link, with a click count.
 function Link() {
   return (
     <ArtFrame title="Long URL shortened">
@@ -272,7 +272,7 @@ function Link() {
   );
 }
 
-// NoE Toolkit — the launcher window with three tool tiles, one gently pulsing.
+// NoE Toolkit: the launcher window with three tool tiles, one gently pulsing.
 function Noe() {
   const tiles = [
     { x: 36, glyph: "doc" as const, d: 0 },
@@ -331,7 +331,7 @@ function Noe() {
   );
 }
 
-// Industrial commissioning automation — the umbrella card. A ring of automation
+// Industrial commissioning automation: the umbrella card. A ring of automation
 // nodes feeding a central "hours saved" hub, on a deep teal HUD. Color-coded to
 // the experience accent, distinct from the amber cards.
 function Commissioning() {
@@ -340,7 +340,10 @@ function Commissioning() {
   const cy = 100;
   const r = 64;
   return (
-    <ArtFrame title="A toolkit of automations feeding hours back into a project" dark>
+    <ArtFrame
+      title="A toolkit of automations projected to remove 1,000+ hours over the project, an estimate"
+      dark
+    >
       <rect width="320" height="200" fill="#0A2A28" />
       <g transform={`translate(${cx},${cy})`}>
         <circle r={r} fill="none" stroke={`${TEAL_BRIGHT}22`} strokeWidth="1" />
@@ -379,15 +382,21 @@ function Commissioning() {
         <text x="0" y="-1" textAnchor="middle" fontSize="17" fontWeight="700" fill="#FFFFFF" fontFamily="monospace">
           1,000+
         </text>
-        <text x="0" y="13" textAnchor="middle" fontSize="7.5" fill={TEAL_BRIGHT} fontFamily="monospace">
+        <text x="0" y="12" textAnchor="middle" fontSize="7.5" fill={TEAL_BRIGHT} fontFamily="monospace">
           hours saved
+        </text>
+        {/* The disclaimer belongs ON the graphic. This thumbnail is the first
+            thing a visitor sees, and it used to state the figure as flat fact
+            while the copy beside it and the case study both said estimate. */}
+        <text x="0" y="23" textAnchor="middle" fontSize="6" fill={`${GOLD}cc`} fontFamily="monospace">
+          (estimate)
         </text>
       </g>
     </ArtFrame>
   );
 }
 
-// Quorum — the agent hexagon from its brand mark: six agent nodes around an
+// Quorum: the agent hexagon from its brand mark: six agent nodes around an
 // orchestrator core, on the Quorum navy. Its own palette, like the mark.
 function Quorum() {
   const NAVY = "#141626";
@@ -462,13 +471,13 @@ function Quorum() {
         <circle cx="-3.5" cy="-3.5" r="3" fill="#FFFFFF" opacity="0.85" />
       </g>
       <text x="160" y="188" textAnchor="middle" fontSize="8" fill={`${BLUE}cc`} fontFamily="monospace">
-        6 agents · 1 operator · always on
+        6 agents · 1 operator · frozen
       </text>
     </ArtFrame>
   );
 }
 
-// rapid-cut — a film strip with cut marks and the voiced region kept.
+// rapid-cut: a film strip with cut marks and the voiced region kept.
 function Cut() {
   return (
     <ArtFrame title="A clip batch-cut around the talking">
@@ -512,7 +521,7 @@ function Cut() {
   );
 }
 
-// VideoOS — a timeline with clips and a preview monitor.
+// VideoOS: a timeline with clips and a preview monitor.
 function Video() {
   return (
     <ArtFrame title="A video editor timeline with a preview monitor">

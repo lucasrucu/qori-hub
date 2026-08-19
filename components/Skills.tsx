@@ -29,7 +29,7 @@ export function Skills() {
         </div>
 
         <p className="mt-6 text-sm text-muted-foreground">
-          Fluent in {PROFILE.languages} — effective across time zones and cultures.
+          Fluent in {PROFILE.languages}. Effective across time zones and cultures.
         </p>
       </div>
     </section>

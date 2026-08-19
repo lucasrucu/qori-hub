@@ -7,7 +7,7 @@ import { INTERESTS, type Interest } from "@/lib/profile";
 // Photos for the bento collage below the activity cards. Grouped by
 // `activity` so photos from the same activity land next to each other in
 // the grid. To add a photo later: drop the file in public/images/interests/
-// and append an entry here — no other changes needed. Only "Triathlon" is
+// and append an entry here: no other changes needed. Only "Triathlon" is
 // populated today; the other activities (Endurance, Enduro MTB,
 // Snowboarding) will fill in as photos come in.
 const INTEREST_PHOTOS: CollagePhoto[] = [

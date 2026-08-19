@@ -52,7 +52,7 @@ function Surface({
   );
 }
 
-// HERO — the launcher: one window, three crash-isolated tool processes branching off
+// HERO: the launcher: one window, three crash-isolated tool processes branching off
 // it, each a focused tool. The page's signature visual.
 export function NoeLauncherHero() {
   const tools = [
@@ -256,7 +256,7 @@ function ToolPlaceholder({ glyph }: { glyph: "doc" | "brush" | "find" }) {
   );
 }
 
-// ARCHITECTURE — one launcher process spawning three isolated tool processes,
+// ARCHITECTURE: one launcher process spawning three isolated tool processes,
 // the whole thing packaged into a single .exe.
 export function NoeArchitecture() {
   const tools = ["Generator", "Painter", "Finder"];

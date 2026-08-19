@@ -1,4 +1,4 @@
-/* Qori lockup — canonical reference component.
+/* Qori lockup: canonical reference component.
    Copy into each app (e.g. components/QoriMark.tsx) and use in nav / login / footer.
    The solid amber tile + dark glyph is the umbrella mark; per-product glyph varies,
    tile geometry + wordmark style stay identical across every property.

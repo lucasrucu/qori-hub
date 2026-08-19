@@ -4,7 +4,7 @@ import { UserPlus } from "lucide-react";
 
 import { PROFILE, SOCIALS } from "@/lib/profile";
 
-// Builds a vCard (.vcf) on the fly and downloads it — the "save to contacts"
+// Builds a vCard (.vcf) on the fly and downloads it, the "save to contacts"
 // move from digital business cards. Client-only (uses Blob + DOM).
 function buildVCard(): string {
   const lines = [

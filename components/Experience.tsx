@@ -1,7 +1,7 @@
 import { GraduationCap } from "lucide-react";
 
 import { Eyebrow } from "@/components/Eyebrow";
-import { EDUCATION, EXPERIENCE } from "@/lib/profile";
+import { EDUCATION, EXPERIENCE, EXPERIENCE_NOTE } from "@/lib/profile";
 
 export function Experience() {
   return (
@@ -32,6 +32,10 @@ export function Experience() {
             </li>
           ))}
         </ol>
+
+        {/* Says the overlaps are deliberate. Without it the timeline reads as
+            three roles logged wrong rather than concurrent assignments. */}
+        <p className="mt-6 max-w-2xl text-sm text-muted-foreground">{EXPERIENCE_NOTE}</p>
 
         <div className="mt-10 flex items-start gap-3 rounded-lg border border-border bg-card p-5">
           <GraduationCap className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />

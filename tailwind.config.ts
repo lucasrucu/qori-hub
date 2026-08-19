@@ -61,6 +61,17 @@ const config: Config = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+        // Tailwind v3 stops at 3xl, so the Sovereign card radius has to be
+        // declared here or `rounded-4xl` is silently inert.
+        "4xl": "2rem",
+      },
+      // Load-bearing. app/layout.tsx publishes these two variables through
+      // next/font/local, and without this mapping `font-sans` falls back to
+      // the browser default: Geist downloads on every page load and never
+      // draws. See references/design-systems.md, the Sovereign web standard.
+      fontFamily: {
+        sans: ["var(--font-geist-sans)"],
+        mono: ["var(--font-geist-mono)"],
       },
     },
   },

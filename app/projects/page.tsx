@@ -3,13 +3,14 @@ import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { CardArt } from "@/components/CardArt";
 import { Eyebrow } from "@/components/Eyebrow";
+import { ProjectCard } from "@/components/Projects";
 import { QoriMark } from "@/components/QoriMark";
-import { FEATURED_PROJECTS, MORE_PROJECTS, type Project } from "@/lib/profile";
+import { FEATURED_PROJECTS, IN_BUILD, MORE_PROJECTS, type Project } from "@/lib/profile";
 
 export const metadata: Metadata = {
-  title: "All projects — Lucas Ruiz",
+  title: "All projects · Lucas Ruiz",
   description:
-    "The full shelf: every agent, automation, and desktop tool Lucas Ruiz has shipped, beyond the featured four.",
+    "Every agent, automation, and desktop tool Lucas Ruiz has shipped, ranked: the featured builds first, then the rest of the shelf.",
 };
 
 // Per-accent border tints for the compact cards.
@@ -20,6 +21,8 @@ const CARD_ACCENT = {
 } as const;
 
 // A compact hint card: bespoke art, name, one line, links. No walls of text.
+// The featured set above does NOT use this; it uses the same full ProjectCard
+// the homepage uses, so the ranking reads the same way on both pages.
 function CompactCard({ project }: { project: Project }) {
   const hover = CARD_ACCENT[project.accent ?? "default"];
   return (
@@ -37,12 +40,11 @@ function CompactCard({ project }: { project: Project }) {
         <p className="mt-2 text-[13px] leading-relaxed text-foreground/85">{project.tagline}</p>
         <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-1 pt-4 text-xs font-medium">
           {project.page ? (
-            // New tab, scoped to this listing only: leaving /projects to a case
-            // study page with no back link would strand the visitor there.
+            // Same tab. Internal links never open a new tab anywhere on this
+            // site, and every case study now carries a real "All projects"
+            // link back here, so nobody gets stranded.
             <a
               href={project.page}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-1 text-foreground transition-colors hover:text-primary"
             >
               Case study
@@ -86,7 +88,7 @@ export default function AllProjectsPage() {
             <QoriMark glyph="q" label="Qori" />
           </a>
           <a
-            href="/#projects"
+            href="/"
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -96,35 +98,36 @@ export default function AllProjectsPage() {
       </header>
 
       <main>
+        {/* The featured set, ranked, with the same full cards the homepage
+            uses. This page used to invert its own hierarchy: the featured
+            builds were grey pills with no art, no colour and no description,
+            sitting above illustrated cards for everything else. */}
         <section className="border-b border-border">
           <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
-            <Eyebrow>The full shelf</Eyebrow>
+            <Eyebrow>Selected work</Eyebrow>
             <h1 className="mt-6 max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
               All projects
             </h1>
             <p className="mt-4 max-w-2xl text-muted-foreground">
-              Everything shipped beyond the featured four: assistants, field automations, and
-              desktop tools. Each one is real, built to remove some manual work from my own life.
+              Ranked, not listed. The builds that carry the story come first, then the rest of the
+              shelf. Each one is real, built to remove some manual work from my own life.
             </p>
 
-            {/* The featured four, as a compact reference strip. New tab, same
-                reasoning as the cards below: don't strand the visitor. */}
-            <div className="mt-8 flex flex-wrap items-center gap-2 text-xs">
-              <span className="font-mono uppercase tracking-wide text-muted-foreground">
-                Featured:
-              </span>
-              {FEATURED_PROJECTS.map((p) => (
-                <a
-                  key={p.name}
-                  href={p.page ?? p.live ?? "/#projects"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-full border border-border bg-secondary px-3 py-1 font-medium text-secondary-foreground transition-colors hover:bg-accent"
-                >
-                  {p.name}
-                </a>
+            <div className="mt-10 grid grid-cols-1 items-stretch gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {FEATURED_PROJECTS.map((project) => (
+                <ProjectCard key={project.name} project={project} />
               ))}
             </div>
+          </div>
+        </section>
+
+        {/* The rest of the shelf. */}
+        <section className="border-b border-border bg-secondary/40">
+          <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+            <Eyebrow>The rest of the shelf</Eyebrow>
+            <h2 className="mt-6 max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              Everything else that shipped
+            </h2>
 
             <div className="mt-10 grid grid-cols-1 items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {MORE_PROJECTS.map((project) => (
@@ -134,18 +137,47 @@ export default function AllProjectsPage() {
           </div>
         </section>
 
+        {/* In build. Renders nothing while IN_BUILD is empty, which is the
+            intended resting state: an entry needs a real state or date, and a
+            stale "coming soon" list reads worse than no list. */}
+        {IN_BUILD.length > 0 ? (
+          <section className="border-b border-border">
+            <div className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+              <Eyebrow>In build</Eyebrow>
+              <h2 className="mt-6 max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+                What I am building now
+              </h2>
+              <ul className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                {IN_BUILD.map((item) => (
+                  <li key={item.name} className="rounded-xl border border-border bg-card p-6">
+                    <div className="flex items-start justify-between gap-3">
+                      <h3 className="text-sm font-semibold text-foreground">{item.name}</h3>
+                      <span className="shrink-0 rounded-full border border-primary/50 px-1.5 py-0.5 text-[10px] font-medium uppercase tracking-wide text-primary">
+                        {item.state}
+                      </span>
+                    </div>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {item.blurb}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        ) : null}
+
         <section>
           <div className="mx-auto max-w-6xl px-6 py-14">
             <div className="flex flex-col items-start gap-5 rounded-xl border border-border bg-card p-7 sm:flex-row sm:items-center sm:justify-between">
               <p className="text-sm text-muted-foreground">
-                The four that carry the story live on the front page.
+                The rest of the story, the field work and the research, is on the front page.
               </p>
               <a
-                href="/#projects"
+                href="/"
                 className="inline-flex shrink-0 items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-                See the featured builds
+                Back home
               </a>
             </div>
           </div>

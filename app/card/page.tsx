@@ -13,7 +13,7 @@ import { PROFILE, SOCIALS } from "@/lib/profile";
 import { personJsonLd } from "@/lib/schema";
 
 export const metadata: Metadata = {
-  title: `${PROFILE.name} — ${PROFILE.title}`,
+  title: `${PROFILE.name} · ${PROFILE.title}`,
   description: `${PROFILE.name}. ${PROFILE.title} · ${PROFILE.location}. Connect with me.`,
 };
 

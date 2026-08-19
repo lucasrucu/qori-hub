@@ -25,7 +25,7 @@ export default function PimsRfccPage() {
             <QoriMark glyph="q" label="Qori" />
           </a>
           <a
-            href="/#projects"
+            href="/projects"
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -48,7 +48,9 @@ export default function PimsRfccPage() {
                   Part of: Industrial commissioning automation
                 </a>
                 <div className="mt-4">
-                  <Eyebrow accent="experience">Flagship build · case study</Eyebrow>
+                  {/* Not "flagship". This is a child of the commissioning
+                      parent and its eyebrow used to outrank the parent's. */}
+                  <Eyebrow accent="experience">{PIMS_RFCC.eyebrow}</Eyebrow>
                 </div>
                 <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
                   {PIMS_RFCC.name}
@@ -184,7 +186,7 @@ export default function PimsRfccPage() {
                 </p>
               </div>
               <a
-                href="/#projects"
+                href="/projects"
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-experience px-5 py-2.5 text-sm font-medium text-experience-foreground transition-opacity hover:opacity-90"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />
