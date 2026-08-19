@@ -1,6 +1,6 @@
-/* Qori OpenGraph image — canonical reference template.
+/* Qori OpenGraph image: canonical reference template.
    Drop into each app at app/opengraph-image.tsx (and re-export as app/twitter-image.tsx).
-   Code-generated via next/og ImageResponse — no binary asset to keep in sync.
+   Code-generated via next/og ImageResponse: no binary asset to keep in sync.
    Edit TITLE + SUBTITLE per app; everything else stays identical.
 
    Per app:

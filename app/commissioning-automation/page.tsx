@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowLeft, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowUpRight, Users } from "lucide-react";
 
 import { ExperienceHero, ExperienceMetaArt } from "@/components/ExperienceMotion";
 import { QoriMark } from "@/components/QoriMark";
@@ -12,8 +12,9 @@ export const metadata: Metadata = {
 
 export default function ExperiencePage() {
   const study = EXPERIENCE_STUDY;
-  const featured = study.automations.filter((a) => a.featured);
-  const rest = study.automations.filter((a) => !a.featured);
+  // The Commissioning Suite entry is held as `draft` until Lucas writes it in
+  // September. See the note on it in lib/profile.ts.
+  const children = study.children.filter((c) => !c.draft);
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -23,7 +24,7 @@ export default function ExperiencePage() {
             <QoriMark glyph="q" label="Qori" />
           </a>
           <a
-            href="/#projects"
+            href="/projects"
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -33,7 +34,7 @@ export default function ExperiencePage() {
       </header>
 
       <main>
-        {/* Hero — a deep teal band so the page opens rich, not white. */}
+        {/* Hero: a deep teal band so the page opens rich, not white. */}
         <section className="relative overflow-hidden border-b border-experience/30 bg-[#0A2A28] text-white">
           <div
             aria-hidden="true"
@@ -68,7 +69,7 @@ export default function ExperiencePage() {
               </div>
             </div>
 
-            {/* Headline stat — the 1,000+ hours, framed as an estimate. */}
+            {/* Headline stat: the 1,000+ hours, framed as an estimate. */}
             <div className="mt-14 flex flex-col gap-6 rounded-2xl border border-experience-bright/25 bg-white/[0.04] p-7 backdrop-blur sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-baseline gap-3">
                 <span className="text-5xl font-semibold tracking-tight text-experience-bright sm:text-6xl">
@@ -86,7 +87,7 @@ export default function ExperiencePage() {
           </div>
         </section>
 
-        {/* By the numbers — the scale it ran against + the NoE headline stat.
+        {/* By the numbers: the scale it ran against + the NoE headline stat.
             Light band so it breaks up the teal. */}
         <section className="border-b border-border bg-secondary/40">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
@@ -102,7 +103,7 @@ export default function ExperiencePage() {
               <div className="grid gap-px bg-border sm:grid-cols-[1.4fr_1fr_1fr_1fr]">
                 <div className="bg-card p-6">
                   <p className="font-mono text-[11px] uppercase tracking-wide text-experience">
-                    Flagship
+                    Biggest single win
                   </p>
                   <p className="mt-1.5 text-base font-medium leading-snug text-foreground">
                     {study.noe.label}
@@ -144,7 +145,7 @@ export default function ExperiencePage() {
           </div>
         </section>
 
-        {/* The AI meta-layer — moved up, before the toolkit. The thing that ties
+        {/* The AI meta-layer: moved up, before the toolkit. The thing that ties
             the discrete tools into one system. A dark teal band, the hero idea. */}
         <section className="relative overflow-hidden border-b border-experience/30 bg-[#0A2A28] text-white">
           <div
@@ -189,83 +190,99 @@ export default function ExperiencePage() {
           </div>
         </section>
 
-        {/* The toolkit — a flat set of cards. 4 spotlighted, the rest compact.
-            Each card is just what it does. No tech list, no time figure. */}
+        {/* The children. This page is a PARENT CATEGORY, not a single project,
+            and these are the named pieces under it. Each one carries its own
+            number and its own credit line, which is the point: the flat "I
+            built" list underneath used to include work that is not mine alone,
+            and a shared disclaimer at the bottom of a page is not a credit. */}
         <section className="border-b border-border">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
             <span className="inline-flex items-center gap-2.5">
               <span className="h-px w-6 bg-experience" aria-hidden="true" />
               <span className="text-xs font-semibold uppercase tracking-widest text-experience">
-                The toolkit
+                What is under it
               </span>
             </span>
             <h2 className="mt-6 max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              Thirteen automations, doing the repetitive work
+              The named pieces
             </h2>
             <p className="mt-4 max-w-2xl text-muted-foreground">
-              The four that did the most heavy lifting, then the rest of the toolkit.
+              Each of these is its own project with its own numbers. Two have a full case study;
+              the rest are described here.
             </p>
 
-            {/* Spotlight: the 4 featured. */}
             <div className="mt-10 grid gap-5 sm:grid-cols-2">
-              {featured.map((a) => (
-                <div
-                  key={a.title}
-                  className="rounded-2xl border border-experience/30 bg-card p-6 [box-shadow:inset_3px_0_0_hsl(var(--experience))]"
-                >
-                  <h3 className="text-lg font-semibold text-foreground">{a.title}</h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-foreground/80">{a.does}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* The rest, compact. */}
-            <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {rest.map((a) => (
-                <div key={a.title} className="rounded-xl border border-border bg-card p-5">
-                  <h3 className="text-sm font-semibold text-foreground">{a.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{a.does}</p>
-                </div>
-              ))}
+              {children.map((child) => {
+                const body = (
+                  <>
+                    <div className="flex items-start justify-between gap-4">
+                      <h3 className="text-lg font-semibold text-foreground">{child.name}</h3>
+                      {child.page ? (
+                        <ArrowUpRight
+                          className="h-5 w-5 shrink-0 text-experience transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                          aria-hidden="true"
+                        />
+                      ) : null}
+                    </div>
+                    <p className="mt-2.5 text-sm leading-relaxed text-foreground/80">
+                      {child.blurb}
+                    </p>
+                    {child.stat ? (
+                      <p className="mt-4 font-mono text-[11px] uppercase tracking-wide text-experience">
+                        {child.stat}
+                      </p>
+                    ) : null}
+                    {child.credit ? (
+                      <p className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-foreground/70">
+                        <Users className="h-3.5 w-3.5 shrink-0 text-experience" aria-hidden="true" />
+                        {child.credit}
+                      </p>
+                    ) : null}
+                  </>
+                );
+                const shell =
+                  "group flex flex-col rounded-2xl border border-experience/30 bg-card p-6 [box-shadow:inset_3px_0_0_hsl(var(--experience))]";
+                return child.page ? (
+                  <a
+                    key={child.name}
+                    href={child.page}
+                    className={`${shell} transition-colors hover:bg-experience/[0.04]`}
+                  >
+                    {body}
+                  </a>
+                ) : (
+                  <div key={child.name} className={shell}>
+                    {body}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* Deep dives — the two sub-cases that fold under this parent. Open in a
-            new tab, and both pages carry this experience theme. */}
+        {/* The supporting toolkit. Flat cards, each just what it does. The named
+            children above are deliberately not repeated in here. */}
         <section className="border-b border-border bg-secondary/40">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
             <span className="inline-flex items-center gap-2.5">
               <span className="h-px w-6 bg-experience" aria-hidden="true" />
               <span className="text-xs font-semibold uppercase tracking-widest text-experience">
-                Go deeper
+                The rest of the toolkit
               </span>
             </span>
-            <h2 className="mt-6 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
-              Two pieces, in depth
+            <h2 className="mt-6 max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              The smaller automations underneath
             </h2>
             <p className="mt-4 max-w-2xl text-muted-foreground">
-              Two parts of this toolkit have their own full case study. They are sub-cases of the
-              work above, not separate projects.
+              Less visible than the pieces above, and the reason the day runs without me.
             </p>
-            <div className="mt-8 grid gap-5 sm:grid-cols-2">
-              {study.subCases.map((sub) => (
-                <a
-                  key={sub.page}
-                  href={sub.page}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center justify-between gap-4 rounded-xl border border-border bg-card p-6 transition-colors hover:border-experience/50 hover:bg-experience/[0.04]"
-                >
-                  <div>
-                    <h3 className="text-base font-semibold text-foreground">{sub.name}</h3>
-                    <p className="mt-1 text-sm text-muted-foreground">{sub.blurb}</p>
-                  </div>
-                  <ArrowUpRight
-                    className="h-5 w-5 shrink-0 text-experience transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                    aria-hidden="true"
-                  />
-                </a>
+
+            <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {study.automations.map((a) => (
+                <div key={a.title} className="rounded-xl border border-border bg-card p-5">
+                  <h3 className="text-sm font-semibold text-foreground">{a.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{a.does}</p>
+                </div>
               ))}
             </div>
           </div>
@@ -299,7 +316,7 @@ export default function ExperiencePage() {
                 </p>
               </div>
               <a
-                href="/#projects"
+                href="/projects"
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-experience px-5 py-2.5 text-sm font-medium text-experience-foreground transition-opacity hover:opacity-90"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />

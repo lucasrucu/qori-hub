@@ -64,7 +64,7 @@ function Frame({
   );
 }
 
-// HERO — the toolkit as a system: a ring of automation nodes feeding a central
+// HERO: the toolkit as a system: a ring of automation nodes feeding a central
 // "hours saved" hub. The signature visual for the page, on a deep teal HUD.
 export function ExperienceHero() {
   const nodes = [
@@ -135,7 +135,7 @@ export function ExperienceHero() {
   );
 }
 
-// FLAGSHIP — the NoE before/after: a tall "6 hr" manual bar collapsing into a
+// FLAGSHIP: the NoE before/after: a tall "6 hr" manual bar collapsing into a
 // short teal "30-60 min" bar, with the saved delta called out.
 export function ExperienceFlagshipArt() {
   return (
@@ -150,7 +150,7 @@ export function ExperienceFlagshipArt() {
       {/* baseline */}
       <line x1="40" y1="168" x2="296" y2="168" stroke="#E0D4B8" strokeWidth="1.5" />
 
-      {/* BEFORE bar — tall, muted */}
+      {/* BEFORE bar: tall, muted */}
       <g>
         <rect
           x="64"
@@ -170,7 +170,7 @@ export function ExperienceFlagshipArt() {
         </text>
       </g>
 
-      {/* AFTER bar — short, teal */}
+      {/* AFTER bar: short, teal */}
       <g>
         <rect
           x="200"
@@ -206,7 +206,7 @@ export function ExperienceFlagshipArt() {
   );
 }
 
-// META — the AI assistant orchestrating the toolkit: a central brain node with
+// META: the AI assistant orchestrating the toolkit: a central brain node with
 // branches out to background agents running the tools, on a deep teal HUD.
 export function ExperienceMetaArt() {
   const agents = [

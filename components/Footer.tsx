@@ -36,7 +36,7 @@ export function Footer() {
         <div className="mt-10 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-col gap-3">
             <QoriMark glyph="q" label="Qori" />
-            <p className="text-sm text-muted-foreground">Built for myself — but feel free to explore.</p>
+            <p className="text-sm text-muted-foreground">Built for myself, but feel free to explore.</p>
           </div>
           <div className="flex items-center gap-5 text-muted-foreground">
             <a

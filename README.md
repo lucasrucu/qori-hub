@@ -16,19 +16,19 @@
 </div>
 
 <p align="center">
-  <img src="docs/cover.png" alt="Qori — portfolio hub" width="900" />
+  <img src="docs/cover.png" alt="Qori, portfolio hub" width="900" />
 </p>
 
 ---
 
-The umbrella home for **[qori.land](https://qori.land)** — a single-page index of the tools Lucas Ruiz
+The umbrella home for **[qori.land](https://qori.land)**, a single-page index of the tools Lucas Ruiz
 builds and uses. *Qori* is Quechua for **gold**, which is where the amber accent comes from. The hub
 links out to three independently deployed projects, all sharing one design system.
 
 ## What it does
 
 A static, single-page portfolio: a hero, three project cards, and a footer. No auth, no database, no
-API routes — just a clean, fast front door that points to each project.
+API routes: just a clean, fast front door that points to each project.
 
 | Project | What it is | Live |
 |---|---|---|

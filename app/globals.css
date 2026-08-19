@@ -106,7 +106,7 @@
 }
 
 @layer base {
-  /* Sovereign theme — the dashboard's active default (light, warm cream + amber). */
+  /* Sovereign theme: the dashboard's active default (light, warm cream + amber). */
   :root {
     --background: 48 33% 97%;
     --foreground: 25 20% 12%;
@@ -131,7 +131,7 @@
     --negative: 0 72% 48%;
     --radius: 0.625rem;
 
-    /* Patina — the accent for the automation case-study template: a deep jewel
+    /* Patina, the accent for the automation case-study template: a deep jewel
        teal (the green-blue of weathered metal). Distinct from the Sovereign
        amber, but a complementary jewel tone that pairs naturally with gold.
        Color-codes /commissioning-automation, its sub-cases (/noe, /pims-rfcc),
@@ -140,7 +140,7 @@
     --experience-foreground: 0 0% 100%;
     --experience-bright: 174 72% 41%;
 
-    /* Quorum — the agent-company OS accent, pulled straight from its brand
+    /* Quorum: the agent-company OS accent, pulled straight from its brand
        mark (quorum-mark.svg): electric agent blue #4d7cfe on deep navy
        #141626, with lavender #8388ad nodes. Color-codes /quorum and the
        homepage Quorum card. */

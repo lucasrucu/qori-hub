@@ -1,4 +1,4 @@
-/* X/Twitter card — same artwork as the OpenGraph image.
+/* X/Twitter card: same artwork as the OpenGraph image.
    Declared as its own module (literal exports) so Next.js statically
    recognizes the edge runtime; a bare re-export of `runtime` is not
    recognized as a string literal and falls back to the wrong runtime. */

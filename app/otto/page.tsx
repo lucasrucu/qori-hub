@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ArrowLeft, Brain, Mic, Workflow, Zap } from "lucide-react";
+import { ArrowLeft, Brain, CalendarClock, Code2, Mic, Workflow, Zap } from "lucide-react";
 
 import { Eyebrow } from "@/components/Eyebrow";
 import { OttoCommandDemo, OttoOrbDemo } from "@/components/OttoMotion";
@@ -11,10 +11,16 @@ export const metadata: Metadata = {
   description: OTTO.intro,
 };
 
+// SECURITY, before adding anything to this page: publish capability only.
+// Never how Lucas reaches Otto, where it runs, its endpoints, transports,
+// ports, tokens, hostnames, or any deployment detail. See the block comment
+// on OTTO in lib/profile.ts.
 const CAP_ICONS = {
   mic: Mic,
   workflow: Workflow,
   zap: Zap,
+  code: Code2,
+  schedule: CalendarClock,
   brain: Brain,
 } as const;
 
@@ -27,7 +33,7 @@ export default function OttoPage() {
             <QoriMark glyph="q" label="Qori" />
           </a>
           <a
-            href="/#projects"
+            href="/projects"
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
@@ -41,12 +47,16 @@ export default function OttoPage() {
         <section className="border-b border-border">
           <div className="mx-auto grid max-w-5xl items-center gap-12 px-6 py-20 sm:py-24 md:grid-cols-[1.4fr_1fr]">
             <div>
-              <Eyebrow>Featured build</Eyebrow>
+              <Eyebrow>{OTTO.eyebrow}</Eyebrow>
               <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
                 {OTTO.name}
               </h1>
               <p className="mt-4 text-xl text-foreground/90">{OTTO.tagline}</p>
               <p className="mt-6 max-w-xl text-lg text-muted-foreground">{OTTO.intro}</p>
+              <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/50 px-3 py-1 text-xs font-medium text-primary">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+                {OTTO.status}
+              </p>
             </div>
             <div className="mx-auto w-full max-w-sm md:mx-0">
               <OttoOrbDemo />
@@ -75,7 +85,7 @@ export default function OttoPage() {
             <h2 className="mt-6 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               Capabilities
             </h2>
-            <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {OTTO.capabilities.map((cap) => {
                 const Icon = CAP_ICONS[cap.icon];
                 return (
@@ -92,8 +102,33 @@ export default function OttoPage() {
           </div>
         </section>
 
+        {/* Concrete jobs. The capabilities above say what kind of thing it is;
+            this says what it actually did this week. */}
+        <section className="border-b border-border bg-secondary/60">
+          <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+            <Eyebrow>In practice</Eyebrow>
+            <h2 className="mt-6 max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              Real jobs it runs
+            </h2>
+            <ul className="mt-10 grid gap-4 sm:grid-cols-2">
+              {OTTO.does.map((item) => (
+                <li
+                  key={item}
+                  className="flex items-start gap-3 rounded-xl border border-border bg-card p-5 text-sm leading-relaxed text-foreground/80"
+                >
+                  <span
+                    className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
+                    aria-hidden="true"
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
         {/* Demos + architecture */}
-        <section className="bg-secondary/60 border-b border-border">
+        <section className="border-b border-border">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
             <div className="grid gap-12 md:grid-cols-[1.2fr_1fr]">
               <div>
@@ -141,7 +176,7 @@ export default function OttoPage() {
                 </p>
               </div>
               <a
-                href="/#projects"
+                href="/projects"
                 className="inline-flex shrink-0 items-center justify-center gap-2 rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
               >
                 <ArrowLeft className="h-4 w-4" aria-hidden="true" />

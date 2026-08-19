@@ -40,6 +40,6 @@ next-env.d.ts
 *.swp
 *.swo
 
-# Claude Code — keep shared launch config, ignore local session/settings
+# Claude Code: keep shared launch config, ignore local session/settings
 .claude/*
 !.claude/launch.json
