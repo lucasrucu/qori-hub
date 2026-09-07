@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${SITE_URL}/commissioning-automation`, priority: 0.7, changeFrequency: "yearly" },
     { url: `${SITE_URL}/noe`, priority: 0.6, changeFrequency: "yearly" },
     { url: `${SITE_URL}/pims-rfcc`, priority: 0.6, changeFrequency: "yearly" },
+    { url: `${SITE_URL}/amaru`, priority: 0.7, changeFrequency: "monthly" },
     { url: `${SITE_URL}/otto`, priority: 0.6, changeFrequency: "yearly" },
     { url: `${SITE_URL}/quorum`, priority: 0.6, changeFrequency: "yearly" },
   ];

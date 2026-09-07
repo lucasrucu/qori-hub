@@ -1,31 +1,33 @@
 import type { Metadata } from "next";
-import { ArrowLeft, Brain, CalendarClock, Code2, Mic, Workflow, Zap } from "lucide-react";
+import { ArrowLeft, Code2, GitBranch, Mic, MonitorSmartphone, ShieldCheck, Workflow } from "lucide-react";
 
+import { AmaruRecordDemo, AmaruSplitDemo } from "@/components/AmaruMotion";
+import { CardArt } from "@/components/CardArt";
 import { Eyebrow } from "@/components/Eyebrow";
-import { OttoCommandDemo, OttoOrbDemo } from "@/components/OttoMotion";
 import { QoriMark } from "@/components/QoriMark";
 import { SiteContact } from "@/components/SiteContact";
-import { OTTO, PROFILE } from "@/lib/profile";
+import { AMARU, PROFILE } from "@/lib/profile";
 
 export const metadata: Metadata = {
-  title: `${OTTO.name}: ${OTTO.tagline}`,
-  description: OTTO.intro,
+  title: `${AMARU.name}: ${AMARU.tagline}`,
+  description: AMARU.intro,
 };
 
-// SECURITY, before adding anything to this page: publish capability only.
-// Never how Lucas reaches Otto, where it runs, its endpoints, transports,
-// ports, tokens, hostnames, or any deployment detail. See the block comment
-// on OTTO in lib/profile.ts.
+// SECURITY, before adding anything to this page: publish the SHAPE and the
+// JUDGEMENT, never the CONTENTS. This assistant runs Lucas's real life, so a
+// single example carrying real input would give away more than the whole rest
+// of the page. No personal data, no schema, no deployment detail, no costs.
+// See the block comment on AMARU in lib/profile.ts.
 const CAP_ICONS = {
   mic: Mic,
   workflow: Workflow,
-  zap: Zap,
   code: Code2,
-  schedule: CalendarClock,
-  brain: Brain,
+  browser: MonitorSmartphone,
+  review: ShieldCheck,
+  deploy: GitBranch,
 } as const;
 
-export default function OttoPage() {
+export default function AmaruPage() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur">
@@ -48,29 +50,40 @@ export default function OttoPage() {
         <section className="border-b border-border">
           <div className="mx-auto grid max-w-5xl items-center gap-12 px-6 py-20 sm:py-24 md:grid-cols-[1.4fr_1fr]">
             <div>
-              <Eyebrow>{OTTO.eyebrow}</Eyebrow>
+              <Eyebrow>{AMARU.eyebrow}</Eyebrow>
               <h1 className="mt-6 text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
-                {OTTO.name}
+                {AMARU.name}
               </h1>
-              <p className="mt-4 text-xl text-foreground/90">{OTTO.tagline}</p>
-              <p className="mt-6 max-w-xl text-lg text-muted-foreground">{OTTO.intro}</p>
-              <p className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/50 px-3 py-1 text-xs font-medium text-primary">
-                <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
-                {OTTO.status}
-              </p>
+              <p className="mt-4 text-xl text-foreground/90">{AMARU.tagline}</p>
+              <p className="mt-6 max-w-xl text-lg text-muted-foreground">{AMARU.intro}</p>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <p className="inline-flex items-center gap-2 rounded-full border border-primary/50 px-3 py-1 text-xs font-medium text-primary">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" aria-hidden="true" />
+                  {AMARU.status}
+                </p>
+                <a
+                  href="/otto"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1 text-xs font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <ArrowLeft className="h-3 w-3" aria-hidden="true" />
+                  Otto was v1
+                </a>
+              </div>
             </div>
-            <div className="mx-auto w-full max-w-sm md:mx-0">
-              <OttoOrbDemo />
+            {/* The coded card artwork, reused at hero size: the app on the left
+                feeding a queue into a router and its specialist agents. */}
+            <div className="mx-auto w-full max-w-sm overflow-hidden rounded-xl border border-border md:mx-0">
+              <CardArt art="amaru" />
             </div>
           </div>
         </section>
 
         {/* What it is */}
-        <section className="bg-secondary/60 border-b border-border">
+        <section className="border-b border-border bg-secondary/60">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
             <Eyebrow>What it is</Eyebrow>
             <div className="mt-6 max-w-3xl space-y-4">
-              {OTTO.what.map((para) => (
+              {AMARU.what.map((para) => (
                 <p key={para} className="text-lg leading-relaxed text-foreground/80">
                   {para}
                 </p>
@@ -87,7 +100,7 @@ export default function OttoPage() {
               Capabilities
             </h2>
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {OTTO.capabilities.map((cap) => {
+              {AMARU.capabilities.map((cap) => {
                 const Icon = CAP_ICONS[cap.icon];
                 return (
                   <div key={cap.title} className="rounded-lg border border-border bg-card p-6">
@@ -103,16 +116,46 @@ export default function OttoPage() {
           </div>
         </section>
 
-        {/* Concrete jobs. The capabilities above say what kind of thing it is;
-            this says what it actually did this week. */}
+        {/* The principles. This is the section the page exists for: v1 is what
+            taught them, and each one is a rule that came out of a real defect. */}
         <section className="border-b border-border bg-secondary/60">
+          <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
+            <Eyebrow>What v1 taught it</Eyebrow>
+            <h2 className="mt-6 max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
+              Four rules, each one a mistake I made first
+            </h2>
+            <p className="mt-4 max-w-2xl text-muted-foreground">
+              A year of using v1 every day is the only reason these exist. None of them is a
+              preference. Each is the shape of a failure, written down so the system cannot
+              repeat it.
+            </p>
+            <ol className="mt-10 grid gap-5 sm:grid-cols-2">
+              {AMARU.principles.map((p, i) => (
+                <li key={p.rule} className="rounded-xl border border-border bg-card p-6">
+                  <span className="font-mono text-xs font-semibold text-primary">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-3 text-base font-semibold leading-snug text-foreground">
+                    {p.rule}
+                  </h3>
+                  <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
+                    {p.detail}
+                  </p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+
+        {/* Concrete jobs, in the abstract. */}
+        <section className="border-b border-border">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
             <Eyebrow>In practice</Eyebrow>
             <h2 className="mt-6 max-w-2xl text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
               Real jobs it runs
             </h2>
             <ul className="mt-10 grid gap-4 sm:grid-cols-2">
-              {OTTO.does.map((item) => (
+              {AMARU.does.map((item) => (
                 <li
                   key={item}
                   className="flex items-start gap-3 rounded-xl border border-border bg-card p-5 text-sm leading-relaxed text-foreground/80"
@@ -129,17 +172,20 @@ export default function OttoPage() {
         </section>
 
         {/* Demos + architecture */}
-        <section className="border-b border-border">
+        <section className="border-b border-border bg-secondary/60">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
             <div className="grid gap-12 md:grid-cols-[1.2fr_1fr]">
               <div>
-                <Eyebrow>See it run</Eyebrow>
+                <Eyebrow>See the shape</Eyebrow>
                 <h2 className="mt-6 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">
                   In motion
                 </h2>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                  Diagrams, not screenshots. {AMARU.privacy}
+                </p>
                 <div className="mt-8 grid gap-4">
-                  <OttoOrbDemo />
-                  <OttoCommandDemo />
+                  <AmaruSplitDemo />
+                  <AmaruRecordDemo />
                 </div>
               </div>
               <div>
@@ -148,7 +194,7 @@ export default function OttoPage() {
                   How it works
                 </h2>
                 <ul className="mt-8 space-y-3">
-                  {OTTO.architecture.map((item) => (
+                  {AMARU.architecture.map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm text-foreground/80">
                       <span
                         className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-primary"
@@ -169,10 +215,10 @@ export default function OttoPage() {
             <div className="flex flex-col items-start gap-6 rounded-xl border border-border bg-card p-8 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 className="text-xl font-semibold tracking-tight text-foreground">
-                  Otto ran the work this portfolio talks about first. Amaru runs it now.
+                  Otto proved the idea. Amaru is the version that learned from it.
                 </h2>
                 <p className="mt-1.5 text-sm text-muted-foreground">
-                  The code stays private. The capability is the point. See the rest of what{" "}
+                  The contents stay private. The architecture is the point. See the rest of what{" "}
                   {PROFILE.firstName} builds.
                 </p>
               </div>

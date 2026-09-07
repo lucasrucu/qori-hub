@@ -7,6 +7,7 @@ import { ArrowLeft, FileText, Paintbrush, Search, Users } from "lucide-react";
 import { Eyebrow } from "@/components/Eyebrow";
 import { NoeArchitecture, ToolFrame } from "@/components/NoeMotion";
 import { QoriMark } from "@/components/QoriMark";
+import { SiteContact } from "@/components/SiteContact";
 import { NOE, PROFILE } from "@/lib/profile";
 
 export const metadata: Metadata = {
@@ -277,6 +278,8 @@ export default function NoePage() {
           </div>
         </section>
       </main>
+
+      <SiteContact accent="experience" />
     </div>
   );
 }

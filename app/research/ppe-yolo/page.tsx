@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 
 import { Eyebrow } from "@/components/Eyebrow";
 import { QoriMark } from "@/components/QoriMark";
+import { SiteContact } from "@/components/SiteContact";
 import { PROFILE, RESEARCH } from "@/lib/profile";
 import { scholarlyArticleJsonLd } from "@/lib/schema";
 
@@ -188,6 +189,8 @@ export default function PpeYoloResearchPage() {
           </div>
         </section>
       </main>
+
+      <SiteContact />
     </div>
   );
 }

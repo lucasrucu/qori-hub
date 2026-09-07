@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowUpRight, Users } from "lucide-react";
 
 import { ExperienceHero, ExperienceMetaArt } from "@/components/ExperienceMotion";
 import { QoriMark } from "@/components/QoriMark";
+import { SiteContact } from "@/components/SiteContact";
 import { EXPERIENCE_STUDY, PROFILE } from "@/lib/profile";
 
 export const metadata: Metadata = {
@@ -265,6 +266,8 @@ export default function ExperiencePage() {
           </div>
         </section>
       </main>
+
+      <SiteContact accent="experience" />
     </div>
   );
 }

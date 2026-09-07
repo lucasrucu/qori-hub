@@ -4,6 +4,7 @@ import { ArrowLeft, FileSignature, FileBarChart } from "lucide-react";
 import { Eyebrow } from "@/components/Eyebrow";
 import { PimsPipelineHero, PimsReportArt, PimsSignoffArt } from "@/components/PimsMotion";
 import { QoriMark } from "@/components/QoriMark";
+import { SiteContact } from "@/components/SiteContact";
 import { PIMS_RFCC, PROFILE } from "@/lib/profile";
 
 export const metadata: Metadata = {
@@ -196,6 +197,8 @@ export default function PimsRfccPage() {
           </div>
         </section>
       </main>
+
+      <SiteContact accent="experience" />
     </div>
   );
 }

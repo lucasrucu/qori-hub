@@ -87,8 +87,33 @@
   96% { transform: scaleY(0.12); }
 }
 
+/* Amaru "in motion" panels (components/AmaruMotion.tsx). Chips and lines
+   reveal in sequence, a command line types itself. Pure CSS, looped. */
+@keyframes amaru-chip {
+  0%, 8% { opacity: 0; transform: translateY(3px); }
+  18%, 88% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(0); }
+}
+@keyframes amaru-line {
+  0%, 20% { opacity: 0; transform: translateY(4px); }
+  32%, 90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(0); }
+}
+@keyframes amaru-pulse {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+@keyframes amaru-type {
+  0% { width: 0; }
+  40%, 100% { width: 11.5rem; }
+}
+
 /* Respect reduced-motion: freeze the loops in a sensible resting state. */
 @media (prefers-reduced-motion: reduce) {
+  [class*="amaru-chip"],
+  [class*="amaru-line"],
+  [class*="amaru-pulse"],
+  [class*="amaru-type"],
   [class*="otto-breathe"],
   [class*="otto-spin"],
   [class*="otto-type"],
@@ -103,6 +128,9 @@
   }
   [class*="otto-type"] { width: 13.5rem !important; }
   [class*="otto-line"] { opacity: 1 !important; }
+  [class*="amaru-type"] { width: 11.5rem !important; }
+  [class*="amaru-chip"],
+  [class*="amaru-line"] { opacity: 1 !important; }
 }
 
 @layer base {

@@ -10,6 +10,7 @@ import {
   QuorumIsolationArt,
 } from "@/components/QuorumMotion";
 import { QoriMark } from "@/components/QoriMark";
+import { SiteContact } from "@/components/SiteContact";
 import { PROFILE, QUORUM } from "@/lib/profile";
 
 export const metadata: Metadata = {
@@ -253,6 +254,8 @@ export default function QuorumPage() {
           </div>
         </section>
       </main>
+
+      <SiteContact accent="quorum" />
     </div>
   );
 }

@@ -277,6 +277,7 @@ export const FEATURED_PROJECTS: Project[] = [
     description:
       "A Next.js progressive web app, a Node worker running a queue of specialist agents behind a router, and a Postgres schema underneath, running unattended. Training, money, career and notes each get their own agent, and the arithmetic they need is done in SQL and handed to them, so an agent chooses and never has to remember. Otto was v1. This is what I use now.",
     tech: ["TypeScript", "Next.js", "Node", "PostgreSQL", "Claude API", "Docker", "systemd"],
+    page: "/amaru",
     art: "amaru",
   },
   {
@@ -298,10 +299,11 @@ export const FEATURED_PROJECTS: Project[] = [
 // more than it adds, which is why rapid-cut and VideoOS came off it: neither
 // had a live link, a repo, or a case study, so there was nothing to click.
 //
-// Two cards break that rule today, Amaru (featured) and Kallpa: both
-// repositories are private and neither has a case study yet. They stay because
-// a shelf without the assistant in daily use misrepresents the work. A case
-// study page for Amaru is the fix, not removing the card.
+// One card breaks that rule today, Kallpa: the repository is private and there
+// is no case study yet, so nothing on the card is clickable. It stays because
+// it is the only build on the shelf that talks to hardware. Amaru used to sit
+// here too; a case study at /amaru was the fix, and the same fix is available
+// to Kallpa whenever the build is worth a page.
 export const MORE_PROJECTS: Project[] = [
   {
     name: "Otto",
@@ -496,6 +498,120 @@ export const OTTO = {
     "Demo: the orb listening, then speaking back",
     "Demo: a voice command launching an automation",
   ],
+} as const;
+
+// Amaru showcase content. v2 of the personal assistant and the one in daily
+// use. Lives at /amaru.
+//
+// SECURITY, read before editing. Amaru is wired into Lucas's real life and
+// this page is a live attack surface. It is also the page most likely to leak
+// something personal, because the system's whole value is the record it keeps.
+//
+// Publish the SHAPE and the JUDGEMENT, never the CONTENTS. Allowed: what kind
+// of system it is, the principles that produced it, capabilities in the
+// abstract, that it succeeds Otto. Never: anything he said to it, anything
+// about his training, money, health or employer, table or column names, row
+// counts, schema, hostnames, environment variable names, repository paths,
+// endpoints, or running costs. If you are unsure whether a line is personal,
+// leave it out.
+export const AMARU = {
+  name: "Amaru",
+  // Deliberately parallel with Otto's "Personal build · v1" so the lineage
+  // reads at a glance.
+  eyebrow: "Personal build · v2",
+  tagline: "A voice-first assistant with specialist agents behind a router.",
+  intro:
+    "Amaru is the second version of my personal AI operating layer: an installed app I talk to, a queue of work on a small server, and a written record underneath that both of us read and write. Otto was v1 and proved the idea. Amaru is the rebuild that fixed what v1 got wrong.",
+  status: "v2. In daily use, running unattended.",
+  what: [
+    "Otto worked, and I used it every day, which is exactly how I found its limits. It reasoned from a blank page every time. Ask it the same kind of question twice in one week and it could answer both well and still contradict itself, because nothing it produced knew what it had produced before. That is not a prompt you can rewrite your way out of.",
+    "So Amaru splits the work in two. Anything that can be counted is counted first, in the database, and handed to the model as a number. Anything that needs a judgement call is left to the model. The agent chooses; it never has to remember, so it cannot forget. Everything else on this page follows from that one split.",
+  ],
+  capabilities: [
+    {
+      icon: "mic",
+      title: "Voice in, anywhere",
+      detail:
+        "An installed app, voice first, typing as the fallback. What I say lands exactly as I said it and is never edited or deleted. Everything derived from it is written somewhere else.",
+    },
+    {
+      icon: "workflow",
+      title: "A router in front of specialists",
+      detail:
+        "One way in, several agents behind it. Each specialist knows one domain and carries only the instructions for that domain, and the router decides where a piece of work belongs. No agent carries the whole system in its head.",
+    },
+    {
+      icon: "code",
+      title: "It writes and ships its own software",
+      detail:
+        "It branches, writes the code, runs the checks, and opens the change. Anything that leaves the machine waits behind an approvals gate that I hold, so it can build all night and still not act on my behalf without me.",
+    },
+    {
+      icon: "browser",
+      title: "A browser it looks through",
+      detail:
+        "Plenty of systems never shipped an API. The agent drives a real browser against them, reads the rendered page the way a person would, and checks its own work by looking at what it built.",
+    },
+    {
+      icon: "review",
+      title: "The reviewer is not the author",
+      detail:
+        "A separate profile checks the work of the one that wrote it, and has to reproduce the defect before the fix and after it. A clean typecheck is not evidence that anything works.",
+    },
+    {
+      icon: "deploy",
+      title: "It deploys itself, and can undo it",
+      detail:
+        "A merge triggers its own rebuild and restart. The rollback runs on the host rather than inside the thing it just replaced, which is the difference between a bad deploy that recovers and one that takes the recovery down with it.",
+    },
+  ] as const,
+  // The four principles are the point of the page. Each one is a real defect
+  // v1 hit, stated as the rule that came out of it.
+  principles: [
+    {
+      rule: "Deterministic things go in SQL. Judgement goes in the model.",
+      detail:
+        "Coverage, recency and volume are arithmetic, not opinions. They are computed before anything is asked of a model and handed over as numbers. v1 generated each answer statelessly and the seams showed in the output.",
+    },
+    {
+      rule: "Raw input and derived records are separate.",
+      detail:
+        "What I said is kept untouched. Everything a parser makes of it lives elsewhere. So improving a parser means the old input can be read again, instead of a bad reading being permanent, which is what happened when v1 stored the conclusion and threw away the input.",
+    },
+    {
+      rule: "Facts and decisions are versioned, never overwritten.",
+      detail:
+        "Changing my mind writes a new record that supersedes the old one rather than replacing it. Why we changed our mind is usually the part worth keeping, and it is the first thing an overwrite destroys.",
+    },
+    {
+      rule: "Silence is not a decision.",
+      detail:
+        "An empty day and a day considered and deliberately left empty are different records. If they look identical, nothing downstream can tell a gap from a choice, and it will guess wrong in both directions.",
+    },
+  ] as const,
+  // Concrete jobs, in the abstract. Capability, never contents.
+  does: [
+    "Take something spoken in passing and file it against the right work without me choosing where.",
+    "Compute the numbers a decision depends on before any model is asked to make it.",
+    "Open, review and merge changes across several repositories, behind an approval I hold.",
+    "Drive a browser against systems that never shipped an API, and read the result.",
+    "Run standing jobs overnight and report what changed while I slept.",
+    "Deploy itself, and put itself back if the new version does not come up.",
+    "Hand the next session the written record, so a settled question is never asked twice.",
+  ],
+  architecture: [
+    "An installed progressive web app is the only surface. Voice first, typing as the fallback, nothing heavy running in the app.",
+    "A queue on a small server, and a worker that pulls jobs off it. Work survives a closed tab and a dead connection.",
+    "A router in front of specialist agents, one per domain, each carrying only its own instructions.",
+    "A Postgres record underneath. Views do the arithmetic and hand agents the numbers, so no agent has to reconstruct history to act.",
+    "Raw input in one place, derived rows in another. Neither can overwrite the other.",
+    "Every session opens by reading the record and closes by writing to it. Nothing important lives only in a conversation.",
+    "A review profile that reproduces a defect before and after the fix, and a self-deploy whose rollback runs on the host.",
+  ],
+  // Why the page shows the shape and not the contents. Says the quiet part
+  // out loud so a reader does not assume there is nothing to show.
+  privacy:
+    "This one runs my actual life, so the contents stay private and always will. The architecture is what makes it work, and the architecture is the part worth showing.",
 } as const;
 
 // PIMS & RFCC case-study content. Real field-engineering automation Lucas runs

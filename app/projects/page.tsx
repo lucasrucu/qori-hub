@@ -5,6 +5,7 @@ import { CardArt } from "@/components/CardArt";
 import { Eyebrow } from "@/components/Eyebrow";
 import { ProjectCard } from "@/components/Projects";
 import { QoriMark } from "@/components/QoriMark";
+import { SiteContact } from "@/components/SiteContact";
 import { FEATURED_PROJECTS, IN_BUILD, MORE_PROJECTS, type Project } from "@/lib/profile";
 
 export const metadata: Metadata = {
@@ -183,6 +184,8 @@ export default function AllProjectsPage() {
           </div>
         </section>
       </main>
+
+      <SiteContact />
     </div>
   );
 }
