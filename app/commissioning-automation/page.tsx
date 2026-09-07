@@ -69,26 +69,12 @@ export default function ExperiencePage() {
               </div>
             </div>
 
-            {/* Headline stat: the 1,000+ hours, framed as an estimate. */}
-            <div className="mt-14 flex flex-col gap-6 rounded-2xl border border-experience-bright/25 bg-white/[0.04] p-7 backdrop-blur sm:flex-row sm:items-center sm:justify-between">
-              <div className="flex items-baseline gap-3">
-                <span className="text-5xl font-semibold tracking-tight text-experience-bright sm:text-6xl">
-                  {study.headline.value}
-                </span>
-                <span className="text-lg font-medium text-white/80">{study.headline.unit}</span>
-              </div>
-              <div className="max-w-md">
-                <p className="text-sm leading-relaxed text-white/80">{study.headline.label}</p>
-                <p className="mt-1.5 font-mono text-[11px] uppercase tracking-wide text-experience-bright/70">
-                  {study.headline.note}
-                </p>
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* By the numbers: the scale it ran against + the NoE headline stat.
-            Light band so it breaks up the teal. */}
+        {/* By the numbers: the scale it ran against. Light band so it breaks
+            up the teal. No time-saved figure lives here or anywhere else on the
+            page: the only numbers are the project's scale anchors. */}
         <section className="border-b border-border bg-secondary/40">
           <div className="mx-auto max-w-5xl px-6 py-16 sm:py-20">
             <span className="inline-flex items-center gap-2.5">
@@ -98,41 +84,8 @@ export default function ExperiencePage() {
               </span>
             </span>
 
-            {/* The NoE flagship, as one stat. */}
-            <div className="mt-8 overflow-hidden rounded-2xl border border-experience/30 bg-card">
-              <div className="grid gap-px bg-border sm:grid-cols-[1.4fr_1fr_1fr_1fr]">
-                <div className="bg-card p-6">
-                  <p className="font-mono text-[11px] uppercase tracking-wide text-experience">
-                    Biggest single win
-                  </p>
-                  <p className="mt-1.5 text-base font-medium leading-snug text-foreground">
-                    {study.noe.label}
-                  </p>
-                </div>
-                <div className="bg-card p-6">
-                  <p className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
-                    By hand
-                  </p>
-                  <p className="mt-1.5 text-2xl font-semibold text-foreground">{study.noe.before}</p>
-                </div>
-                <div className="bg-card p-6">
-                  <p className="font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
-                    With the tool
-                  </p>
-                  <p className="mt-1.5 text-2xl font-semibold text-experience">{study.noe.after}</p>
-                </div>
-                <div className="bg-experience p-6 text-experience-foreground">
-                  <p className="font-mono text-[11px] uppercase tracking-wide opacity-80">Saved</p>
-                  <p className="mt-1.5 text-2xl font-semibold">{study.noe.saved}</p>
-                </div>
-              </div>
-            </div>
-            <p className="mt-2.5 font-mono text-[11px] uppercase tracking-wide text-muted-foreground">
-              {study.noe.note}
-            </p>
-
             {/* The scale anchors. */}
-            <div className="mt-10 grid gap-5 sm:grid-cols-3">
+            <div className="mt-8 grid gap-5 sm:grid-cols-3">
               {study.scale.map((s) => (
                 <div key={s.label} className="rounded-xl border border-border bg-card p-6">
                   <p className="text-3xl font-semibold tracking-tight text-experience sm:text-4xl">
@@ -207,8 +160,8 @@ export default function ExperiencePage() {
               The named pieces
             </h2>
             <p className="mt-4 max-w-2xl text-muted-foreground">
-              Each of these is its own project with its own numbers. Two have a full case study;
-              the rest are described here.
+              Each of these is its own project. Two have a full case study; the rest are
+              described here.
             </p>
 
             <div className="mt-10 grid gap-5 sm:grid-cols-2">
@@ -284,20 +237,6 @@ export default function ExperiencePage() {
                   <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{a.does}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Honest estimates note. */}
-        <section className="border-b border-border">
-          <div className="mx-auto max-w-5xl px-6 py-12">
-            <div className="max-w-3xl rounded-xl border-l-2 border-experience bg-card p-6">
-              <p className="font-mono text-[11px] uppercase tracking-wide text-experience">
-                On the numbers
-              </p>
-              <p className="mt-2 text-sm leading-relaxed text-foreground/80">
-                {study.estimatesNote}
-              </p>
             </div>
           </div>
         </section>

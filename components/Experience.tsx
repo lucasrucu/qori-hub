@@ -12,7 +12,7 @@ export function Experience() {
           Where I&apos;ve worked
         </h2>
 
-        <ol className="mt-10 space-y-8 border-l-2 border-border pl-6 sm:pl-8">
+        <ol className="mt-10 space-y-10 border-l-2 border-border pl-6 sm:pl-8">
           {EXPERIENCE.map((job) => (
             <li key={`${job.company}-${job.dates}`} className="relative">
               <span
@@ -29,12 +29,34 @@ export function Experience() {
               <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
                 {job.blurb}
               </p>
+
+              {/* The projects inside the position. One job, several projects,
+                  which is why this is a nested list and not more timeline dots. */}
+              <ol className="mt-5 space-y-4 border-l border-border pl-4 sm:pl-5">
+                {job.projects.map((project) => (
+                  <li key={`${project.name}-${project.dates}`} className="relative">
+                    <span
+                      className="absolute -left-[1.2rem] top-2 h-1.5 w-1.5 rounded-full bg-primary/70 sm:-left-[1.45rem]"
+                      aria-hidden="true"
+                    />
+                    <div className="flex flex-col gap-x-3 sm:flex-row sm:items-baseline sm:justify-between">
+                      <h4 className="text-sm font-medium text-foreground">{project.name}</h4>
+                      <span className="shrink-0 font-mono text-xs text-muted-foreground">
+                        {project.dates}
+                      </span>
+                    </div>
+                    <p className="mt-1 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+                      {project.blurb}
+                    </p>
+                  </li>
+                ))}
+              </ol>
             </li>
           ))}
         </ol>
 
-        {/* Says the overlaps are deliberate. Without it the timeline reads as
-            three roles logged wrong rather than concurrent assignments. */}
+        {/* Says the overlaps are deliberate. Without it the nested list reads
+            as projects logged wrong rather than concurrent ones. */}
         <p className="mt-6 max-w-2xl text-sm text-muted-foreground">{EXPERIENCE_NOTE}</p>
 
         <div className="mt-10 flex items-start gap-3 rounded-lg border border-border bg-card p-5">

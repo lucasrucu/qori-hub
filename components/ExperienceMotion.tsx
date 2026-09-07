@@ -1,3 +1,4 @@
+import { SCALE } from "@/lib/profile";
 import { cn } from "@/lib/utils";
 
 // Bespoke, coded visuals for the /experience case-study page. Same Sovereign
@@ -65,7 +66,7 @@ function Frame({
 }
 
 // HERO: the toolkit as a system: a ring of automation nodes feeding a central
-// "hours saved" hub. The signature visual for the page, on a deep teal HUD.
+// hub carrying the project's scale. The signature visual for the page, on a deep teal HUD.
 export function ExperienceHero() {
   const nodes = [
     { a: -90, r: 70 },
@@ -80,7 +81,7 @@ export function ExperienceHero() {
   const cx = 160;
   const cy = 100;
   return (
-    <Frame title="A toolkit of automations feeding hours back into the project" dark className="aspect-[16/9]">
+    <Frame title="A toolkit of automations running against the project's equipment tags" dark className="aspect-[16/9]">
       {/* faint orbit rings */}
       <g transform={`translate(${cx},${cy})`}>
         <circle r="70" fill="none" stroke={`${TEAL_BRIGHT}22`} strokeWidth="1" />
@@ -117,89 +118,16 @@ export function ExperienceHero() {
         );
       })}
 
-      {/* central hub: hours saved */}
+      {/* central hub: the scale the toolkit runs against. No hours figure, on
+          purpose: nothing on this site states one. */}
       <g transform={`translate(${cx},${cy})`}>
         <circle r="34" fill="#0C3633" stroke={TEAL_BRIGHT} strokeWidth="1.6" />
         <circle r="40" fill="none" stroke={`${GOLD}55`} strokeWidth="1" strokeDasharray="3 6" style={spin(12)} />
-        <text x="0" y="-2" textAnchor="middle" fontSize="19" fontWeight="700" fill="#FFFFFF" fontFamily="monospace">
-          1,000+
+        <text x="0" y="3" textAnchor="middle" fontSize="17" fontWeight="700" fill="#FFFFFF" fontFamily="monospace">
+          {SCALE.tags}
         </text>
-        <text x="0" y="13" textAnchor="middle" fontSize="8" fill={TEAL_BRIGHT} fontFamily="monospace">
-          hours saved
-        </text>
-        <text x="0" y="24" textAnchor="middle" fontSize="6" fill={`${GOLD}cc`} fontFamily="monospace">
-          (estimate)
-        </text>
-      </g>
-    </Frame>
-  );
-}
-
-// FLAGSHIP: the NoE before/after: a tall "6 hr" manual bar collapsing into a
-// short teal "30-60 min" bar, with the saved delta called out.
-export function ExperienceFlagshipArt() {
-  return (
-    <Frame title="Energization documents: about six hours by hand down to under an hour">
-      <text x="24" y="34" fontSize="11" fontWeight="700" fill={INK} fontFamily="monospace">
-        NoE generation
-      </text>
-      <text x="24" y="46" fontSize="8" fill="#A89A7E" fontFamily="monospace">
-        per day, heaviest days
-      </text>
-
-      {/* baseline */}
-      <line x1="40" y1="168" x2="296" y2="168" stroke="#E0D4B8" strokeWidth="1.5" />
-
-      {/* BEFORE bar: tall, muted */}
-      <g>
-        <rect
-          x="64"
-          y="64"
-          width="56"
-          height="104"
-          rx="5"
-          fill="#E7D9B4"
-          stroke="#D9CDB2"
-          style={{ animation: "qart-rise 3.4s ease-in-out infinite", transformOrigin: "bottom", transformBox: "fill-box" }}
-        />
-        <text x="92" y="58" textAnchor="middle" fontSize="12" fontWeight="700" fill={INK} fontFamily="monospace">
-          ~6 hrs
-        </text>
-        <text x="92" y="182" textAnchor="middle" fontSize="8" fill="#A89A7E" fontFamily="monospace">
-          by hand
-        </text>
-      </g>
-
-      {/* AFTER bar: short, teal */}
-      <g>
-        <rect
-          x="200"
-          y="142"
-          width="56"
-          height="26"
-          rx="5"
-          fill="url(#exp-clock)"
-          style={{ animation: "qart-rise 3.4s ease-in-out 0.3s infinite", transformOrigin: "bottom", transformBox: "fill-box" }}
-        />
-        <text x="228" y="134" textAnchor="middle" fontSize="11" fontWeight="700" fill={TEAL} fontFamily="monospace">
-          ~30-60m
-        </text>
-        <text x="228" y="182" textAnchor="middle" fontSize="8" fill="#A89A7E" fontFamily="monospace">
-          with the tool
-        </text>
-      </g>
-
-      {/* saved delta arrow */}
-      <defs>
-        <marker id="exp-ah" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto">
-          <path d="M0 0 L6 3 L0 6 z" fill={TEAL} />
-        </marker>
-      </defs>
-      <path d="M126 92 q44 -18 70 44" fill="none" stroke={TEAL} strokeWidth="2" strokeDasharray="5 5" markerEnd="url(#exp-ah)" style={{ animation: "qart-flow 1.6s linear infinite" }} />
-      <g transform="translate(150,88)">
-        <rect x="-30" y="-13" width="60" height="20" rx="10" fill={`${TEAL}1a`} stroke={TEAL} strokeWidth="1.2" />
-        <text x="0" y="1" textAnchor="middle" fontSize="9" fontWeight="700" fill={TEAL} fontFamily="monospace">
-          ~5 hrs back
+        <text x="0" y="16" textAnchor="middle" fontSize="7.5" fill={TEAL_BRIGHT} fontFamily="monospace">
+          equipment tags
         </text>
       </g>
     </Frame>

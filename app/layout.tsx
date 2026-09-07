@@ -17,7 +17,7 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-const TITLE = "Lucas Ruiz · AI & Automation Engineer";
+const TITLE = "Lucas Ruiz · Data & Automation Engineer";
 const DESCRIPTION =
   "I build AI agents and automations that kill manual work in data-heavy industrial environments. Field engineer who builds, builder who has worked the field.";
 

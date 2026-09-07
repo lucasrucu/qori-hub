@@ -7,6 +7,7 @@
 //   amber  #F1AE04   gold-lite #F6C44A   deep #C97A04
 //   ink    #221C14   cream-art #FBF6EA   line #E0D4B8   green #2E7D44
 
+import { SCALE } from "@/lib/profile";
 import { cn } from "@/lib/utils";
 
 export type ArtKey =
@@ -20,7 +21,9 @@ export type ArtKey =
   | "commissioning"
   | "quorum"
   | "cut"
-  | "video";
+  | "video"
+  | "amaru"
+  | "kallpa";
 
 const AMBER = "#F1AE04";
 const GOLD = "#F6C44A";
@@ -30,6 +33,12 @@ const TEAL_BRIGHT = "#1FB8AD";
 
 const spin = (s: number, rev = false): React.CSSProperties => ({
   animation: `otto-spin${rev ? "-rev" : ""} ${s}s linear infinite`,
+  transformOrigin: "center",
+  transformBox: "fill-box",
+});
+
+const breathe = (s: number, d = 0): React.CSSProperties => ({
+  animation: `otto-breathe ${s}s ease-in-out ${d}s infinite`,
   transformOrigin: "center",
   transformBox: "fill-box",
 });
@@ -332,7 +341,7 @@ function Noe() {
 }
 
 // Industrial commissioning automation: the umbrella card. A ring of automation
-// nodes feeding a central "hours saved" hub, on a deep teal HUD. Color-coded to
+// nodes feeding a central hub carrying the project's scale, on a deep teal HUD. Color-coded to
 // the experience accent, distinct from the amber cards.
 function Commissioning() {
   const nodes = [-90, -38, 14, 66, 118, 170, 222, 274];
@@ -340,10 +349,7 @@ function Commissioning() {
   const cy = 100;
   const r = 64;
   return (
-    <ArtFrame
-      title="A toolkit of automations projected to remove 1,000+ hours over the project, an estimate"
-      dark
-    >
+    <ArtFrame title="A toolkit of automations across the project's equipment tags" dark>
       <rect width="320" height="200" fill="#0A2A28" />
       <g transform={`translate(${cx},${cy})`}>
         <circle r={r} fill="none" stroke={`${TEAL_BRIGHT}22`} strokeWidth="1" />
@@ -379,17 +385,13 @@ function Commissioning() {
       <g transform={`translate(${cx},${cy})`}>
         <circle r="32" fill="#0C3633" stroke={TEAL_BRIGHT} strokeWidth="1.6" />
         <circle r="38" fill="none" stroke={`${GOLD}55`} strokeWidth="1" strokeDasharray="3 6" style={spin(12)} />
-        <text x="0" y="-1" textAnchor="middle" fontSize="17" fontWeight="700" fill="#FFFFFF" fontFamily="monospace">
-          1,000+
+        {/* The scale anchor, not an hours figure. This thumbnail is the first
+            thing a visitor sees, and nothing on the site states a time saved. */}
+        <text x="0" y="2" textAnchor="middle" fontSize="15" fontWeight="700" fill="#FFFFFF" fontFamily="monospace">
+          {SCALE.tags}
         </text>
-        <text x="0" y="12" textAnchor="middle" fontSize="7.5" fill={TEAL_BRIGHT} fontFamily="monospace">
-          hours saved
-        </text>
-        {/* The disclaimer belongs ON the graphic. This thumbnail is the first
-            thing a visitor sees, and it used to state the figure as flat fact
-            while the copy beside it and the case study both said estimate. */}
-        <text x="0" y="23" textAnchor="middle" fontSize="6" fill={`${GOLD}cc`} fontFamily="monospace">
-          (estimate)
+        <text x="0" y="14" textAnchor="middle" fontSize="7" fill={TEAL_BRIGHT} fontFamily="monospace">
+          equipment tags
         </text>
       </g>
     </ArtFrame>
@@ -548,6 +550,121 @@ function Video() {
   );
 }
 
+// Amaru: v2 of the assistant. A voice-first app on the left feeds a queue of
+// jobs into a router, which fans out to specialist agents. Same dark HUD as
+// Otto's orb, so the two read as one lineage.
+function Amaru() {
+  const agents = [
+    { y: 46, label: "train" },
+    { y: 82, label: "money" },
+    { y: 118, label: "career" },
+    { y: 154, label: "notes" },
+  ];
+  return (
+    <ArtFrame title="A voice-first app feeding a queue of jobs to a router and specialist agents" dark>
+      {/* the app: a phone frame with the listening orb */}
+      <rect x="26" y="40" width="58" height="120" rx="10" fill="#2A221A" stroke="#F1AE0455" strokeWidth="1.4" />
+      <rect x="44" y="47" width="22" height="3" rx="1.5" fill="#F1AE0440" />
+      <circle cx="55" cy="100" r="13" fill={AMBER} opacity="0.25" style={breathe(3.2)} />
+      <circle cx="55" cy="100" r="8" fill={GOLD} style={breathe(3.2)} />
+      <text x="55" y="146" textAnchor="middle" fontSize="7" fill="#F1AE0499" fontFamily="monospace">
+        listening
+      </text>
+      {/* the queue: jobs flowing from the app to the router */}
+      <path d="M86 100 h50" stroke="#F1AE0455" strokeWidth="1.6" strokeDasharray="5 5" style={{ animation: "qart-flow 1.4s linear infinite" }} />
+      {[92, 106, 120].map((x, i) => (
+        <rect
+          key={x}
+          x={x}
+          y="92"
+          width="10"
+          height="16"
+          rx="2"
+          fill="#F1AE0430"
+          stroke={AMBER}
+          strokeWidth="1"
+          style={breathe(2.6, i * 0.3)}
+        />
+      ))}
+      {/* the router */}
+      <g transform="translate(160,100)">
+        <circle r="26" fill="none" stroke="#F1AE0440" strokeWidth="1" strokeDasharray="3 6" style={spin(12)} />
+        <circle r="18" fill="#2A221A" stroke={AMBER} strokeWidth="1.6" />
+        <path d="M-7 -6 h14 M-7 0 h14 M-7 6 h9" stroke={GOLD} strokeWidth="2" strokeLinecap="round" />
+      </g>
+      {/* fan-out to the specialist agents */}
+      {agents.map((a, i) => (
+        <g key={a.label}>
+          <path
+            d={`M178 100 C 210 100, 210 ${a.y}, 236 ${a.y}`}
+            fill="none"
+            stroke="#F1AE0440"
+            strokeWidth="1.4"
+            strokeDasharray="4 5"
+            style={{ animation: `qart-flow ${1.3 + i * 0.25}s linear infinite` }}
+          />
+          <g transform={`translate(240,${a.y})`}>
+            <rect
+              x="0"
+              y="-11"
+              width="54"
+              height="22"
+              rx="6"
+              fill="#2A221A"
+              stroke={i === 0 ? GOLD : "#F1AE0470"}
+              strokeWidth="1.3"
+              style={breathe(3 + i * 0.4, i * 0.3)}
+            />
+            <circle cx="10" cy="0" r="3" fill={i === 0 ? GOLD : AMBER} />
+            <text x="19" y="3" fontSize="8" fill="#F6E7BF" fontFamily="monospace">
+              {a.label}
+            </text>
+          </g>
+        </g>
+      ))}
+      <text x="160" y="186" textAnchor="middle" fontSize="8" fill="#F1AE0499" fontFamily="monospace">
+        one router, specialist agents, runs unattended
+      </text>
+    </ArtFrame>
+  );
+}
+
+// Kallpa: an ERG-mode session. The trainer at the end of a Bluetooth link, a
+// flat target line, and the live power trace climbing onto it and holding.
+function Kallpa() {
+  const trace = "M140 138 C 160 138, 166 96, 186 94 S 226 90, 246 93 S 280 91, 296 92";
+  return (
+    <ArtFrame title="An indoor trainer holding an ERG target over Bluetooth">
+      {/* the trainer: a wheel with a spinning flywheel mark, on its stand */}
+      <g transform="translate(58,108)">
+        <circle r="26" fill="none" stroke={INK} strokeOpacity="0.45" strokeWidth="2.5" />
+        <circle r="26" fill="none" stroke={AMBER} strokeWidth="2.5" strokeDasharray="20 143" style={spin(3)} />
+        <circle r="7" fill="#FFFDF8" stroke={INK} strokeOpacity="0.45" strokeWidth="2" />
+        <path d="M0 26 v14 M-18 40 h36" fill="none" stroke={INK} strokeOpacity="0.45" strokeWidth="2.5" strokeLinecap="round" />
+      </g>
+      {/* the Bluetooth link from the trainer up to the chart */}
+      <path d="M90 84 q18 -36 42 -30" fill="none" stroke={AMBER} strokeWidth="1.6" strokeDasharray="3 5" style={{ animation: "qart-flow 1.6s linear infinite" }} />
+      <g transform="translate(108,44)" fill="none" stroke={AMBER} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M0 -9 V9 M0 -9 L6 -4.5 L-6 4.5 M0 9 L6 4.5 L-6 -4.5" />
+      </g>
+      <text x="296" y="38" textAnchor="end" fontSize="9" fontWeight="700" fill={INK} fontFamily="monospace">
+        FTMS over BLE
+      </text>
+      {/* the chart: a flat ERG target and the power trace holding it */}
+      <line x1="140" y1="150" x2="296" y2="150" stroke="#E0D4B8" strokeWidth="1.5" />
+      <line x1="140" y1="92" x2="296" y2="92" stroke={AMBER} strokeWidth="2" strokeDasharray="6 4" />
+      <text x="296" y="84" textAnchor="end" fontSize="8" fill="#A89A7E" fontFamily="monospace">
+        ERG target
+      </text>
+      <path d={trace} fill="none" stroke={INK} strokeOpacity="0.55" strokeWidth="2.2" strokeLinecap="round" />
+      <path d={trace} fill="none" stroke={AMBER} strokeWidth="2.2" strokeLinecap="round" strokeDasharray="8 8" style={{ animation: "qart-flow 1.2s linear infinite" }} />
+      <text x="140" y="164" fontSize="8" fill="#A89A7E" fontFamily="monospace">
+        power, held at the target
+      </text>
+    </ArtFrame>
+  );
+}
+
 const ART: Record<ArtKey, () => JSX.Element> = {
   radar: Radar,
   flow: Flow,
@@ -560,6 +677,8 @@ const ART: Record<ArtKey, () => JSX.Element> = {
   quorum: Quorum,
   cut: Cut,
   video: Video,
+  amaru: Amaru,
+  kallpa: Kallpa,
 };
 
 export function CardArt({ art, className }: { art: ArtKey; className?: string }) {

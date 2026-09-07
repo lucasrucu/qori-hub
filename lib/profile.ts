@@ -19,10 +19,11 @@ export const PROFILE = {
   name: "Lucas Ruiz",
   firstName: "Lucas",
   lastName: "Ruiz",
-  title: "AI & Automation Engineer",
-  // The formal base, and the only thing that should ever read as "where he is".
-  // The Indonesia site posting is temporary and belongs on the ROLE, not here.
-  location: "Salt Lake City, UT",
+  title: "Data & Automation Engineer",
+  // Not a city on purpose. He works mining project rotations and is open to
+  // roles anywhere; the employer's head office sits on the experience entry.
+  // A rotation is not a base, and a city here would read as one.
+  location: "Mining project rotations · open to roles anywhere",
   languages: "English & Spanish",
   // Hero headline, the niche stated plainly. What I do before what my title is.
   tagline: "I build AI agents and automations that kill manual work.",
@@ -30,7 +31,7 @@ export const PROFILE = {
   // Written to be extractable verbatim by search snippets and AI answer engines:
   // states name, role, and the published-paper credential in plain sentences.
   intro:
-    "Lucas Ruiz is an AI and automation engineer who builds software that removes manual work from data-heavy industrial projects. He works as a data specialist on large-scale industrial commissioning, and he co-authored a peer-reviewed paper on a YOLO-based PPE monitoring system, published in the Proceedings of the Computer Vision Conference (CVC) 2026. Field engineer who builds, builder who has worked the field.",
+    "Lucas Ruiz is a data and automation engineer who builds software that removes manual work from data-heavy industrial projects. He works as a data specialist on large-scale industrial commissioning, and he co-authored a peer-reviewed paper on a YOLO-based PPE monitoring system, published in the Proceedings of the Computer Vision Conference (CVC) 2026. Field engineer who builds, builder who has worked the field.",
   // About, who I am. Lead with the bridge: the thing nobody else can say.
   about: [
     `I build AI agents and automations that remove manual work from data-heavy industrial projects. Right now I work as a data specialist on large-scale industrial commissioning: ${SCALE.subsystems} subsystems, ${SCALE.tags} equipment tags, ${SCALE.checksheets} checksheets. The job is full of repetitive, high-stakes data work: pulling records, validating them, formatting reports, signing off readiness packages. So I automate it.`,
@@ -53,80 +54,85 @@ export const SOCIALS = {
   orcid: "https://orcid.org/0009-0004-3747-3968",
 } as const;
 
+export type ExperienceProject = {
+  name: string;
+  dates: string;
+  blurb: string;
+};
+
 export type Experience = {
   company: string;
   role: string;
   dates: string;
   location: string;
   blurb: string;
+  // The projects inside the position, newest start first.
+  projects: ExperienceProject[];
 };
 
-// Every role on the resume, newest start first. Several overlap because they
-// were concurrent project assignments under one employer, some run remotely,
-// which is what EXPERIENCE_NOTE says out loud so the timeline does not read as
-// a mistake. Client and project names stay anonymized.
+// One continuous position, with the projects inside it. It is one job and not
+// seven: the projects ran under one employer, several of them concurrently,
+// and the dates on each are real. Client and project names stay anonymized.
 export const EXPERIENCE: Experience[] = [
   {
     company: "Commissioning contractor",
-    role: "CMS / PIMS Data Specialist",
-    dates: "Oct 2025 - Present",
-    // Base first, posting second. Indonesia is a temporary site posting.
-    location: "Salt Lake City, UT · temporary site posting in Indonesia",
-    blurb: `Engineering data management on a large-scale industrial commissioning project: validated and uploaded ${SCALE.tags} equipment tags into the project data platform, and built Python and Playwright automations to replace manual data collection.`,
-  },
-  {
-    company: "Commissioning contractor",
-    role: "Project Engineer, Resource Loading Tool",
-    dates: "Feb 2025 - Jun 2025",
-    location: "Salt Lake City, UT",
+    role: "CMS / PIMS Data Specialist (Project Engineer)",
+    dates: "Dec 2022 - Present",
+    // The employer's head office. Where each project happened is on the project.
+    location: "Salt Lake City, UT (HQ)",
     blurb:
-      "Built a two-file Excel system that tracks resource allocation across projects and provisions availability data for each new team with no manual setup. Power Query M keeps the master sheet current, and the dashboards let leads watch capacity across 50+ people.",
-  },
-  {
-    company: "Commissioning contractor",
-    role: "Project Engineer, SharePoint Document Management",
-    dates: "Dec 2024 - Apr 2025",
-    location: "Salt Lake City, UT",
-    blurb:
-      "Evaluated Egnyte, OneDrive and SharePoint, then implemented SharePoint as the company's document control platform: controlled libraries, metadata schemas, multi-stage approvals, and Power Automate lifecycle flows wired into Teams.",
-  },
-  {
-    company: "Commissioning contractor",
-    role: "Project Engineer, Salesforce Configuration",
-    dates: "Dec 2024 - Apr 2025",
-    location: "Salt Lake City, UT",
-    blurb:
-      "Configured profiles, views and permissions for the internal project coordination app built on Salesforce PM+, then wrote the onboarding documentation and task-tracking automations that got the team onto it.",
-  },
-  {
-    company: "Commissioning contractor",
-    role: "Project Engineer, Cloud Application Development",
-    dates: "Jan 2024 - Dec 2024",
-    location: "Salt Lake City, UT",
-    blurb:
-      "Led end-to-end development of a cloud-based internal app with Power Apps, Power Automate, and Azure SQL, selected after evaluating low-code platforms, schema designed in Vertabelo.",
-  },
-  {
-    company: "Gold mining project",
-    role: "Project Engineer",
-    dates: "Jul 2023 - Jul 2024",
-    location: "Canada",
-    blurb:
-      "Produced and QC'd equipment work packages for mining instrumentation, verifying accuracy against P&IDs and scope-of-work documents, and built Excel/Word templates to standardize the workflow.",
-  },
-  {
-    company: "Copper mining project",
-    role: "Engineering Intern",
-    dates: "Dec 2022 - Dec 2023",
-    location: "Utah",
-    blurb:
-      "Assembled and QC'd checklist packages for mining equipment commissioning, coordinating with the team to meet client delivery deadlines.",
+      "One continuous position: joined as an Engineering Intern, then Project Engineer across five internal and site projects, and since October 2025 the CMS / PIMS Data Specialist on a large-scale mining expansion in Indonesia.",
+    projects: [
+      {
+        name: "Mining expansion, Indonesia",
+        dates: "Oct 2025 - Present",
+        blurb:
+          "Engineering data management on the client's PIMS platform: validated and uploaded 10,000+ equipment and instrument records, built Python and Playwright automations that replaced manual data collection, and served as the team's primary PIMS point of contact.",
+      },
+      {
+        name: "Resource Loading Tool",
+        dates: "Feb 2025 - Jun 2025",
+        blurb:
+          "A two-file Excel system that tracks resource allocation across projects and provisions availability data for each new team with no manual setup. Power Query M keeps the master sheet current, and dashboards let team leads watch workload and capacity across 50+ personnel.",
+      },
+      {
+        name: "SharePoint Document Management System",
+        dates: "Dec 2024 - Apr 2025",
+        blurb:
+          "Evaluated Egnyte, OneDrive and SharePoint, then implemented SharePoint as the company's document control platform: controlled libraries, metadata schemas, multi-stage approvals, and Power Automate lifecycle flows wired into Teams.",
+      },
+      {
+        name: "Salesforce Configuration (PM+ App)",
+        dates: "Dec 2024 - Apr 2025",
+        blurb:
+          "Configured profiles, views and permissions for the internal project coordination app built on Salesforce PM+, then wrote the onboarding documentation and task-tracking automations that got the team onto it.",
+      },
+      {
+        name: "Cloud Application Development",
+        dates: "Jan 2024 - Dec 2024",
+        blurb:
+          "Led end-to-end development of a cloud-based internal app with Power Apps, Power Automate and Azure SQL, selected after evaluating low-code platforms, schema designed in Vertabelo.",
+      },
+      {
+        name: "Gold mining project, Canada",
+        dates: "Jul 2023 - Jul 2024",
+        blurb:
+          "Produced and QC'd equipment work packages for mining instrumentation, verifying accuracy against P&IDs and scope-of-work documents, and built Excel and Word templates to standardize the workflow.",
+      },
+      {
+        name: "Copper mining project, Utah",
+        dates: "Dec 2022 - Dec 2023",
+        blurb:
+          "Assembled and QC'd checklist packages for mining equipment commissioning, coordinating with the team to meet client delivery deadlines.",
+      },
+    ],
   },
 ];
 
-// Shown under the timeline. The overlapping dates are real and this is why.
+// Shown under the timeline. The overlapping project dates are real and this
+// is why.
 export const EXPERIENCE_NOTE =
-  "Dates overlap because these were concurrent project assignments under one employer, several of them run remotely.";
+  "Project dates overlap because several ran concurrently inside the one position.";
 
 export const EDUCATION = {
   degree: "B.S. Software Engineering",
@@ -249,15 +255,15 @@ export type Project = {
 // /projects. Only the first, Industrial commissioning automation, is the
 // flagship (badge + beam).
 //
-// Otto sits second on purpose: it is live, it is what actually runs the work,
-// and it built this site. Quorum used to sit here and has been moved down to
-// MORE_PROJECTS, because it is frozen.
+// Amaru sits second: v2 of the personal assistant and the one in daily use.
+// Otto, v1, moved down to MORE_PROJECTS with its case study, the same way
+// Quorum did when Otto replaced it.
 export const FEATURED_PROJECTS: Project[] = [
   {
     name: "Industrial commissioning automation",
     context: "Large industrial project · field case study",
     tagline: "A body of automations that turned the commissioning paperwork into software.",
-    description: `On a large minerals-processing expansion, my day was repetitive, high-stakes data work across ${SCALE.subsystems} subsystems and ${SCALE.tags} equipment tags. I built a toolkit of automations plus an AI assistant that runs them. The biggest single win cut energization-document work from up to 6 hours a day to under an hour. Projected to remove 1,000+ hours over the project (estimate).`,
+    description: `On a large minerals-processing expansion, my day was repetitive, high-stakes data work across ${SCALE.subsystems} subsystems and ${SCALE.tags} equipment tags. I built a toolkit of automations plus an AI assistant that runs them. The biggest single win took the energization documents from typed by hand to generated from a template.`,
     tech: ["Python", "Playwright", "REST APIs", "Power BI", "AI Agents"],
     page: "/commissioning-automation",
     flagship: true,
@@ -265,14 +271,13 @@ export const FEATURED_PROJECTS: Project[] = [
     accent: "experience",
   },
   {
-    name: "Otto",
-    context: "Personal AI assistant OS",
-    tagline: "A voice-first assistant that runs my own work automations.",
+    name: "Amaru",
+    context: "Personal AI assistant · v2, in daily use",
+    tagline: "A voice-first assistant with specialist agents behind a router.",
     description:
-      "A local AI assistant built on the Claude Agent SDK with a voice-driven HUD and multi-agent orchestration. Speak a command, watch an automation run: data pulls, report generation, readiness sign-offs. It is also the assistant that built the rest of this site.",
-    tech: ["Python", "Claude Agent SDK", "Multi-agent", "Voice (STT/TTS)", "FastAPI"],
-    page: "/otto",
-    art: "orb",
+      "A Next.js progressive web app, a Node worker running a queue of specialist agents behind a router, and a Postgres schema underneath, running unattended. Training, money, career and notes each get their own agent, and the arithmetic they need is done in SQL and handed to them, so an agent chooses and never has to remember. Otto was v1. This is what I use now.",
+    tech: ["TypeScript", "Next.js", "Node", "PostgreSQL", "Claude API", "Docker", "systemd"],
+    art: "amaru",
   },
   {
     name: "Financial Dashboard",
@@ -292,7 +297,22 @@ export const FEATURED_PROJECTS: Project[] = [
 // This list is a portfolio, not an inventory. A card that links nowhere costs
 // more than it adds, which is why rapid-cut and VideoOS came off it: neither
 // had a live link, a repo, or a case study, so there was nothing to click.
+//
+// Two cards break that rule today, Amaru (featured) and Kallpa: both
+// repositories are private and neither has a case study yet. They stay because
+// a shelf without the assistant in daily use misrepresents the work. A case
+// study page for Amaru is the fix, not removing the card.
 export const MORE_PROJECTS: Project[] = [
+  {
+    name: "Otto",
+    context: "Personal AI assistant · v1",
+    tagline: "The v1 assistant: voice-first, and it built this site.",
+    description:
+      "A local AI assistant built on the Claude Agent SDK with a voice-driven HUD and multi-agent orchestration. Speak a command, watch an automation run: data pulls, report generation, readiness sign-offs. It built the rest of this site, and Amaru, its successor, is what I use now.",
+    tech: ["Python", "Claude Agent SDK", "Multi-agent", "Voice (STT/TTS)", "FastAPI"],
+    page: "/otto",
+    art: "orb",
+  },
   {
     name: "Quorum",
     context: "Personal build · frozen",
@@ -359,6 +379,15 @@ export const MORE_PROJECTS: Project[] = [
     repo: "https://github.com/lucasrucu/snip",
     art: "link",
   },
+  {
+    name: "Kallpa",
+    context: "Personal build · indoor trainer",
+    tagline: "An indoor trainer controller that holds an ERG target over Bluetooth.",
+    description:
+      "Drives a Wahoo KICKR in ERG mode over Bluetooth Low Energy using the FTMS protocol: set a target and the trainer holds it. The one build on this shelf that talks to hardware.",
+    tech: ["Bluetooth Low Energy", "FTMS", "ERG mode"],
+    art: "kallpa",
+  },
 ];
 
 export type InBuildItem = {
@@ -381,7 +410,7 @@ export type InBuildItem = {
 export const IN_BUILD: InBuildItem[] = [];
 
 // Otto showcase content. Otto's code is private; this is the public capabilities
-// page that presents it as the flagship personal build. Lives at /otto.
+// page for v1 of the personal assistant. Lives at /otto.
 //
 // SECURITY, read before editing: Otto is wired into Lucas's real accounts and
 // this page is a live attack surface. Publish CAPABILITY only. Never publish
@@ -393,14 +422,14 @@ export const OTTO = {
   // Deliberately parallel with Quorum's "Personal build · frozen", so the
   // ranking between the two reads at a glance. "Flagship" is reserved for the
   // single badge on the commissioning card: one word, one meaning.
-  eyebrow: "Personal build · live daily",
+  eyebrow: "Personal build · v1",
   // Hero line for the showcase page.
   tagline: "A voice-first AI assistant that runs my work.",
   intro:
-    "Otto is my personal AI operating layer. It is built on the Claude Agent SDK, talks back, and actually executes my automations on command. A personal build, not a public product.",
-  // Honest current state. Otto is the one that is live, which is why it now
-  // outranks Quorum on this site.
-  status: "Live, used every day, and the assistant that built this site.",
+    "Otto is the first version of my personal AI operating layer. It is built on the Claude Agent SDK, talks back, and executes my automations on command. A personal build, not a public product, and the v1 that Amaru replaced.",
+  // Honest current state. Otto is v1: it built this site, still runs, and has
+  // been succeeded by Amaru, which is the assistant in daily use.
+  status: "v1. It built this site, and Amaru, its successor, is the assistant I use now.",
   // Plain framing of what it is.
   what: [
     "I do a lot of repetitive, high-stakes data work on industrial projects: pulling records, generating reports, signing off readiness packages. Otto is how I stopped driving each of those by hand.",
@@ -566,7 +595,7 @@ export const NOE = {
       title: "NoE Generator",
       shot: "/noe/generator.png",
       detail:
-        "Notices of Energization have to exist for every subsystem, and writing them by hand is slow and repetitive. Give the Generator a COMM number, the subsystems, and a signer, and it produces the finished .docx from templates. This is the tool behind the headline number on the parent case study, and it is my collaborator's work.",
+        "Notices of Energization have to exist for every subsystem, and writing them by hand is slow and repetitive. Give the Generator a COMM number, the subsystems, and a signer, and it produces the finished .docx from templates. This is the toolkit's biggest time-saver, and it is my collaborator's work.",
     },
     {
       icon: "paintbrush",
@@ -601,7 +630,7 @@ export const NOE = {
   status:
     "Shipped at v1.0.0 and used on the project, then parked as a clean, documented skeleton with a roadmap. It may be revived; the bones are kept ready.",
   // ------------------------------------------------------------------------
-  // THE CREDIT. This is joint work and it carries the biggest number on the
+  // THE CREDIT. This is joint work and it is the biggest time-saver on the
   // site, so it gets byline weight, not a grey footnote.
   //
   // DO NOT ADD A NAME OR A LINK. There is a standing rule that this colleague
@@ -623,7 +652,7 @@ export const NOE = {
     role: "Co-developer",
     // The split, stated plainly, in the same place the paper states its authors.
     detail:
-      "This one is not mine alone. A colleague built the original NoE Generator, the tool that turns a subsystem list into a finished energization document. I built the toolkit around it: the Drawing Plan Painter, the Drawing Finder, the shared launcher, the packaging, and the bilingual UI. The headline figure on the parent case study, roughly six hours a day down to under one, comes from their generator.",
+      "This one is not mine alone. A colleague built the original NoE Generator, the tool that turns a subsystem list into a finished energization document. I built the toolkit around it: the Drawing Plan Painter, the Drawing Finder, the shared launcher, the packaging, and the bilingual UI. The toolkit's biggest time-saver is their generator.",
   },
   // The do-if-revived vision (docs/ROADMAP.md).
   roadmap: [
@@ -652,7 +681,8 @@ export type ChildCase = {
   blurb: string;
   // Internal case-study page, when one exists.
   page?: string;
-  // Its own number. Always framed as an estimate, never as measured fact.
+  // Its own figure, only when a record states it with its unit and its
+  // denominator. Never an estimate: there is none on this site.
   stat?: string;
   // Its own credit line. Absent means solo work, which matches the page voice.
   credit?: string;
@@ -664,9 +694,9 @@ export type ChildCase = {
 // Industrial commissioning automation. The PARENT CATEGORY, not a single
 // project. One coherent story about the body of automations Lucas built on a
 // large industrial project, with named children underneath it.
-// Fully anonymized (no client/employer/project/person names). All numbers are
-// ESTIMATES, framed honestly. Lives at /commissioning-automation. Source: the
-// Lucas-approved anonymized automation inventory in the assistant's memory.
+// Fully anonymized (no client/employer/project/person names). The only numbers
+// on it are the project's scale anchors: no time-saved figure, estimated or
+// otherwise. Lives at /commissioning-automation.
 // ---------------------------------------------------------------------------
 export const EXPERIENCE_STUDY = {
   name: "Industrial commissioning automation",
@@ -675,32 +705,16 @@ export const EXPERIENCE_STUDY = {
   // Hero line: the role, plainly.
   tagline:
     "I turned the commissioning paperwork of a large industrial project into software.",
-  // Hero subhead: the role + the headline estimate, framed as an estimate.
+  // Hero subhead: the role, plainly.
   intro:
-    "As the data specialist on a large minerals-processing expansion in its commissioning and handover phase, my day was repetitive, high-stakes data work: pulling records, validating them, formatting reports, signing off readiness packages. So I built a toolkit of automations to do it. Across the project, that toolkit is projected to remove on the order of 1,000+ hours of manual work. That figure is an estimate, projected to project end.",
-  // The headline stat block under the hero. Every number framed as an estimate.
-  headline: {
-    value: "1,000+",
-    unit: "hours",
-    label: "of repetitive manual work projected to be removed over the project",
-    note: "Estimate, projected to project end. The project is still running.",
-  },
+    "As the data specialist on a large minerals-processing expansion in its commissioning and handover phase, my day was repetitive, high-stakes data work: pulling records, validating them, formatting reports, signing off readiness packages. So I built a toolkit of automations to do it.",
   // Scale anchors, from the one shared SCALE constant so no page can drift.
   scale: [
     { value: SCALE.subsystems, label: "subsystems on the project" },
     { value: SCALE.tags, label: "equipment tags" },
     { value: SCALE.checksheets, label: "checksheets" },
   ],
-  // The NoE before/after as a SINGLE stat. The biggest single win, and the one
-  // number on this page that is not mine alone, which the credit line says.
-  noe: {
-    label: "Energization documents (NoE), the biggest single win",
-    before: "up to 6 hrs/day",
-    after: "under 1 hr",
-    saved: "~5 hrs/day",
-    note: "Estimate from real before/after. The generator behind this number was built by a colleague; I built the toolkit around it. Full story in the NoE Toolkit child case.",
-  },
-  // The named children. Each carries its own numbers and its own credit.
+  // The named children. Each carries its own credit.
   children: ([
     {
       // ----------------------------------------------------------------
@@ -711,19 +725,19 @@ export const EXPERIENCE_STUDY = {
       // not before. The word "suite" appears nowhere on the site today and
       // that stays true while `draft` is set.
       //
-      // TO PUBLISH IN SEPTEMBER: write a real `blurb` and `stat`, then delete
-      // the `draft` line. Nothing else changes; the section renders it.
+      // TO PUBLISH IN SEPTEMBER: Lucas approves the blurb, then the `draft`
+      // line is deleted. Nothing else changes; the section renders it.
       // ----------------------------------------------------------------
       draft: true,
       name: "Commissioning Suite",
-      blurb: "Placeholder. Lucas writes this entry in September.",
+      blurb:
+        "The commissioning toolkit as one suite: Python and Playwright automations that gather data from the web and internal applications, Excel and Power Query (M) tools that clean, restructure and summarize large datasets, and the standardized data-entry and review workflows that keep the project's PIMS records clean and consistent for every stakeholder.",
     },
     {
       name: "NoE Toolkit",
       blurb:
         "Three desktop tools behind one launcher: generate the energization documents, batch-repaint the drawings in Visio, and find which drawing a subsystem or tag lives on. The biggest single time-saver in the whole toolkit.",
       page: "/noe",
-      stat: "Up to 6 hrs/day by hand, under 1 hr with the tool (estimate)",
       credit: "Co-developed with a colleague",
     },
     {
@@ -731,13 +745,11 @@ export const EXPERIENCE_STUDY = {
       blurb:
         "Readiness reports generated straight from the data-platform API, and an unattended sign-off flow that imports the readiness list, pulls the handover documents, uploads files and metadata, and signs the certificates.",
       page: "/pims-rfcc",
-      stat: "200 to 300 hours removed by project end (estimate)",
     },
     {
       name: "Power BI progress dashboard",
       blurb:
         "One command pulls the data exports, drives the browser export of the document register, syncs the readiness sheet, and refreshes the Power BI model. Daily commissioning progress stopped depending on anyone being at a desk.",
-      stat: "30 to 45 min/day down to near one click, 100+ hours over the project (estimate)",
     },
     {
       name: "WP Splitter",
@@ -748,13 +760,11 @@ export const EXPERIENCE_STUDY = {
       name: "BIC custody highlighter",
       blurb:
         "Resolves every equipment tag to its subsystem and its readiness state, then shades the boundary document by custody: grey for commissioning, red for construction. Ships as a one-click desktop app as well as a script.",
-      stat: "20 min per document down to seconds, 60 to 100 hours (estimate)",
     },
     {
       name: "Project report generator",
       blurb:
         "Pulls the completed task-board cards for any date range and writes them up as formatted Word reports, so the daily write-up is generated rather than typed.",
-      stat: "10 to 15 min/day removed (estimate)",
     },
   ] as ChildCase[]),
   // The supporting cast. Flat cards, each just what it does. The named children
@@ -803,9 +813,6 @@ export const EXPERIENCE_STUDY = {
       "Keeps a version-controlled memory shared across machines.",
     ],
   },
-  // Honest framing note about the numbers.
-  estimatesNote:
-    "Every figure on this page is a conservative estimate from real before/after observation, and several are projected to the end of a project that is still running. They are presented as estimates, not measured fact, on purpose. The point is the shape of the work removed, not a precise hour count.",
 } as const;
 
 // Quorum showcase content. The code is private; this is the public page.
@@ -824,7 +831,7 @@ export const QUORUM = {
     "Quorum was my local agent-company OS. AI agents worked as employees under my direction: an orchestrator dispatched the work, agents built in parallel, and only the few decisions that actually needed a human reached me. It ran, and it shipped real software.",
   // Where it stands now. Honest, and the reason it is no longer flagship.
   status:
-    "Frozen. It worked, and agents shipped real software under it, but running a company of agents did not give me more than one good assistant does. The work moved to Otto, which is what I use every day now. Quorum is kept intact, not deleted.",
+    "Frozen. It worked, and agents shipped real software under it, but running a company of agents did not give me more than one good assistant does. The work moved to Otto, and from there to Amaru, which is what I use every day now. Quorum is kept intact, not deleted.",
   // The punch line under the hero art.
   pitch: "One builder, a fleet of agents, real software shipped.",
   // Capability chips in the hero.
