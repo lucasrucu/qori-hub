@@ -51,7 +51,11 @@ export function Hero() {
               <MapPin className="h-4 w-4 text-primary" aria-hidden="true" />
               {PROFILE.location}
             </span>
-            <span aria-hidden="true">·</span>
+            {/* The separator only earns its place when both chips share a line;
+                on a phone the location wraps and the dot was left dangling. */}
+            <span aria-hidden="true" className="hidden sm:inline">
+              ·
+            </span>
             <span>{PROFILE.languages}</span>
           </div>
 

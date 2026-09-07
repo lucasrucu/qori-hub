@@ -168,7 +168,7 @@ export default function OttoPage() {
             <div className="flex flex-col items-start gap-6 rounded-xl border border-border bg-card p-8 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <h2 className="text-xl font-semibold tracking-tight text-foreground">
-                  Otto runs the work this portfolio talks about.
+                  Otto ran the work this portfolio talks about first. Amaru runs it now.
                 </h2>
                 <p className="mt-1.5 text-sm text-muted-foreground">
                   The code stays private. The capability is the point. See the rest of what{" "}

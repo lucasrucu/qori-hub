@@ -219,11 +219,11 @@ export default function QuorumPage() {
               <p className="text-lg leading-relaxed text-foreground/80">{QUORUM.status}</p>
               <p className="mt-4 text-sm text-muted-foreground">
                 It is here because it was a real build and a real thing to learn from, not because
-                it is running.{" "}
+                it is running. The work moved to{" "}
                 <a href="/otto" className="text-primary hover:underline">
                   Otto
-                </a>{" "}
-                is the one that is live.
+                </a>
+                , and from there to Amaru, the assistant in use now.
               </p>
             </div>
           </div>
