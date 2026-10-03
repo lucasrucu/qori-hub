@@ -81,13 +81,19 @@ export const EXPERIENCE: Experience[] = [
     // The employer's head office. Where each project happened is on the project.
     location: "Salt Lake City, UT (HQ)",
     blurb:
-      "One continuous position: joined as an Engineering Intern, then Project Engineer across five internal and site projects, and since October 2025 the CMS / PIMS Data Specialist on a large-scale mining expansion in Indonesia.",
+      "One continuous position: joined as an Engineering Intern, then Project Engineer across six internal and site projects, and since October 2025 the CMS / PIMS Data Specialist on a large-scale mining expansion in Indonesia.",
     projects: [
       {
         name: "Mining expansion, Indonesia",
         dates: "Oct 2025 - Present",
         blurb:
           "Engineering data management on the client's PIMS platform: validated and uploaded 10,000+ equipment and instrument records, built Python and Playwright automations that replaced manual data collection, and served as the team's primary PIMS point of contact.",
+      },
+      {
+        name: "Document Control R&D (remote)",
+        dates: "Jun 2025 - Sep 2025",
+        blurb:
+          "Remote research and development on the company's document control process with the VP of Research and Technology, including testing Egnyte as a document control platform in a dedicated test domain requested from the vendor.",
       },
       {
         name: "Resource Loading Tool",
