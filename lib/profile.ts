@@ -90,22 +90,16 @@ export const EXPERIENCE: Experience[] = [
           "Engineering data management on the client's PIMS platform: validated and uploaded 10,000+ equipment and instrument records, built Python and Playwright automations that replaced manual data collection, and served as the team's primary PIMS point of contact.",
       },
       {
-        name: "Document Control R&D (remote)",
-        dates: "Jun 2025 - Sep 2025",
+        name: "SharePoint Document Management System (R&D, remote)",
+        dates: "Jul 2025 - Sep 2025",
         blurb:
-          "Remote research and development on the company's document control process with the VP of Research and Technology, including testing Egnyte as a document control platform in a dedicated test domain requested from the vendor.",
+          "Evaluated Egnyte, OneDrive and SharePoint, then implemented SharePoint as the company's document control platform: controlled libraries, metadata schemas, multi-stage approvals, and Power Automate lifecycle flows wired into Teams, plus Word and Excel transmittal templates that pull live document metadata from SharePoint.",
       },
       {
         name: "Resource Loading Tool",
         dates: "Feb 2025 - Jun 2025",
         blurb:
           "A two-file Excel system that tracks resource allocation across projects and provisions availability data for each new team with no manual setup. Power Query M keeps the master sheet current, and dashboards let team leads watch workload and capacity across 50+ personnel.",
-      },
-      {
-        name: "SharePoint Document Management System",
-        dates: "Dec 2024 - Apr 2025",
-        blurb:
-          "Evaluated Egnyte, OneDrive and SharePoint, then implemented SharePoint as the company's document control platform: controlled libraries, metadata schemas, multi-stage approvals, and Power Automate lifecycle flows wired into Teams.",
       },
       {
         name: "Salesforce Configuration (PM+ App)",
